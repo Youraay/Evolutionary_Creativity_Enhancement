@@ -1,6 +1,6 @@
 """Experiments whose runs differ in the operators, rates or fitness function of the genetic algorithm.
 
-These experiments use population 100, SDXL with 50 denoising steps and batch size 5 (:data:`STANDARD`).
+These experiments use population 100, SDXL in float16 with 50 denoising steps and batch size 5 (:data:`STANDARD`).
 Every job row stores the complete configuration of its run, so one worker serves all of them. Operators
 and fitness are given as short specifications:
 
@@ -457,6 +457,8 @@ def transfer_populations(job: sqlite3.Row, source_dir: Path, dtype) -> list:
 
 
 def run_job(experiment: VariantExperiment, job: sqlite3.Row) -> str:
+    import torch
+
     """Run (or, for transfer jobs, evaluate) one job.
 
     The recorded metrics are those of all current experiments: distance to the mean of generation 0
@@ -487,7 +489,8 @@ def run_job(experiment: VariantExperiment, job: sqlite3.Row) -> str:
     logger.info("Job %s | %s", job["id"], dict(job))
 
     set_all_seeds(int(job["seed"]))
-    sdxl = StableDiffusionXLModel(DEVICE, HF_CACHE, num_inference_steps=int(job["inference_steps"]))
+    sdxl = StableDiffusionXLModel(DEVICE, HF_CACHE, num_inference_steps=int(job["inference_steps"]),
+                                  torch_dtype=torch.float16)
     clip = ClipEmbeddingModel(DEVICE, HF_CACHE)
     blip2 = Blip2EmbeddingModel(DEVICE, HF_CACHE)
     _, metrics = standard_evaluators(blip2, clip, DEVICE)

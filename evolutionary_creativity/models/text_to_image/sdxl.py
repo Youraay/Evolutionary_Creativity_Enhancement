@@ -16,18 +16,23 @@ class StableDiffusionXLModel(GenerativeModel):
     torch_dtype = torch.bfloat16
 
     def __init__(self, device: str, cache_dir: str, num_inference_steps: int = 50, guidance_scale: float = 7.0,
-                 model: str = "stabilityai/stable-diffusion-xl-base-1.0") -> None:
+                 model: str = "stabilityai/stable-diffusion-xl-base-1.0",
+                 torch_dtype: torch.dtype | None = None) -> None:
         """
         Args:
             device: Device of the pipeline.
             cache_dir: Hugging Face cache directory.
-            num_inference_steps: Number of denoising steps (all experiments use 30).
+            num_inference_steps: Number of denoising steps (50 for the experiments with population 100, 30 for
+                those with population 60).
             guidance_scale: Classifier-free guidance scale.
             model: Hugging Face model id.
+            torch_dtype: Precision of the pipeline; by default :attr:`torch_dtype` of the class. The experiments
+                with population 100 use float16.
         """
         self.num_inference_steps = num_inference_steps
         self.guidance_scale = guidance_scale
-        self.model = self.pipeline_class.from_pretrained(model, cache_dir=cache_dir, torch_dtype=self.torch_dtype,
+        self.model = self.pipeline_class.from_pretrained(model, cache_dir=cache_dir,
+                                                         torch_dtype=torch_dtype or self.torch_dtype,
                                                          use_safetensors=True, variant="fp16")
         self.model.set_progress_bar_config(leave=False)
         self.model.set_progress_bar_config(disable=True)
