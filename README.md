@@ -51,13 +51,13 @@ plots/                       all generated figures (PDF + SVG) with their tables
 | `think_then_generate` | prompt rewriting with Think-Then-Generate, then seed optimisation | Supp. Fig. 10 | `plots/think_then_generate` |
 | `mutation_grid_search` | every candidate mutated once per mutated fraction and strength | Methods (Mutation) | `plots/mutation_grid_search` |
 | `gemma_ratings` | post-hoc Gemma ratings, 114 prompts for creativity/unusualness and 108 for four other dimensions | Gemma ratings across generations (final figure/panel assignment pending) | `plots/gemma_ratings` |
-| `gemma_evolution` | human/VLM image-level agreement and seven Gemma fitness targets | Supp. Fig. 13A-E | `plots/gemma_evolution` |
+| `gemma_evolution` | human/VLM image-level agreement and seven Gemma fitness targets | Supp. Fig. 14A-E | `plots/gemma_evolution` |
 
 The Gemma contribution includes the image-level human aggregates needed for the VLM comparison, post-hoc
 ratings and saved population metrics for Gemma-guided evolution. It does not include individual human
 participant records or the rest of the human-study analysis. See [the Gemma guide](docs/gemma.md) for
-the precise figure coverage and methods. The mapping below follows the current Supplementary Figure 13
-caption. The separate 114/108-prompt ratings figure is proposed for inclusion in Supplementary Figure 13,
+the precise figure coverage and methods. The mapping below follows the current Supplementary Figure 14
+caption. The separate 114/108-prompt ratings figure is proposed for inclusion in Supplementary Figure 14,
 but its final figure/panel assignment remains pending.
 
 Panels and files:
@@ -82,19 +82,19 @@ Panels and files:
 | Supp. Fig. 10A, 10B | `think_then_generate/t2g_supplement_g30` (tests: `t2g_conditions_g30_tests.csv`, `t2g_pairwise_g30.csv`) |
 | Supp. Fig. 12A, 12B | `noise_distribution/example_prompts_noise_hist` (+ `example_prompts_normality.csv`), `example_prompts/noise_pca` |
 | Gemma ratings across generations (assignment pending) | `gemma_ratings/ratings_across_generations` (+ `_tests.csv`, `_pairs.csv`, `_sensitivity.csv`) |
-| Supp. Fig. 13A-E | `gemma_evolution/evaluation_and_evolution` (+ `human_vlm_correlations.csv`, `prompt_curves.csv`, `target_curves.csv`) |
+| Supp. Fig. 14A-E | `gemma_evolution/evaluation_and_evolution` (+ `human_vlm_correlations.csv`, `prompt_curves.csv`, `target_curves.csv`) |
 
-Supplementary Figure 13 is reproduced by [analysis/gemma_evolution.py](analysis/gemma_evolution.py).
+Supplementary Figure 14 is reproduced by [analysis/gemma_evolution.py](analysis/gemma_evolution.py).
 Its output composite, `plots/gemma_evolution/evaluation_and_evolution.pdf` and `.svg`, uses eight
 lettered panels (A-H); the manuscript groups the same content into five panels (A-E):
 
 | Manuscript panel | Generated panel(s) | Content | Supporting inputs or output tables |
 |---|---|---|---|
-| Supp. Fig. 13A | A | Human-VLM Spearman correlations | `plots/gemma_evolution/human_vlm_correlations.csv` |
-| Supp. Fig. 13B | B | Creativity-target fitness across generations | `plots/gemma_evolution/prompt_curves.csv` |
-| Supp. Fig. 13C, left/right | C / D | Creativity-target BLIP2 divergence / diversity | `plots/gemma_evolution/prompt_curves.csv` |
-| Supp. Fig. 13D | E | Best-rated final-population examples for each prompt and seed | `data/results/gemma/examples/` |
-| Supp. Fig. 13E | F-H | Seven-target fitness, divergence and diversity, pooled across prompts within seed | `plots/gemma_evolution/target_curves.csv` |
+| Supp. Fig. 14A | A | Human-VLM Spearman correlations | `plots/gemma_evolution/human_vlm_correlations.csv` |
+| Supp. Fig. 14B | B | Creativity-target fitness across generations | `plots/gemma_evolution/prompt_curves.csv` |
+| Supp. Fig. 14C, left/right | C / D | Creativity-target BLIP2 divergence / diversity | `plots/gemma_evolution/prompt_curves.csv` |
+| Supp. Fig. 14D | E | Best-rated final-population examples for each prompt and seed | `data/results/gemma/examples/` |
+| Supp. Fig. 14E | F-H | Seven-target fitness, divergence and diversity, pooled across prompts within seed | `plots/gemma_evolution/target_curves.csv` |
 
 This is a manuscript-to-output cross-reference, not a relabeling of the generated figures.
 The separate ratings figure is produced by [analysis/gemma_ratings.py](analysis/gemma_ratings.py)
