@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "The Millennium Wheel next to the Statue of Liberty. The Sagrada Familia church is also visible.",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 3030801653,
+    "timestamp": "20260918_125315",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/The_Millennium_Wheel_next_to_the_Statue_of_Liberty_The_Sagrada_Familia_church_is_also_visible/The_Millennium_Wheel_next_to_the_Statue_of_Liberty_The_Sagrada_Familia_church_is_also_visible_3030801653_20260918_125307",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/The_Millennium_Wheel_next_to_the_Statue_of_Liberty_The_Sagrada_Familia_church_is_also_visible/The_Millennium_Wheel_next_to_the_Statue_of_Liberty_The_Sagrada_Familia_church_is_also_visible_3030801653_20260918_125307/The_Millennium_Wheel_next_to_the_Statue_of_Liberty_The_Sagrada_Familia_church_is_also_visible_3030801653_20260918_125307.csv"
+}

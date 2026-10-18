@@ -1,0 +1,229 @@
+Challenge,prompt,generation,model_DiversityWithinPopulation
+Basic,A bowl of Pho,0,0.05419057210286458
+Basic,A bowl of Pho,30,0.12513936360677083
+Basic,The Starry Night,0,0.07453528510199653
+Basic,The Starry Night,30,0.20774061414930556
+Basic,a chair,0,0.19940253363715277
+Basic,a chair,30,0.2769436306423611
+Basic,a house,0,0.174224853515625
+Basic,a house,30,0.2211676703559028
+Basic,a motorcycle,0,0.1186187744140625
+Basic,a motorcycle,30,0.21577351888020835
+Basic,a scientist,0,0.09089152018229167
+Basic,a scientist,30,0.2167453342013889
+Basic,a wood cabin,0,0.08043636745876737
+Basic,a wood cabin,30,0.19438612196180557
+Basic,an orange,0,0.1454525417751736
+Basic,an orange,30,0.2451571994357639
+Basic,brain coral,0,0.08958401150173612
+Basic,brain coral,30,0.19076063368055554
+Basic,commonsense,0,0.23918660481770834
+Basic,commonsense,30,0.2972466362847222
+Basic,congruent triangles,0,0.15364108615451388
+Basic,congruent triangles,30,0.24654541015625
+Basic,the grand canyon,0,0.05794152153862847
+Basic,the grand canyon,30,0.20984632703993056
+Complex,A cozy living room with a painting of a corgi on the wall above a couch and a round coffee table in front of a couch and a vase of flowers on a coffee table,0,0.051027933756510414
+Complex,A cozy living room with a painting of a corgi on the wall above a couch and a round coffee table in front of a couch and a vase of flowers on a coffee table,30,0.09589436848958333
+Complex,A punk rock squirrel in a studded leather jacket shouting into a microphone while standing on a stump and holding a beer on dark stage.,0,0.04925638834635417
+Complex,A punk rock squirrel in a studded leather jacket shouting into a microphone while standing on a stump and holding a beer on dark stage.,30,0.1482052273220486
+Complex,"A set of 2x2 emoji icons with happy, angry, surprised and sobbing faces. The emoji icons look like colorful macarons. All of the macarons are wearing cowboy hats.",0,0.07593960232204862
+Complex,"A set of 2x2 emoji icons with happy, angry, surprised and sobbing faces. The emoji icons look like colorful macarons. All of the macarons are wearing cowboy hats.",30,0.11592542860243056
+Complex,A solitary figure shrouded in mists peers up from the cobble stone street at the imposing and dark gothic buildings surrounding it. an old-fashioned lamp shines nearby. oil painting.,0,0.03136944240993924
+Complex,A solitary figure shrouded in mists peers up from the cobble stone street at the imposing and dark gothic buildings surrounding it. an old-fashioned lamp shines nearby. oil painting.,30,0.07524024115668403
+Complex,The Millennium Wheel next to the Statue of Liberty. The Sagrada Familia church is also visible.,0,0.11555209689670139
+Complex,The Millennium Wheel next to the Statue of Liberty. The Sagrada Familia church is also visible.,30,0.1469767252604167
+Complex,a brown trash bin with a green compost bin on its left and a blue recycling bin on its right,0,0.05742696126302083
+Complex,a brown trash bin with a green compost bin on its left and a blue recycling bin on its right,30,0.18197021484375
+Complex,a girl with curly black hair jumping off a boulder,0,0.08114217122395834
+Complex,a girl with curly black hair jumping off a boulder,30,0.12876654730902778
+Complex,a pickup truck with a horse on its left and two dogs on its right,0,0.09428575303819446
+Complex,a pickup truck with a horse on its left and two dogs on its right,30,0.16918843587239585
+Complex,a pineapple with one beer to its left and two beers on its right,0,0.09867112901475694
+Complex,a pineapple with one beer to its left and two beers on its right,30,0.13216417100694444
+Complex,a tree reflected in the sunroof of a blue car,0,0.09727206759982639
+Complex,a tree reflected in the sunroof of a blue car,30,0.16848551432291667
+Complex,a white bird in front of a dinosaur standing by some trees,0,0.07181922064887153
+Complex,a white bird in front of a dinosaur standing by some trees,30,0.13136427137586806
+Fine-grained Detail,Golden Gate bridge on the surface of Mars,0,0.042082553439670135
+Fine-grained Detail,Golden Gate bridge on the surface of Mars,30,0.15010545518663196
+Fine-grained Detail,a ceiling fan with an ornate light fixture,0,0.05398779975043402
+Fine-grained Detail,a ceiling fan with an ornate light fixture,30,0.1666480170355903
+Fine-grained Detail,a half empty bottle of red wine,0,0.11851399739583333
+Fine-grained Detail,a half empty bottle of red wine,30,0.1904032389322917
+Fine-grained Detail,a painting of black and white with a red flower in the right corner,0,0.07186313205295139
+Fine-grained Detail,a painting of black and white with a red flower in the right corner,30,0.1159023708767361
+Fine-grained Detail,a pick-up truck rolling over a grassy field,0,0.1448574490017361
+Fine-grained Detail,a pick-up truck rolling over a grassy field,30,0.19733208550347223
+Fine-grained Detail,a politician speaking to a large crowd,0,0.1431857638888889
+Fine-grained Detail,a politician speaking to a large crowd,30,0.23519965277777777
+Fine-grained Detail,a small garden with an apple tree behind it,0,0.0860995822482639
+Fine-grained Detail,a small garden with an apple tree behind it,30,0.20103352864583335
+Fine-grained Detail,a tennis court with a basketball hoop in one corner,0,0.07280985514322917
+Fine-grained Detail,a tennis court with a basketball hoop in one corner,30,0.153717041015625
+Fine-grained Detail,a white cat with black ears and markings,0,0.06750810411241319
+Fine-grained Detail,a white cat with black ears and markings,30,0.16734415690104165
+Fine-grained Detail,"a young badger delicately sniffing a yellow rose, richly textured oil painting",0,0.016963831583658842
+Fine-grained Detail,"a young badger delicately sniffing a yellow rose, richly textured oil painting",30,0.04531343248155382
+Fine-grained Detail,"an ornate, high-backed mahogany chair with a red cushion",0,0.09723815917968749
+Fine-grained Detail,"an ornate, high-backed mahogany chair with a red cushion",30,0.1875027126736111
+Imagination,A bowl of soup that looks like a monster spray-painted on a wall,0,0.13066440158420137
+Imagination,A bowl of soup that looks like a monster spray-painted on a wall,30,0.20116848415798608
+Imagination,A large city fountain that has milk instead of water. Several cats are leaning into the fountain.,0,0.07880995008680555
+Imagination,A large city fountain that has milk instead of water. Several cats are leaning into the fountain.,30,0.1183319091796875
+Imagination,A shiny robot wearing a race car suit and black visor stands proudly in front of an F1 race car. The sun is setting on a cityscape in the background. comic book illustration.,0,0.06283840603298611
+Imagination,A shiny robot wearing a race car suit and black visor stands proudly in front of an F1 race car. The sun is setting on a cityscape in the background. comic book illustration.,30,0.12678290473090278
+Imagination,A tornado made of tigers crashing into a skyscraper. painting in the style of watercolor.,0,0.0655398898654514
+Imagination,A tornado made of tigers crashing into a skyscraper. painting in the style of watercolor.,30,0.08085208468967015
+Imagination,The collision of two black holes in the center of a galaxy.,0,0.05044453938802083
+Imagination,The collision of two black holes in the center of a galaxy.,30,0.12816501193576388
+Imagination,a clock with no hands,0,0.12502577039930554
+Imagination,a clock with no hands,30,0.19157375759548612
+Imagination,a herd of buffalo stampeding at the Kremlin,0,0.04548729790581597
+Imagination,a herd of buffalo stampeding at the Kremlin,30,0.1221828884548611
+Imagination,a person with arms like a tree branch,0,0.120770263671875
+Imagination,a person with arms like a tree branch,30,0.1786346435546875
+Imagination,a small kitchen with a white goat in it,0,0.09942253960503472
+Imagination,a small kitchen with a white goat in it,30,0.150848388671875
+Imagination,a train going to the moon,0,0.08360493977864585
+Imagination,a train going to the moon,30,0.17956407335069446
+Imagination,an elf drinking orange juice through a straw of a giant orange next to a squirrel and an owl watching from above,0,0.05645955403645833
+Imagination,an elf drinking orange juice through a straw of a giant orange next to a squirrel and an owl watching from above,30,0.08980390760633682
+Imagination,square blue apples on a tree with circular yellow leaves,0,0.07027943929036458
+Imagination,square blue apples on a tree with circular yellow leaves,30,0.12077941894531251
+Linguistic Structures,A robot gives a wombat an orange and a lemur a banana.,0,0.05443657769097223
+Linguistic Structures,A robot gives a wombat an orange and a lemur a banana.,30,0.11374308268229166
+Linguistic Structures,An aerial view of Ha Long Bay without any boats,0,0.026528761121961803
+Linguistic Structures,An aerial view of Ha Long Bay without any boats,30,0.1581817626953125
+Linguistic Structures,Pneumonoultramicroscopicsilicovolcanoconiosis,0,0.16357760959201387
+Linguistic Structures,Pneumonoultramicroscopicsilicovolcanoconiosis,30,0.24319661458333333
+Linguistic Structures,a car with no windows,0,0.17506239149305558
+Linguistic Structures,a car with no windows,30,0.24191351996527777
+Linguistic Structures,a city intersection without cars,0,0.08340674506293404
+Linguistic Structures,a city intersection without cars,30,0.1738165961371528
+Linguistic Structures,a classroom without any students,0,0.08731113009982638
+Linguistic Structures,a classroom without any students,30,0.1392245822482639
+Linguistic Structures,a kitchen without a refrigerator,0,0.1784457736545139
+Linguistic Structures,a kitchen without a refrigerator,30,0.21422051323784722
+Linguistic Structures,a laptop no letters on its keyboard,0,0.16673109266493058
+Linguistic Structures,a laptop no letters on its keyboard,30,0.24397108289930555
+Linguistic Structures,a plate that has no bananas on it. there is a glass without orange juice next to it.,0,0.10288594563802084
+Linguistic Structures,a plate that has no bananas on it. there is a glass without orange juice next to it.,30,0.18283894856770833
+Linguistic Structures,a summer tree without any leaves,0,0.06491410997178819
+Linguistic Structures,a summer tree without any leaves,30,0.1638031005859375
+Perspective,A robot with a black visor and the number 42 on its chest. It stands proudly in front of an F1 race car. The sun is setting on a cityscape in the background. wide-angle view. comic book illustration.,0,0.05586802164713542
+Perspective,A robot with a black visor and the number 42 on its chest. It stands proudly in front of an F1 race car. The sun is setting on a cityscape in the background. wide-angle view. comic book illustration.,30,0.15831637912326388
+Perspective,Saturn rises on the horizon.,0,0.15536329481336805
+Perspective,Saturn rises on the horizon.,30,0.2129557291666667
+Perspective,Three-quarters front view of a red 1997 Porsche 911 coming around a curve in a mountain road and looking over a green valley on a cloudy day.,0,0.03581085205078125
+Perspective,Three-quarters front view of a red 1997 Porsche 911 coming around a curve in a mountain road and looking over a green valley on a cloudy day.,30,0.08332739935980903
+Perspective,a close up of a handpalm with leaves growing from it,0,0.07968987358940972
+Perspective,a close up of a handpalm with leaves growing from it,30,0.1543731689453125
+Perspective,a close-up of a bloody mary cocktail,0,0.059234958224826384
+Perspective,a close-up of a bloody mary cocktail,30,0.23469577365451388
+Perspective,a cross-section view of a walnut,0,0.08228793674045139
+Perspective,a cross-section view of a walnut,30,0.15689934624565974
+Perspective,a pig face,0,0.062182278103298606
+Perspective,a pig face,30,0.1709832085503472
+Perspective,long shards of a broken mirror reflecting the eyes of a great horned owl,0,0.055384826660156254
+Perspective,long shards of a broken mirror reflecting the eyes of a great horned owl,30,0.12241516113281249
+Perspective,view of the Great Wall from its base,0,0.03949364556206597
+Perspective,view of the Great Wall from its base,30,0.1255825466579861
+Properties & Positioning,A photo of a Japanese Porcelain Imari vase on the ground below a wooden chair.,0,0.07648247612847221
+Properties & Positioning,A photo of a Japanese Porcelain Imari vase on the ground below a wooden chair.,30,0.16497734917534723
+Properties & Positioning,A photo of a Persian Metal Engraving vase sitting to the left of a bunch of orange flowers.,0,0.0834560818142361
+Properties & Positioning,A photo of a Persian Metal Engraving vase sitting to the left of a bunch of orange flowers.,30,0.14702046712239583
+Properties & Positioning,a brown trash bin to the left of a blue recycling bin,0,0.06390702989366319
+Properties & Positioning,a brown trash bin to the left of a blue recycling bin,30,0.13379109700520833
+Properties & Positioning,a circular brown trash bin in front of a brick wall,0,0.06954227023654513
+Properties & Positioning,a circular brown trash bin in front of a brick wall,30,0.16739637586805556
+Properties & Positioning,a green pepper to the left of a red pepper,0,0.07773047553168404
+Properties & Positioning,a green pepper to the left of a red pepper,30,0.1656155056423611
+Properties & Positioning,a large yellow sphere behind a small purple pyramid,0,0.08769480387369792
+Properties & Positioning,a large yellow sphere behind a small purple pyramid,30,0.1654266357421875
+Properties & Positioning,a red cube on top of a blue cube,0,0.108111572265625
+Properties & Positioning,a red cube on top of a blue cube,30,0.15843234592013888
+Properties & Positioning,a white background with a large blue circle and a small green square,0,0.11954243977864583
+Properties & Positioning,a white background with a large blue circle and a small green square,30,0.1820587158203125
+Properties & Positioning,a white flag with a red circle next to a solid blue flag,0,0.14915330674913194
+Properties & Positioning,a white flag with a red circle next to a solid blue flag,30,0.21995646158854165
+Properties & Positioning,several red lego blocks and one blue one,0,0.06674414740668404
+Properties & Positioning,several red lego blocks and one blue one,30,0.17268066406249996
+Quantity,Four cats surrounding a dog,0,0.08071984185112847
+Quantity,Four cats surrounding a dog,30,0.14780714246961804
+Quantity,Times Square with thousands of dogs running around,0,0.03473180135091146
+Quantity,Times Square with thousands of dogs running around,30,0.21037801106770834
+Quantity,a ceiling fan with four white blades,0,0.05908253987630208
+Quantity,a ceiling fan with four white blades,30,0.14042290581597225
+Quantity,a four-piece band on a stage in front of a small crowd,0,0.1485165066189236
+Quantity,a four-piece band on a stage in front of a small crowd,30,0.2286471896701389
+Quantity,five green peppers to the right of two red onions,0,0.053389824761284725
+Quantity,five green peppers to the right of two red onions,30,0.12301907009548611
+Quantity,four green glass bottles,0,0.0788604736328125
+Quantity,four green glass bottles,30,0.16712409125434027
+Quantity,three pickup trucks piled on top of each other,0,0.09119398328993056
+Quantity,three pickup trucks piled on top of each other,30,0.15722113715277777
+Quantity,two parallel chemtrails in blue sky,0,0.04933539496527778
+Quantity,two parallel chemtrails in blue sky,30,0.1761806911892361
+Quantity,two red boxes,0,0.20522054036458334
+Quantity,two red boxes,30,0.2418938530815972
+Quantity,two red flowers and three white flowers,0,0.14091152615017363
+Quantity,two red flowers and three white flowers,30,0.19680650499131946
+Simple Detail,A green heart,0,0.13351915147569446
+Simple Detail,A green heart,30,0.19420030381944445
+Simple Detail,A small house in the wilderness,0,0.08148786756727432
+Simple Detail,A small house in the wilderness,30,0.18388197157118055
+Simple Detail,a blue sports car on the road,0,0.12098320855034722
+Simple Detail,a blue sports car on the road,30,0.1870937771267361
+Simple Detail,a flower with large yellow petals,0,0.12278238932291667
+Simple Detail,a flower with large yellow petals,30,0.19859347873263888
+Simple Detail,a hot air balloon floating by the Kremlin,0,0.04165310329861111
+Simple Detail,a hot air balloon floating by the Kremlin,30,0.16737806532118057
+Simple Detail,a kangaroo jumping through the park,0,0.03558256361219618
+Simple Detail,a kangaroo jumping through the park,30,0.11565890842013889
+Simple Detail,a piano with an open song book above the keys ,0,0.11990119086371527
+Simple Detail,a piano with an open song book above the keys ,30,0.16577623155381946
+Simple Detail,a silver fire hydrant next to a sidewalk,0,0.05225134955512153
+Simple Detail,a silver fire hydrant next to a sidewalk,30,0.10544060601128473
+Simple Detail,an angry man,0,0.1522342258029514
+Simple Detail,an angry man,30,0.23061048719618057
+Simple Detail,an old-fashioned cocktail,0,0.12670491536458334
+Simple Detail,an old-fashioned cocktail,30,0.20580851236979167
+Style & Format,A photo of a maple leaf made of water. ,0,0.04878913031684028
+Style & Format,A photo of a maple leaf made of water. ,30,0.11865709092881944
+Style & Format,Oil painting generated by artificial intelligence,0,0.1465301513671875
+Style & Format,Oil painting generated by artificial intelligence,30,0.2117960611979167
+Style & Format,Portrait of a gecko wearing a train conductor’s hat and holding a flag that has a yin-yang symbol on it. Chinese ink.,0,0.06322920057508681
+Style & Format,Portrait of a gecko wearing a train conductor’s hat and holding a flag that has a yin-yang symbol on it. Chinese ink.,30,0.09626837836371528
+Style & Format,a cartoon of a happy car on the road,0,0.08245171440972222
+Style & Format,a cartoon of a happy car on the road,30,0.15498385959201388
+Style & Format,a cloud in the shape of a castle,0,0.04775144788953994
+Style & Format,a cloud in the shape of a castle,30,0.18656277126736112
+Style & Format,a comic about a father and a son playing tennis,0,0.07212999131944445
+Style & Format,a comic about a father and a son playing tennis,30,0.12630479600694444
+Style & Format,a drawing of a handsaw,0,0.1149139404296875
+Style & Format,a drawing of a handsaw,30,0.13261752658420137
+Style & Format,a painting of a phone from the 20s,0,0.03489744398328993
+Style & Format,a painting of a phone from the 20s,30,0.11135830349392362
+Style & Format,a painting of the skyline of New York City,0,0.05452863905164931
+Style & Format,a painting of the skyline of New York City,30,0.12831285264756945
+Style & Format,"a sport car melting into a clock, surrealist painting in the style of Salvador Dali",0,0.05912373860677084
+Style & Format,"a sport car melting into a clock, surrealist painting in the style of Salvador Dali",30,0.109130859375
+Style & Format,orange jello in the shape of a man,0,0.11321038140190971
+Style & Format,orange jello in the shape of a man,30,0.22684529622395833
+Writing & Symbols,"A high contrast portrait photo of a fluffy hamster wearing an orange beanie and sunglasses holding a sign that says ""Let's PAINT!""",0,0.08972846137152779
+Writing & Symbols,"A high contrast portrait photo of a fluffy hamster wearing an orange beanie and sunglasses holding a sign that says ""Let's PAINT!""",30,0.14163682725694446
+Writing & Symbols,"Anime illustration of a kangaroo holding a sign that says ""Starry Night"", in front of the Sydney Opera House sitting next to the Eiffel Tower under a blue night sky of roiling energy, exploding yellow stars, and radiating swirls of blu",0,0.07626817491319444
+Writing & Symbols,"Anime illustration of a kangaroo holding a sign that says ""Starry Night"", in front of the Sydney Opera House sitting next to the Eiffel Tower under a blue night sky of roiling energy, exploding yellow stars, and radiating swirls of blu",30,0.1692715115017361
+Writing & Symbols,"Two cups of coffee, one with latte art of yin yang symbol. The other has latte art of a heart.",0,0.058615451388888885
+Writing & Symbols,"Two cups of coffee, one with latte art of yin yang symbol. The other has latte art of a heart.",30,0.15551961263020833
+Writing & Symbols,"a motorcycle parked in an ornate bank lobby with ""BUZZ"" written on its body",0,0.09674614800347221
+Writing & Symbols,"a motorcycle parked in an ornate bank lobby with ""BUZZ"" written on its body",30,0.1483035617404514
+Writing & Symbols,a store front that has the word ‘openai’ written on it.,0,0.11618889702690972
+Writing & Symbols,a store front that has the word ‘openai’ written on it.,30,0.16202867296006943
+Writing & Symbols,a t-shirt with Carpe Diem written on it,0,0.09327884250217015
+Writing & Symbols,a t-shirt with Carpe Diem written on it,30,0.18991021050347223
+Writing & Symbols,"a yellow wall with 'Hello, world.' written on it",0,0.12433403862847221
+Writing & Symbols,"a yellow wall with 'Hello, world.' written on it",30,0.20132785373263887
+Writing & Symbols,the cover of a book called 'Backpropaganda' by I.C. Gradients,0,0.16424119737413193
+Writing & Symbols,the cover of a book called 'Backpropaganda' by I.C. Gradients,30,0.2309326171875

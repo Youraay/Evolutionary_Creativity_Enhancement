@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "a girl with curly black hair jumping off a boulder",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 3030801653,
+    "timestamp": "20260915_182659",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_girl_with_curly_black_hair_jumping_off_a_boulder/a_girl_with_curly_black_hair_jumping_off_a_boulder_3030801653_20260915_182649",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_girl_with_curly_black_hair_jumping_off_a_boulder/a_girl_with_curly_black_hair_jumping_off_a_boulder_3030801653_20260915_182649/a_girl_with_curly_black_hair_jumping_off_a_boulder_3030801653_20260915_182649.csv"
+}

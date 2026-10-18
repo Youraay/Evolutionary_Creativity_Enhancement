@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "a motorcycle parked in an ornate bank lobby with \"BUZZ\" written on its body",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 1394004965,
+    "timestamp": "20260918_074141",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_motorcycle_parked_in_an_ornate_bank_lobby_with_BUZZ_written_on_its_body/a_motorcycle_parked_in_an_ornate_bank_lobby_with_BUZZ_written_on_its_body_1394004965_20260918_073953",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_motorcycle_parked_in_an_ornate_bank_lobby_with_BUZZ_written_on_its_body/a_motorcycle_parked_in_an_ornate_bank_lobby_with_BUZZ_written_on_its_body_1394004965_20260918_073953/a_motorcycle_parked_in_an_ornate_bank_lobby_with_BUZZ_written_on_its_body_1394004965_20260918_073953.csv"
+}

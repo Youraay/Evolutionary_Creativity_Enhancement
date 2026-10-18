@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "a yellow wall with 'Hello, world.' written on it",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 1394004965,
+    "timestamp": "20260914_122735",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_yellow_wall_with_Hello_world_written_on_it/a_yellow_wall_with_Hello_world_written_on_it_1394004965_20260914_122727",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_yellow_wall_with_Hello_world_written_on_it/a_yellow_wall_with_Hello_world_written_on_it_1394004965_20260914_122727/a_yellow_wall_with_Hello_world_written_on_it_1394004965_20260914_122727.csv"
+}

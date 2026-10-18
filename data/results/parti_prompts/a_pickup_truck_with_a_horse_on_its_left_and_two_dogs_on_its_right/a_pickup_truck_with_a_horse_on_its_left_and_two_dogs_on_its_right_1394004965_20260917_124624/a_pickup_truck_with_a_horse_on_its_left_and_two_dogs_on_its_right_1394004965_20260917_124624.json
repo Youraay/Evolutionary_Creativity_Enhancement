@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "a pickup truck with a horse on its left and two dogs on its right",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 1394004965,
+    "timestamp": "20260917_124655",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_pickup_truck_with_a_horse_on_its_left_and_two_dogs_on_its_right/a_pickup_truck_with_a_horse_on_its_left_and_two_dogs_on_its_right_1394004965_20260917_124624",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_pickup_truck_with_a_horse_on_its_left_and_two_dogs_on_its_right/a_pickup_truck_with_a_horse_on_its_left_and_two_dogs_on_its_right_1394004965_20260917_124624/a_pickup_truck_with_a_horse_on_its_left_and_two_dogs_on_its_right_1394004965_20260917_124624.csv"
+}

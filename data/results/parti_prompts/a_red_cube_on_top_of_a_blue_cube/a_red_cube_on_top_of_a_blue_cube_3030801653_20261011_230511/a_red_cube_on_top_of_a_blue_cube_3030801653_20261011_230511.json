@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "a red cube on top of a blue cube",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 3030801653,
+    "timestamp": "20261011_230520",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_red_cube_on_top_of_a_blue_cube/a_red_cube_on_top_of_a_blue_cube_3030801653_20261011_230511",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_red_cube_on_top_of_a_blue_cube/a_red_cube_on_top_of_a_blue_cube_3030801653_20261011_230511/a_red_cube_on_top_of_a_blue_cube_3030801653_20261011_230511.csv"
+}

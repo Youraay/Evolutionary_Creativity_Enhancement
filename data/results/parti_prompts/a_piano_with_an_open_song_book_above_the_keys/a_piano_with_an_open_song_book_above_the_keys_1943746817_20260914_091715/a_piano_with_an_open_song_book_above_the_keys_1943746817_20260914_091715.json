@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "a piano with an open song book above the keys ",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 1943746817,
+    "timestamp": "20260914_091723",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_piano_with_an_open_song_book_above_the_keys/a_piano_with_an_open_song_book_above_the_keys_1943746817_20260914_091715",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_piano_with_an_open_song_book_above_the_keys/a_piano_with_an_open_song_book_above_the_keys_1943746817_20260914_091715/a_piano_with_an_open_song_book_above_the_keys_1943746817_20260914_091715.csv"
+}

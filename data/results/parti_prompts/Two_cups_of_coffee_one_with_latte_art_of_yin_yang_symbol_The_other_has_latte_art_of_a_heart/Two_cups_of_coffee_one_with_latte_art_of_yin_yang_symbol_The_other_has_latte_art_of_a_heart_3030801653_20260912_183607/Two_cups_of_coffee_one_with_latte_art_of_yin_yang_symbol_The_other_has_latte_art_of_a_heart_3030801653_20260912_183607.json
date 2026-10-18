@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "Two cups of coffee, one with latte art of yin yang symbol. The other has latte art of a heart.",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 3030801653,
+    "timestamp": "20260912_183615",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/Two_cups_of_coffee_one_with_latte_art_of_yin_yang_symbol_The_other_has_latte_art_of_a_heart/Two_cups_of_coffee_one_with_latte_art_of_yin_yang_symbol_The_other_has_latte_art_of_a_heart_3030801653_20260912_183607",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/Two_cups_of_coffee_one_with_latte_art_of_yin_yang_symbol_The_other_has_latte_art_of_a_heart/Two_cups_of_coffee_one_with_latte_art_of_yin_yang_symbol_The_other_has_latte_art_of_a_heart_3030801653_20260912_183607/Two_cups_of_coffee_one_with_latte_art_of_yin_yang_symbol_The_other_has_latte_art_of_a_heart_3030801653_20260912_183607.csv"
+}

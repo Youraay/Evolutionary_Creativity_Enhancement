@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "Anime illustration of a kangaroo holding a sign that says \"Starry Night\", in front of the Sydney Opera House sitting next to the Eiffel Tower under a blue night sky of roiling energy, exploding yellow stars, and radiating swirls of blu",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 1943746817,
+    "timestamp": "20260919_084727",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/Anime_illustration_of_a_kangaroo_holding_a_sign_that_says_Starry_Night_in_front_of_the_Sydney_Opera/Anime_illustration_of_a_kangaroo_holding_a_sign_that_says_Starry_Night_in_front_of_the_Sydney_Opera_1943746817_20260919_084543",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/Anime_illustration_of_a_kangaroo_holding_a_sign_that_says_Starry_Night_in_front_of_the_Sydney_Opera/Anime_illustration_of_a_kangaroo_holding_a_sign_that_says_Starry_Night_in_front_of_the_Sydney_Opera_1943746817_20260919_084543/Anime_illustration_of_a_kangaroo_holding_a_sign_that_says_Starry_Night_in_front_of_the_Sydney_Opera_1943746817_20260919_084543.csv"
+}

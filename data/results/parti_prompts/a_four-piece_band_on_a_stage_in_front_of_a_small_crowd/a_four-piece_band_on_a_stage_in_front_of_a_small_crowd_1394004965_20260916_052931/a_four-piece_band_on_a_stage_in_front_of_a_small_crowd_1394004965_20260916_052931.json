@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "a four-piece band on a stage in front of a small crowd",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 1394004965,
+    "timestamp": "20260916_053114",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_four-piece_band_on_a_stage_in_front_of_a_small_crowd/a_four-piece_band_on_a_stage_in_front_of_a_small_crowd_1394004965_20260916_052931",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_four-piece_band_on_a_stage_in_front_of_a_small_crowd/a_four-piece_band_on_a_stage_in_front_of_a_small_crowd_1394004965_20260916_052931/a_four-piece_band_on_a_stage_in_front_of_a_small_crowd_1394004965_20260916_052931.csv"
+}

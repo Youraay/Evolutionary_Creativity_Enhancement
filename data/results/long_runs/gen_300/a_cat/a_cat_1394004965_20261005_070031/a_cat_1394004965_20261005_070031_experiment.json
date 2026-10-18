@@ -1,0 +1,23 @@
+{
+    "id": 74,
+    "experiment": "long_run",
+    "variant": "gen_300",
+    "prompt": "a cat",
+    "seed": "1394004965",
+    "fitness_embedding": "blip2",
+    "tournament_size": 3,
+    "num_generations": 300,
+    "population_size": 60,
+    "model_evaluators": [
+        "MMD_blip2",
+        "Diversity_blip2",
+        "MMD_clip",
+        "Diversity_clip",
+        "MMD_dino",
+        "Diversity_dino",
+        "MMD_siglip",
+        "Diversity_siglip",
+        "CLIPScore",
+        "SigLIPScore"
+    ]
+}

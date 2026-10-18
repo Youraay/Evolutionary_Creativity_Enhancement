@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 16,
+    "prompt": "an elf drinking orange juice through a straw of a giant orange next to a squirrel and an owl watching from above",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 1943746817,
+    "timestamp": "20260909_103835",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/an_elf_drinking_orange_juice_through_a_straw_of_a_giant_orange_next_to_a_squirrel_and_an_owl_watchin/an_elf_drinking_orange_juice_through_a_straw_of_a_giant_orange_next_to_a_squirrel_and_an_owl_watchin_1943746817_20260909_103827",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/an_elf_drinking_orange_juice_through_a_straw_of_a_giant_orange_next_to_a_squirrel_and_an_owl_watchin/an_elf_drinking_orange_juice_through_a_straw_of_a_giant_orange_next_to_a_squirrel_and_an_owl_watchin_1943746817_20260909_103827/an_elf_drinking_orange_juice_through_a_straw_of_a_giant_orange_next_to_a_squirrel_and_an_owl_watchin_1943746817_20260909_103827.csv"
+}

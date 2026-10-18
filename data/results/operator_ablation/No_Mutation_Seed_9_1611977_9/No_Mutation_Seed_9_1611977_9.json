@@ -1,0 +1,18 @@
+{
+    "num_generations": 30,
+    "population_size": 100,
+    "batch_size": 5,
+    "prompt": "a cat",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0,
+    "crossover_rate": 1,
+    "elitism_count": 0,
+    "evaluator": "LocalMaxMeanDivergenceEvaluator",
+    "random_seed": 17278950119299660979,
+    "timestamp": "20260224_142731",
+    "result_path": "/work/dldevel/sinziri/Evolutionary_Diffusion_Enhancement/Results/Ablation/No_Mutation_Seed_9_1611977_9",
+    "stat_path": "/work/dldevel/sinziri/Evolutionary_Diffusion_Enhancement/Results/Ablation/No_Mutation_Seed_9_1611977_9/No_Mutation_Seed_9_1611977_9.csv"
+}

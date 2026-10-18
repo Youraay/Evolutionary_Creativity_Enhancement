@@ -1,0 +1,18 @@
+{
+    "num_generations": 30,
+    "population_size": 100,
+    "batch_size": 5,
+    "prompt": "a cat",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "evaluator": "LocalkNNEvaluator",
+    "random_seed": 14115672566372762410,
+    "timestamp": "20260223_012300",
+    "result_path": "/work/dldevel/sinziri/Evolutionary_Diffusion_Enhancement/Results/Evaluator_Comparison/kNN_10_Seed_4_1611377_7",
+    "stat_path": "/work/dldevel/sinziri/Evolutionary_Diffusion_Enhancement/Results/Evaluator_Comparison/kNN_10_Seed_4_1611377_7/kNN_10_Seed_4_1611377_7.csv"
+}

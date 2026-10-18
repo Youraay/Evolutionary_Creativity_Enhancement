@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "a circular brown trash bin in front of a brick wall",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 3030801653,
+    "timestamp": "20260910_191025",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_circular_brown_trash_bin_in_front_of_a_brick_wall/a_circular_brown_trash_bin_in_front_of_a_brick_wall_3030801653_20260910_191016",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_circular_brown_trash_bin_in_front_of_a_brick_wall/a_circular_brown_trash_bin_in_front_of_a_brick_wall_3030801653_20260910_191016/a_circular_brown_trash_bin_in_front_of_a_brick_wall_3030801653_20260910_191016.csv"
+}

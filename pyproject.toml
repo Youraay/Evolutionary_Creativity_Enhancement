@@ -1,0 +1,33 @@
+[project]
+name = "evolutionary-creativity-enhancement"
+version = "0.1.0"
+description = "Evolutionary optimisation of the initial noise of text-to-image diffusion models for novel images"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "accelerate>=1.10",
+    "diffusers>=0.40",
+    "numpy>=2.2",
+    "pandas>=2.2",
+    "pillow>=11.3",
+    "python-dotenv>=1.0",
+    "torch>=2.7",
+    "transformers>=5.15",
+]
+
+[project.optional-dependencies]
+flux2-dev = ["bitsandbytes>=0.45"]
+analysis = [
+    "matplotlib>=3.10",
+    "pyarrow>=20",
+    "scikit-learn>=1.7",
+    "scipy>=1.15",
+    "seaborn>=0.13",
+]
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["evolutionary_creativity*", "experiments*", "analysis*"]

@@ -1,0 +1,26 @@
+{
+    "num_generations": 100,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "A person sitting alone in a dimly lit room, looking disengaged and bored. Their head is slightly tilted, eyes half-closed, and their expression is blank or slightly melancholic. Hands are clasped together on their lap, conveying a sense of waiting or lack of interest. Soft, diffused lighting, realistic photography.",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "FixedPromptEvaluator",
+        "FixedPromptEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 3030801653,
+    "timestamp": "20261014_005323",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/t2g/sdxl_t2g_g100/boredom/boredom_3030801653_20261014_005251",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/t2g/sdxl_t2g_g100/boredom/boredom_3030801653_20261014_005251/boredom_3030801653_20261014_005251.csv"
+}

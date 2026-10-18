@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "long shards of a broken mirror reflecting the eyes of a great horned owl",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 1394004965,
+    "timestamp": "20260910_160255",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/long_shards_of_a_broken_mirror_reflecting_the_eyes_of_a_great_horned_owl/long_shards_of_a_broken_mirror_reflecting_the_eyes_of_a_great_horned_owl_1394004965_20260910_160245",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/long_shards_of_a_broken_mirror_reflecting_the_eyes_of_a_great_horned_owl/long_shards_of_a_broken_mirror_reflecting_the_eyes_of_a_great_horned_owl_1394004965_20260910_160245/long_shards_of_a_broken_mirror_reflecting_the_eyes_of_a_great_horned_owl_1394004965_20260910_160245.csv"
+}

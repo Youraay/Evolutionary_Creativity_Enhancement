@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "a chair",
+    "generative_model": "Flux2Klein4B",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 1943746817,
+    "timestamp": "20260929_095918",
+    "result_path": "/home/dldevel/sinziri/results/model_comp/flux2_klein_4b/a_chair/a_chair_1943746817_20260929_095906",
+    "stat_path": "/home/dldevel/sinziri/results/model_comp/flux2_klein_4b/a_chair/a_chair_1943746817_20260929_095906/a_chair_1943746817_20260929_095906.csv"
+}

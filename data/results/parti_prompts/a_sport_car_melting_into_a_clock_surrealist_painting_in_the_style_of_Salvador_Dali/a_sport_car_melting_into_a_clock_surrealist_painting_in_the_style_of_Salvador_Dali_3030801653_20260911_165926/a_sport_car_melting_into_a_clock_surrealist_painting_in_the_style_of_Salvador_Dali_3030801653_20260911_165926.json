@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "a sport car melting into a clock, surrealist painting in the style of Salvador Dali",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 3030801653,
+    "timestamp": "20260911_165935",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_sport_car_melting_into_a_clock_surrealist_painting_in_the_style_of_Salvador_Dali/a_sport_car_melting_into_a_clock_surrealist_painting_in_the_style_of_Salvador_Dali_3030801653_20260911_165926",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_sport_car_melting_into_a_clock_surrealist_painting_in_the_style_of_Salvador_Dali/a_sport_car_melting_into_a_clock_surrealist_painting_in_the_style_of_Salvador_Dali_3030801653_20260911_165926/a_sport_car_melting_into_a_clock_surrealist_painting_in_the_style_of_Salvador_Dali_3030801653_20260911_165926.csv"
+}

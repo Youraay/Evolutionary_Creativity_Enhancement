@@ -1,0 +1,23 @@
+{
+    "id": 17,
+    "experiment": "embedding",
+    "variant": "fitness_clip",
+    "prompt": "boredom",
+    "seed": "1394004965",
+    "fitness_embedding": "clip",
+    "tournament_size": 3,
+    "num_generations": 30,
+    "population_size": 60,
+    "model_evaluators": [
+        "MMD_blip2",
+        "Diversity_blip2",
+        "MMD_clip",
+        "Diversity_clip",
+        "MMD_dino",
+        "Diversity_dino",
+        "MMD_siglip",
+        "Diversity_siglip",
+        "CLIPScore",
+        "SigLIPScore"
+    ]
+}

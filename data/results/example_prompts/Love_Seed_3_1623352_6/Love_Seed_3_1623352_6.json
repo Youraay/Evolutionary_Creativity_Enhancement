@@ -1,0 +1,18 @@
+{
+    "num_generations": 30,
+    "population_size": 100,
+    "batch_size": 5,
+    "prompt": "love",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "evaluator": "LocalMaxMeanDivergenceEvaluator",
+    "random_seed": 12951769831226840325,
+    "timestamp": "20260312_162112",
+    "result_path": "/work/dldevel/sinziri/Evolutionary_Diffusion_Enhancement/Results/Prompt/Love_Seed_3_1623352_6",
+    "stat_path": "/work/dldevel/sinziri/Evolutionary_Diffusion_Enhancement/Results/Prompt/Love_Seed_3_1623352_6/Love_Seed_3_1623352_6.csv"
+}

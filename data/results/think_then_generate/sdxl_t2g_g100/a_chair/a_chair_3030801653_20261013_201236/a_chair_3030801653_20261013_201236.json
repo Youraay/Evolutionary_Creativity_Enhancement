@@ -1,0 +1,26 @@
+{
+    "num_generations": 100,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "A photorealistic image of a classic wooden armchair, featuring intricate craftsmanship and a warm, natural wood grain. The chair has comfortable cushions and elegant armrests, positioned in a cozy, softly lit room. Detailed, high resolution.",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "FixedPromptEvaluator",
+        "FixedPromptEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 3030801653,
+    "timestamp": "20261013_201300",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/t2g/sdxl_t2g_g100/a_chair/a_chair_3030801653_20261013_201236",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/t2g/sdxl_t2g_g100/a_chair/a_chair_3030801653_20261013_201236/a_chair_3030801653_20261013_201236.csv"
+}

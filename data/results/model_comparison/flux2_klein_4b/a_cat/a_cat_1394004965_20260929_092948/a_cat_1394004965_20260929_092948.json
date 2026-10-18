@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "a cat",
+    "generative_model": "Flux2Klein4B",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 1394004965,
+    "timestamp": "20260929_093000",
+    "result_path": "/home/dldevel/sinziri/results/model_comp/flux2_klein_4b/a_cat/a_cat_1394004965_20260929_092948",
+    "stat_path": "/home/dldevel/sinziri/results/model_comp/flux2_klein_4b/a_cat/a_cat_1394004965_20260929_092948/a_cat_1394004965_20260929_092948.csv"
+}

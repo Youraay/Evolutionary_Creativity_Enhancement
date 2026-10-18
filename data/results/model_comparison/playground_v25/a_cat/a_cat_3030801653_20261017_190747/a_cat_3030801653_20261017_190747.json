@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "a cat",
+    "generative_model": "PlaygroundV25Model",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 3030801653,
+    "timestamp": "20261017_191139",
+    "result_path": "/home/dldevel/sinziri/results/model_comp/playground_v25/a_cat/a_cat_3030801653_20261017_190747",
+    "stat_path": "/home/dldevel/sinziri/results/model_comp/playground_v25/a_cat/a_cat_3030801653_20261017_190747/a_cat_3030801653_20261017_190747.csv"
+}

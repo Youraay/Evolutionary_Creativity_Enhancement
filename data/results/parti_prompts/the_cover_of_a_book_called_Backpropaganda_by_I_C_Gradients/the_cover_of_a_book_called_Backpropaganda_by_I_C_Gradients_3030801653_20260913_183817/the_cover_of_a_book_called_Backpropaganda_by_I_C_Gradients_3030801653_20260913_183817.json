@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "the cover of a book called 'Backpropaganda' by I.C. Gradients",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 3030801653,
+    "timestamp": "20260913_183825",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/the_cover_of_a_book_called_Backpropaganda_by_I_C_Gradients/the_cover_of_a_book_called_Backpropaganda_by_I_C_Gradients_3030801653_20260913_183817",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/the_cover_of_a_book_called_Backpropaganda_by_I_C_Gradients/the_cover_of_a_book_called_Backpropaganda_by_I_C_Gradients_3030801653_20260913_183817/the_cover_of_a_book_called_Backpropaganda_by_I_C_Gradients_3030801653_20260913_183817.csv"
+}

@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "A bowl of soup that looks like a monster spray-painted on a wall",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 1943746817,
+    "timestamp": "20260912_005240",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/A_bowl_of_soup_that_looks_like_a_monster_spray-painted_on_a_wall/A_bowl_of_soup_that_looks_like_a_monster_spray-painted_on_a_wall_1943746817_20260912_005211",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/A_bowl_of_soup_that_looks_like_a_monster_spray-painted_on_a_wall/A_bowl_of_soup_that_looks_like_a_monster_spray-painted_on_a_wall_1943746817_20260912_005211/A_bowl_of_soup_that_looks_like_a_monster_spray-painted_on_a_wall_1943746817_20260912_005211.csv"
+}

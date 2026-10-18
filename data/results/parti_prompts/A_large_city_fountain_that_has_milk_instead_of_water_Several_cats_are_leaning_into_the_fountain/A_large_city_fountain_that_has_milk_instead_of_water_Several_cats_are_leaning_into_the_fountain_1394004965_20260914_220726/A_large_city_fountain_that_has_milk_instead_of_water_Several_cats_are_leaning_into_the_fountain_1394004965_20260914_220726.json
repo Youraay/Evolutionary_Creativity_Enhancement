@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "A large city fountain that has milk instead of water. Several cats are leaning into the fountain.",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 1394004965,
+    "timestamp": "20260914_220734",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/A_large_city_fountain_that_has_milk_instead_of_water_Several_cats_are_leaning_into_the_fountain/A_large_city_fountain_that_has_milk_instead_of_water_Several_cats_are_leaning_into_the_fountain_1394004965_20260914_220726",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/A_large_city_fountain_that_has_milk_instead_of_water_Several_cats_are_leaning_into_the_fountain/A_large_city_fountain_that_has_milk_instead_of_water_Several_cats_are_leaning_into_the_fountain_1394004965_20260914_220726/A_large_city_fountain_that_has_milk_instead_of_water_Several_cats_are_leaning_into_the_fountain_1394004965_20260914_220726.csv"
+}

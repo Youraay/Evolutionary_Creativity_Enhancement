@@ -1,0 +1,12 @@
+{
+  "condition": "original",
+  "generator": "t2g",
+  "num_inference_steps": 30,
+  "original_prompt": "a cat",
+  "generation_prompt": "a cat",
+  "seed": 1394004965,
+  "num_generations": 30,
+  "population_size": 60,
+  "rewrite_source": null,
+  "reasoning": null
+}

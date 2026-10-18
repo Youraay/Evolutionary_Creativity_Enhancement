@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "Three-quarters front view of a red 1997 Porsche 911 coming around a curve in a mountain road and looking over a green valley on a cloudy day.",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 1943746817,
+    "timestamp": "20260917_205339",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/Three-quarters_front_view_of_a_red_1997_Porsche_911_coming_around_a_curve_in_a_mountain_road_and_loo/Three-quarters_front_view_of_a_red_1997_Porsche_911_coming_around_a_curve_in_a_mountain_road_and_loo_1943746817_20260917_205332",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/Three-quarters_front_view_of_a_red_1997_Porsche_911_coming_around_a_curve_in_a_mountain_road_and_loo/Three-quarters_front_view_of_a_red_1997_Porsche_911_coming_around_a_curve_in_a_mountain_road_and_loo_1943746817_20260917_205332/Three-quarters_front_view_of_a_red_1997_Porsche_911_coming_around_a_curve_in_a_mountain_road_and_loo_1943746817_20260917_205332.csv"
+}

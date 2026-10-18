@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "A shiny robot wearing a race car suit and black visor stands proudly in front of an F1 race car. The sun is setting on a cityscape in the background. comic book illustration.",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 1943746817,
+    "timestamp": "20260913_023655",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/A_shiny_robot_wearing_a_race_car_suit_and_black_visor_stands_proudly_in_front_of_an_F1_race_car_The/A_shiny_robot_wearing_a_race_car_suit_and_black_visor_stands_proudly_in_front_of_an_F1_race_car_The_1943746817_20260913_023647",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/A_shiny_robot_wearing_a_race_car_suit_and_black_visor_stands_proudly_in_front_of_an_F1_race_car_The/A_shiny_robot_wearing_a_race_car_suit_and_black_visor_stands_proudly_in_front_of_an_F1_race_car_The_1943746817_20260913_023647/A_shiny_robot_wearing_a_race_car_suit_and_black_visor_stands_proudly_in_front_of_an_F1_race_car_The_1943746817_20260913_023647.csv"
+}

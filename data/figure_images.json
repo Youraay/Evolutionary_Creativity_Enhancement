@@ -1,0 +1,535 @@
+{
+  "_description": "Images shown in the figures, as run directory and file name in the archive (<run>.zip, folder /images/). example_prompts: per prompt eight images of generations 0, 15 and 30 of one run (detail) and eight images of generation 30 of each of the three runs (final). seed_transfer: images of generations 0, 10, 20 and 30 of a run optimised for the source prompt and the same candidates rendered with the target prompt.",
+  "example_prompts": {
+    "a cat": {
+      "detail_run": "a_Cat_Seed_1_1623357_25",
+      "detail_images": {
+        "0": [
+          "g0_idn_0002_f0.0498046875.JPEG",
+          "g0_idn_0006_f0.0341796875.JPEG",
+          "g0_idn_0012_f0.0654296875.JPEG",
+          "g0_idn_0015_f0.0556640625.JPEG",
+          "g0_idn_0035_f0.05859375.JPEG",
+          "g0_idn_0077_f0.10791015625.JPEG",
+          "g0_idn_0081_f0.0625.JPEG",
+          "g0_idn_0093_f0.076171875.JPEG"
+        ],
+        "15": [
+          "g15_idn_1507_f0.11328125.JPEG",
+          "g15_idn_1559_f0.0751953125.JPEG",
+          "g15_idn_1488_f0.091796875.JPEG",
+          "g15_idn_1519_f0.1318359375.JPEG",
+          "g15_idn_1537_f0.0751953125.JPEG",
+          "g15_idn_1518_f0.0966796875.JPEG",
+          "g15_idn_1540_f0.11328125.JPEG",
+          "g15_idn_1550_f0.103515625.JPEG"
+        ],
+        "30": [
+          "g30_idn_3035_f0.10986328125.JPEG",
+          "g30_idn_2981_f0.123046875.JPEG",
+          "g30_idn_2971_f0.09375.JPEG",
+          "g30_idn_3017_f0.099609375.JPEG",
+          "g30_idn_3020_f0.076171875.JPEG",
+          "g30_idn_3034_f0.099609375.JPEG",
+          "g30_idn_3069_f0.109375.JPEG",
+          "g30_idn_3054_f0.1162109375.JPEG"
+        ]
+      },
+      "runs": [
+        "a_Cat_Seed_1_1623357_25",
+        "a_Cat_Seed_2_1623357_26",
+        "a_Cat_Seed_3_1623357_27"
+      ],
+      "final_images": [
+        [
+          "g30_idn_3035_f0.10986328125.JPEG",
+          "g30_idn_2981_f0.123046875.JPEG",
+          "g30_idn_2971_f0.09375.JPEG",
+          "g30_idn_3017_f0.099609375.JPEG",
+          "g30_idn_3020_f0.076171875.JPEG",
+          "g30_idn_3034_f0.099609375.JPEG",
+          "g30_idn_3069_f0.109375.JPEG",
+          "g30_idn_3054_f0.1162109375.JPEG"
+        ],
+        [
+          "g30_idn_2989_f0.142578125.JPEG",
+          "g30_idn_2992_f0.11376953125.JPEG",
+          "g30_idn_2995_f0.08447265625.JPEG",
+          "g30_idn_3008_f0.125.JPEG",
+          "g30_idn_3019_f0.08984375.JPEG",
+          "g30_idn_3024_f0.1083984375.JPEG",
+          "g30_idn_3035_f0.10546875.JPEG",
+          "g30_idn_2976_f0.11572265625.JPEG"
+        ],
+        [
+          "g30_idn_2972_f0.07861328125.JPEG",
+          "g30_idn_2987_f0.1025390625.JPEG",
+          "g30_idn_3000_f0.10595703125.JPEG",
+          "g30_idn_3005_f0.1298828125.JPEG",
+          "g30_idn_3012_f0.12255859375.JPEG",
+          "g30_idn_3019_f0.08984375.JPEG",
+          "g30_idn_3020_f0.11279296875.JPEG",
+          "g30_idn_3028_f0.10302734375.JPEG"
+        ]
+      ]
+    },
+    "a dog": {
+      "detail_run": "a_Dog_Seed_1_1623358_31",
+      "detail_images": {
+        "0": [
+          "g0_idn_0017_f0.09912109375.JPEG",
+          "g0_idn_0056_f0.14404296875.JPEG",
+          "g0_idn_0002_f0.033203125.JPEG",
+          "g0_idn_0010_f0.0419921875.JPEG",
+          "g0_idn_0033_f0.0966796875.JPEG",
+          "g0_idn_0039_f0.11669921875.JPEG",
+          "g0_idn_0077_f0.06494140625.JPEG",
+          "g0_idn_0068_f0.03759765625.JPEG"
+        ],
+        "15": [
+          "g15_idn_1490_f0.1376953125.JPEG",
+          "g15_idn_1559_f0.1728515625.JPEG",
+          "g15_idn_1562_f0.1123046875.JPEG",
+          "g15_idn_1537_f0.126953125.JPEG",
+          "g15_idn_1506_f0.10400390625.JPEG",
+          "g15_idn_1522_f0.2041015625.JPEG",
+          "g15_idn_1544_f0.1240234375.JPEG",
+          "g15_idn_1514_f0.15901692708333334.JPEG"
+        ],
+        "30": [
+          "g30_idn_2971_f0.177734375.JPEG",
+          "g30_idn_2981_f0.1474609375.JPEG",
+          "g30_idn_2985_f0.150390625.JPEG",
+          "g30_idn_3002_f0.1572265625.JPEG",
+          "g30_idn_2987_f0.15966796875.JPEG",
+          "g30_idn_3066_f0.1943359375.JPEG",
+          "g30_idn_3052_f0.15478515625.JPEG",
+          "g30_idn_3003_f0.22314453125.JPEG"
+        ]
+      },
+      "runs": [
+        "a_Dog_Seed_1_1623358_31",
+        "a_Dog_Seed_2_1623358_32",
+        "a_Dog_Seed_3_1623359_33"
+      ],
+      "final_images": [
+        [
+          "g30_idn_2971_f0.177734375.JPEG",
+          "g30_idn_2981_f0.1474609375.JPEG",
+          "g30_idn_2985_f0.150390625.JPEG",
+          "g30_idn_3002_f0.1572265625.JPEG",
+          "g30_idn_2987_f0.15966796875.JPEG",
+          "g30_idn_3066_f0.1943359375.JPEG",
+          "g30_idn_3052_f0.15478515625.JPEG",
+          "g30_idn_3003_f0.22314453125.JPEG"
+        ],
+        [
+          "g30_idn_3042_f0.177734375.JPEG",
+          "g30_idn_3034_f0.173828125.JPEG",
+          "g30_idn_2975_f0.18896484375.JPEG",
+          "g30_idn_3018_f0.1572265625.JPEG",
+          "g30_idn_3051_f0.1728515625.JPEG",
+          "g30_idn_3067_f0.1796875.JPEG",
+          "g30_idn_3010_f0.1123046875.JPEG",
+          "g30_idn_3052_f0.173828125.JPEG"
+        ],
+        [
+          "g30_idn_2976_f0.1708984375.JPEG",
+          "g30_idn_2977_f0.158203125.JPEG",
+          "g30_idn_3064_f0.1083984375.JPEG",
+          "g30_idn_2978_f0.115234375.JPEG",
+          "g30_idn_3009_f0.197265625.JPEG",
+          "g30_idn_3026_f0.140625.JPEG",
+          "g30_idn_3047_f0.11328125.JPEG",
+          "g30_idn_3057_f0.20751953125.JPEG"
+        ]
+      ]
+    },
+    "a chair": {
+      "detail_run": "a_Chair_Seed_1_1623355_19",
+      "detail_images": {
+        "0": [
+          "g0_idn_0000_f0.08349609375.JPEG",
+          "g0_idn_0039_f0.0859375.JPEG",
+          "g0_idn_0087_f0.11572265625.JPEG",
+          "g0_idn_0060_f0.154296875.JPEG",
+          "g0_idn_0031_f0.11181640625.JPEG",
+          "g0_idn_0009_f0.12353515625.JPEG",
+          "g0_idn_0054_f0.1025390625.JPEG",
+          "g0_idn_0035_f0.0732421875.JPEG"
+        ],
+        "15": [
+          "g15_idn_1490_f0.1552734375.JPEG",
+          "g15_idn_1548_f0.1630859375.JPEG",
+          "g15_idn_1519_f0.146484375.JPEG",
+          "g15_idn_1540_f0.142578125.JPEG",
+          "g15_idn_1567_f0.15087890625.JPEG",
+          "g15_idn_1508_f0.13330078125.JPEG",
+          "g15_idn_1507_f0.1875.JPEG",
+          "g15_idn_1561_f0.12109375.JPEG"
+        ],
+        "30": [
+          "g30_idn_3020_f0.23095703125.JPEG",
+          "g30_idn_2974_f0.0986328125.JPEG",
+          "g30_idn_2980_f0.123046875.JPEG",
+          "g30_idn_3041_f0.1416015625.JPEG",
+          "g30_idn_3063_f0.115234375.JPEG",
+          "g30_idn_3015_f0.109375.JPEG",
+          "g30_idn_3059_f0.16015625.JPEG",
+          "g30_idn_3058_f0.12109375.JPEG"
+        ]
+      },
+      "runs": [
+        "a_Chair_Seed_1_1623355_19",
+        "a_Chair_Seed_2_1623358_29",
+        "a_Chair_Seed_3_1623358_30"
+      ],
+      "final_images": [
+        [
+          "g30_idn_3020_f0.23095703125.JPEG",
+          "g30_idn_2974_f0.0986328125.JPEG",
+          "g30_idn_2980_f0.123046875.JPEG",
+          "g30_idn_3041_f0.1416015625.JPEG",
+          "g30_idn_3063_f0.115234375.JPEG",
+          "g30_idn_3015_f0.109375.JPEG",
+          "g30_idn_3059_f0.16015625.JPEG",
+          "g30_idn_3058_f0.12109375.JPEG"
+        ],
+        [
+          "g30_idn_2987_f0.1455078125.JPEG",
+          "g30_idn_2974_f0.1708984375.JPEG",
+          "g30_idn_3042_f0.171875.JPEG",
+          "g30_idn_3060_f0.14453125.JPEG",
+          "g30_idn_3056_f0.1669921875.JPEG",
+          "g30_idn_2985_f0.15185546875.JPEG",
+          "g30_idn_2992_f0.14013671875.JPEG",
+          "g30_idn_3036_f0.1376953125.JPEG"
+        ],
+        [
+          "g30_idn_2997_f0.15771484375.JPEG",
+          "g29_idn_2942_f0.177734375.JPEG",
+          "g30_idn_3056_f0.1220703125.JPEG",
+          "g30_idn_2992_f0.17236328125.JPEG",
+          "g30_idn_3037_f0.1220703125.JPEG",
+          "g30_idn_3041_f0.11083984375.JPEG",
+          "g30_idn_2989_f0.1142578125.JPEG",
+          "g30_idn_2988_f0.1162109375.JPEG"
+        ]
+      ]
+    },
+    "a coffee mug": {
+      "detail_run": "a_Coffee_Mug_Seed_1_1623357_28",
+      "detail_images": {
+        "0": [
+          "g0_idn_0048_f0.087890625.JPEG",
+          "g0_idn_0042_f0.11376953125.JPEG",
+          "g0_idn_0097_f0.1240234375.JPEG",
+          "g0_idn_0068_f0.1162109375.JPEG",
+          "g0_idn_0069_f0.099609375.JPEG",
+          "g0_idn_0076_f0.142578125.JPEG",
+          "g0_idn_0050_f0.109375.JPEG",
+          "g0_idn_0022_f0.08642578125.JPEG"
+        ],
+        "15": [
+          "g15_idn_1488_f0.18408203125.JPEG",
+          "g15_idn_1490_f0.16552734375.JPEG",
+          "g15_idn_1544_f0.224609375.JPEG",
+          "g15_idn_1540_f0.1416015625.JPEG",
+          "g15_idn_1538_f0.126953125.JPEG",
+          "g16_idn_1594_f0.11767578125.JPEG",
+          "g15_idn_1574_f0.1689453125.JPEG",
+          "g15_idn_1576_f0.185546875.JPEG"
+        ],
+        "30": [
+          "g29_idn_2968_f0.1083984375.JPEG",
+          "g30_idn_2973_f0.103515625.JPEG",
+          "g30_idn_2980_f0.17724609375.JPEG",
+          "g30_idn_2987_f0.123046875.JPEG",
+          "g30_idn_3016_f0.18603515625.JPEG",
+          "g30_idn_3013_f0.10791015625.JPEG",
+          "g30_idn_3042_f0.1611328125.JPEG",
+          "g30_idn_3047_f0.18603515625.JPEG"
+        ]
+      },
+      "runs": [
+        "a_Coffee_Mug_Seed_1_1623357_28",
+        "a_Coffee_Mug_Seed_2_1623355_20",
+        "a_Coffee_Mug_Seed_3_1623356_21"
+      ],
+      "final_images": [
+        [
+          "g29_idn_2968_f0.1083984375.JPEG",
+          "g30_idn_2973_f0.103515625.JPEG",
+          "g30_idn_2980_f0.17724609375.JPEG",
+          "g30_idn_2987_f0.123046875.JPEG",
+          "g30_idn_3016_f0.18603515625.JPEG",
+          "g30_idn_3013_f0.10791015625.JPEG",
+          "g30_idn_3042_f0.1611328125.JPEG",
+          "g30_idn_3047_f0.18603515625.JPEG"
+        ],
+        [
+          "g30_idn_3024_f0.18896484375.JPEG",
+          "g30_idn_3045_f0.2041015625.JPEG",
+          "g30_idn_2976_f0.0927734375.JPEG",
+          "g30_idn_2989_f0.201171875.JPEG",
+          "g30_idn_2971_f0.1494140625.JPEG",
+          "g30_idn_2997_f0.181640625.JPEG",
+          "g30_idn_3023_f0.197265625.JPEG",
+          "g30_idn_3051_f0.150390625.JPEG"
+        ],
+        [
+          "g30_idn_3001_f0.193359375.JPEG",
+          "g30_idn_3024_f0.1611328125.JPEG",
+          "g30_idn_3048_f0.1484375.JPEG",
+          "g30_idn_2971_f0.199462890625.JPEG",
+          "g30_idn_3006_f0.11767578125.JPEG",
+          "g30_idn_3046_f0.13671875.JPEG",
+          "g30_idn_3014_f0.2236328125.JPEG",
+          "g30_idn_2974_f0.1484375.JPEG"
+        ]
+      ]
+    },
+    "boredom": {
+      "detail_run": "Boredom_Seed_1_1623847_1",
+      "detail_images": {
+        "0": [
+          "g0_idn_0053_f0.11376953125.JPEG",
+          "g0_idn_0034_f0.06494140625.JPEG",
+          "g0_idn_0075_f0.15234375.JPEG",
+          "g0_idn_0013_f0.0693359375.JPEG",
+          "g0_idn_0058_f0.05712890625.JPEG",
+          "g0_idn_0004_f0.1181640625.JPEG",
+          "g0_idn_0047_f0.1484375.JPEG",
+          "g0_idn_0035_f0.0615234375.JPEG"
+        ],
+        "15": [
+          "g15_idn_0847_f0.24713134765625.JPEG",
+          "g15_idn_1504_f0.10888671875.JPEG",
+          "g15_idn_1518_f0.1533203125.JPEG",
+          "g15_idn_1514_f0.123046875.JPEG",
+          "g15_idn_1548_f0.15185546875.JPEG",
+          "g15_idn_1509_f0.09765625.JPEG",
+          "g15_idn_1497_f0.1064453125.JPEG",
+          "g15_idn_1501_f0.0986328125.JPEG"
+        ],
+        "30": [
+          "g30_idn_2999_f0.18310546875.JPEG",
+          "g29_idn_2937_f0.171142578125.JPEG",
+          "g30_idn_2990_f0.140625.JPEG",
+          "g30_idn_2991_f0.150390625.JPEG",
+          "g30_idn_3027_f0.146484375.JPEG",
+          "g30_idn_3034_f0.1142578125.JPEG",
+          "g30_idn_3061_f0.18212890625.JPEG",
+          "g30_idn_2996_f0.1064453125.JPEG"
+        ]
+      },
+      "runs": [
+        "Boredom_Seed_1_1623847_1",
+        "Boredom_Seed_2_1623848_2",
+        "Boredom_Seed_3_1623849_3"
+      ],
+      "final_images": [
+        [
+          "g30_idn_2999_f0.18310546875.JPEG",
+          "g29_idn_2937_f0.171142578125.JPEG",
+          "g30_idn_2990_f0.140625.JPEG",
+          "g30_idn_2991_f0.150390625.JPEG",
+          "g30_idn_3027_f0.146484375.JPEG",
+          "g30_idn_3034_f0.1142578125.JPEG",
+          "g30_idn_3061_f0.18212890625.JPEG",
+          "g30_idn_2996_f0.1064453125.JPEG"
+        ],
+        [
+          "g30_idn_3039_f0.1142578125.JPEG",
+          "g30_idn_2991_f0.1689453125.JPEG",
+          "g30_idn_3051_f0.10498046875.JPEG",
+          "g30_idn_3020_f0.130859375.JPEG",
+          "g30_idn_3005_f0.16259765625.JPEG",
+          "g30_idn_2983_f0.16259765625.JPEG",
+          "g30_idn_3054_f0.111328125.JPEG",
+          "g30_idn_3033_f0.12109375.JPEG"
+        ],
+        [
+          "g30_idn_3039_f0.150390625.JPEG",
+          "g30_idn_2976_f0.1865234375.JPEG",
+          "g30_idn_2984_f0.18896484375.JPEG",
+          "g30_idn_2996_f0.1181640625.JPEG",
+          "g30_idn_3011_f0.142578125.JPEG",
+          "g30_idn_3012_f0.10302734375.JPEG",
+          "g30_idn_3018_f0.14794921875.JPEG",
+          "g30_idn_3037_f0.14794921875.JPEG"
+        ]
+      ]
+    },
+    "creativity": {
+      "detail_run": "Creativity_Seed_1_1623351_1",
+      "detail_images": {
+        "0": [
+          "g0_idn_0000_f0.0751953125.JPEG",
+          "g0_idn_0005_f0.0791015625.JPEG",
+          "g0_idn_0006_f0.17626953125.JPEG",
+          "g0_idn_0007_f0.236328125.JPEG",
+          "g0_idn_0010_f0.0810546875.JPEG",
+          "g0_idn_0018_f0.126953125.JPEG",
+          "g0_idn_0024_f0.0966796875.JPEG",
+          "g0_idn_0037_f0.08984375.JPEG"
+        ],
+        "15": [
+          "g15_idn_1486_f0.15771484375.JPEG",
+          "g15_idn_1490_f0.1298828125.JPEG",
+          "g15_idn_1492_f0.173828125.JPEG",
+          "g15_idn_1496_f0.1552734375.JPEG",
+          "g15_idn_1499_f0.12939453125.JPEG",
+          "g15_idn_1506_f0.17333984375.JPEG",
+          "g15_idn_1507_f0.11572265625.JPEG",
+          "g15_idn_1515_f0.1484375.JPEG"
+        ],
+        "30": [
+          "g30_idn_3021_f0.15234375.JPEG",
+          "g30_idn_3033_f0.173828125.JPEG",
+          "g30_idn_3047_f0.1552734375.JPEG",
+          "g30_idn_3052_f0.1982421875.JPEG",
+          "g30_idn_3068_f0.17724609375.JPEG",
+          "g30_idn_2973_f0.1748046875.JPEG",
+          "g30_idn_2976_f0.1552734375.JPEG",
+          "g30_idn_2982_f0.1591796875.JPEG"
+        ]
+      },
+      "runs": [
+        "Creativity_Seed_1_1623351_1",
+        "Creativity_Seed_2_1623351_2",
+        "Creativity_Seed_3_1623351_3"
+      ],
+      "final_images": [
+        [
+          "g30_idn_3021_f0.15234375.JPEG",
+          "g30_idn_3033_f0.173828125.JPEG",
+          "g30_idn_3047_f0.1552734375.JPEG",
+          "g30_idn_3052_f0.1982421875.JPEG",
+          "g30_idn_3068_f0.17724609375.JPEG",
+          "g30_idn_2973_f0.1748046875.JPEG",
+          "g30_idn_2976_f0.1552734375.JPEG",
+          "g30_idn_2982_f0.1591796875.JPEG"
+        ],
+        [
+          "g30_idn_2941_f0.272216796875.JPEG",
+          "g30_idn_2974_f0.1611328125.JPEG",
+          "g30_idn_2977_f0.2021484375.JPEG",
+          "g30_idn_2985_f0.19921875.JPEG",
+          "g30_idn_2994_f0.14794921875.JPEG",
+          "g30_idn_2997_f0.185546875.JPEG",
+          "g30_idn_3019_f0.203125.JPEG",
+          "g30_idn_3033_f0.1640625.JPEG"
+        ],
+        [
+          "g30_idn_3003_f0.130859375.JPEG",
+          "g30_idn_2976_f0.15673828125.JPEG",
+          "g30_idn_2984_f0.1826171875.JPEG",
+          "g30_idn_2994_f0.17919921875.JPEG",
+          "g30_idn_3004_f0.15380859375.JPEG",
+          "g30_idn_3012_f0.14892578125.JPEG",
+          "g30_idn_3045_f0.154296875.JPEG",
+          "g30_idn_2985_f0.16845703125.JPEG"
+        ]
+      ]
+    }
+  },
+  "seed_transfer": {
+    "boredom -> a cat": {
+      "source_run": "Boredom_Seed_1_1623847_1",
+      "transfer_run": "boredom_Seed_1_to_a_cat",
+      "source_images": [
+        "g0_idn_0068_f0.076171875.JPEG",
+        "g10_idn_1029_f0.1181640625.JPEG",
+        "g20_idn_2073_f0.13671875.JPEG",
+        "g30_idn_2975_f0.171875.JPEG"
+      ],
+      "transfer_images": [
+        "g0_id0068_f0.07763671875.JPEG",
+        "g10_id1029_f0.10888671875.JPEG",
+        "g20_id2073_f0.0751953125.JPEG",
+        "g30_id2975_f0.06640625.JPEG"
+      ]
+    },
+    "boredom -> a chair": {
+      "source_run": "Boredom_Seed_1_1623847_1",
+      "transfer_run": "boredom_Seed_1_to_a_chair",
+      "source_images": [
+        "g0_idn_0010_f0.05078125.JPEG",
+        "g10_idn_1069_f0.19677734375.JPEG",
+        "g20_idn_2017_f0.12255859375.JPEG",
+        "g30_idn_3020_f0.08740234375.JPEG"
+      ],
+      "transfer_images": [
+        "g0_id0010_f0.13330078125.JPEG",
+        "g10_id1069_f0.12841796875.JPEG",
+        "g20_id2017_f0.1591796875.JPEG",
+        "g30_id3020_f0.1259765625.JPEG"
+      ]
+    },
+    "a cat -> boredom": {
+      "source_run": "a_Cat_Seed_1_1623357_25",
+      "transfer_run": "a_cat_Seed_1_to_boredom",
+      "source_images": [
+        "g0_idn_0015_f0.0556640625.JPEG",
+        "g10_idn_1022_f0.0751953125.JPEG",
+        "g20_idn_2067_f0.115234375.JPEG",
+        "g30_idn_2972_f0.076171875.JPEG"
+      ],
+      "transfer_images": [
+        "g0_id0015_f0.0380859375.JPEG",
+        "g10_id1022_f0.1318359375.JPEG",
+        "g20_id2067_f0.08056640625.JPEG",
+        "g30_id2972_f0.10009765625.JPEG"
+      ]
+    },
+    "a cat -> a chair": {
+      "source_run": "a_Cat_Seed_1_1623357_25",
+      "transfer_run": "a_cat_Seed_1_to_a_chair",
+      "source_images": [
+        "g0_idn_0000_f0.08984375.JPEG",
+        "g10_idn_0991_f0.1044921875.JPEG",
+        "g20_idn_2006_f0.12890625.JPEG",
+        "g30_idn_3058_f0.080078125.JPEG"
+      ],
+      "transfer_images": [
+        "g0_id0000_f0.08349609375.JPEG",
+        "g10_id0991_f0.09765625.JPEG",
+        "g20_id2006_f0.181640625.JPEG",
+        "g30_id3058_f0.1376953125.JPEG"
+      ]
+    },
+    "a chair -> boredom": {
+      "source_run": "a_Chair_Seed_1_1623355_19",
+      "transfer_run": "a_chair_Seed_1_to_boredom",
+      "source_images": [
+        "g0_idn_0026_f0.099609375.JPEG",
+        "g10_idn_1008_f0.13671875.JPEG",
+        "g20_idn_2072_f0.109375.JPEG",
+        "g30_idn_2979_f0.1240234375.JPEG"
+      ],
+      "transfer_images": [
+        "g0_id0026_f0.1455078125.JPEG",
+        "g10_id1008_f0.10986328125.JPEG",
+        "g20_id2072_f0.138671875.JPEG",
+        "g30_id2979_f0.1103515625.JPEG"
+      ]
+    },
+    "a chair -> a cat": {
+      "source_run": "a_Chair_Seed_1_1623355_19",
+      "transfer_run": "a_chair_Seed_1_to_a_cat",
+      "source_images": [
+        "g0_idn_0003_f0.072265625.JPEG",
+        "g10_idn_1010_f0.142578125.JPEG",
+        "g20_idn_2007_f0.115234375.JPEG",
+        "g30_idn_3047_f0.1650390625.JPEG"
+      ],
+      "transfer_images": [
+        "g0_id0003_f0.0625.JPEG",
+        "g10_id1010_f0.09375.JPEG",
+        "g20_id2007_f0.08544921875.JPEG",
+        "g30_id3047_f0.07177734375.JPEG"
+      ]
+    }
+  }
+}

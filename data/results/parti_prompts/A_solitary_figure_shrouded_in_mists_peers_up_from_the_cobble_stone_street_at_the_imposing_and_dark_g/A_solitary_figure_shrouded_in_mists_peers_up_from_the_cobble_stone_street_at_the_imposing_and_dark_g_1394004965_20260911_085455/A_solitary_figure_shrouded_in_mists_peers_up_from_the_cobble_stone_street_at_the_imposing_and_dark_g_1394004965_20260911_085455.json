@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "A solitary figure shrouded in mists peers up from the cobble stone street at the imposing and dark gothic buildings surrounding it. an old-fashioned lamp shines nearby. oil painting.",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 1394004965,
+    "timestamp": "20260911_085521",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/A_solitary_figure_shrouded_in_mists_peers_up_from_the_cobble_stone_street_at_the_imposing_and_dark_g/A_solitary_figure_shrouded_in_mists_peers_up_from_the_cobble_stone_street_at_the_imposing_and_dark_g_1394004965_20260911_085455",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/A_solitary_figure_shrouded_in_mists_peers_up_from_the_cobble_stone_street_at_the_imposing_and_dark_g/A_solitary_figure_shrouded_in_mists_peers_up_from_the_cobble_stone_street_at_the_imposing_and_dark_g_1394004965_20260911_085455/A_solitary_figure_shrouded_in_mists_peers_up_from_the_cobble_stone_street_at_the_imposing_and_dark_g_1394004965_20260911_085455.csv"
+}

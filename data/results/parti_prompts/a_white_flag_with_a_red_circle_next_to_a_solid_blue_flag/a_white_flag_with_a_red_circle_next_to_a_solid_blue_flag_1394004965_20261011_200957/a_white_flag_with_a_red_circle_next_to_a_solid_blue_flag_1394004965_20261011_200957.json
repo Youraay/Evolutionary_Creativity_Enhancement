@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "a white flag with a red circle next to a solid blue flag",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 1394004965,
+    "timestamp": "20261011_201010",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_white_flag_with_a_red_circle_next_to_a_solid_blue_flag/a_white_flag_with_a_red_circle_next_to_a_solid_blue_flag_1394004965_20261011_200957",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_white_flag_with_a_red_circle_next_to_a_solid_blue_flag/a_white_flag_with_a_red_circle_next_to_a_solid_blue_flag_1394004965_20261011_200957/a_white_flag_with_a_red_circle_next_to_a_solid_blue_flag_1394004965_20261011_200957.csv"
+}

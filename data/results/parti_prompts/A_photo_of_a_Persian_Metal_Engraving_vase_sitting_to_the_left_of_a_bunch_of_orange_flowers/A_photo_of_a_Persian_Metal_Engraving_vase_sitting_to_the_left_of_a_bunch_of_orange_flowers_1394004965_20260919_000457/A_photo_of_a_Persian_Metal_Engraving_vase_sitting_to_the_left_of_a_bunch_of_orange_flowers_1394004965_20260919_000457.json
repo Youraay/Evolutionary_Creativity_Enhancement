@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "A photo of a Persian Metal Engraving vase sitting to the left of a bunch of orange flowers.",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 1394004965,
+    "timestamp": "20260919_000505",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/A_photo_of_a_Persian_Metal_Engraving_vase_sitting_to_the_left_of_a_bunch_of_orange_flowers/A_photo_of_a_Persian_Metal_Engraving_vase_sitting_to_the_left_of_a_bunch_of_orange_flowers_1394004965_20260919_000457",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/A_photo_of_a_Persian_Metal_Engraving_vase_sitting_to_the_left_of_a_bunch_of_orange_flowers/A_photo_of_a_Persian_Metal_Engraving_vase_sitting_to_the_left_of_a_bunch_of_orange_flowers_1394004965_20260919_000457/A_photo_of_a_Persian_Metal_Engraving_vase_sitting_to_the_left_of_a_bunch_of_orange_flowers_1394004965_20260919_000457.csv"
+}

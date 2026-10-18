@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "a chair",
+    "generative_model": "Krea2Turbo",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 1943746817,
+    "timestamp": "20260929_184310",
+    "result_path": "/home/dldevel/sinziri/results/model_comp/krea_2_turbo/a_chair/a_chair_1943746817_20260929_184054",
+    "stat_path": "/home/dldevel/sinziri/results/model_comp/krea_2_turbo/a_chair/a_chair_1943746817_20260929_184054/a_chair_1943746817_20260929_184054.csv"
+}

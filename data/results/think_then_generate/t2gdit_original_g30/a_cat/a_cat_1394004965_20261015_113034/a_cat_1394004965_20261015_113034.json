@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 4,
+    "prompt": "a cat",
+    "generative_model": "ThinkThenGenerate",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "FixedPromptEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 1394004965,
+    "timestamp": "20261015_113239",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/t2g/t2gdit_original_g30/a_cat/a_cat_1394004965_20261015_113034",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/t2g/t2gdit_original_g30/a_cat/a_cat_1394004965_20261015_113034/a_cat_1394004965_20261015_113034.csv"
+}

@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "Portrait of a gecko wearing a train conductor\u2019s hat and holding a flag that has a yin-yang symbol on it. Chinese ink.",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 1394004965,
+    "timestamp": "20260909_232142",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/Portrait_of_a_gecko_wearing_a_train_conductor_s_hat_and_holding_a_flag_that_has_a_yin-yang_symbol_on/Portrait_of_a_gecko_wearing_a_train_conductor_s_hat_and_holding_a_flag_that_has_a_yin-yang_symbol_on_1394004965_20260909_232134",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/Portrait_of_a_gecko_wearing_a_train_conductor_s_hat_and_holding_a_flag_that_has_a_yin-yang_symbol_on/Portrait_of_a_gecko_wearing_a_train_conductor_s_hat_and_holding_a_flag_that_has_a_yin-yang_symbol_on_1394004965_20260909_232134/Portrait_of_a_gecko_wearing_a_train_conductor_s_hat_and_holding_a_flag_that_has_a_yin-yang_symbol_on_1394004965_20260909_232134.csv"
+}

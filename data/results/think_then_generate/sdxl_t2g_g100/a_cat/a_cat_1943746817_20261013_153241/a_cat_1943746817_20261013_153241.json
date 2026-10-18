@@ -1,0 +1,26 @@
+{
+    "num_generations": 100,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "A photorealistic image of a domestic tabby cat, sitting gracefully on a soft, textured rug. The cat has detailed fur patterns and warm, expressive eyes. Soft natural light illuminates its fur, creating gentle shadows. High resolution, sharp focus.",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "FixedPromptEvaluator",
+        "FixedPromptEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 1943746817,
+    "timestamp": "20261013_153310",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/t2g/sdxl_t2g_g100/a_cat/a_cat_1943746817_20261013_153241",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/t2g/sdxl_t2g_g100/a_cat/a_cat_1943746817_20261013_153241/a_cat_1943746817_20261013_153241.csv"
+}

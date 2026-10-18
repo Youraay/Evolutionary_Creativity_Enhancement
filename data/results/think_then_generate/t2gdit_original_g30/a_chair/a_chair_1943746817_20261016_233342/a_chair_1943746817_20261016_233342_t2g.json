@@ -1,0 +1,12 @@
+{
+  "condition": "original",
+  "generator": "t2g",
+  "num_inference_steps": 30,
+  "original_prompt": "a chair",
+  "generation_prompt": "a chair",
+  "seed": 1943746817,
+  "num_generations": 30,
+  "population_size": 60,
+  "rewrite_source": null,
+  "reasoning": null
+}

@@ -1,0 +1,25 @@
+{
+    "num_generations": 30,
+    "population_size": 60,
+    "batch_size": 8,
+    "prompt": "A photo of a Japanese Porcelain Imari vase on the ground below a wooden chair.",
+    "generative_model": "StableDiffusionXLModel",
+    "selector": "TournamentSelector",
+    "mutator": "UniformGaussianMutator",
+    "crossover_function": "UniformCrossover",
+    "initial_mutation_rate": 0.05,
+    "crossover_rate": 0.9,
+    "elitism_count": 1,
+    "fitness_evaluators": [
+        "MaxMeanDivergenceEvaluator"
+    ],
+    "model_evaluators": [
+        "MaxMeanDivergenceEvaluator",
+        "CLIPScoreEvaluator",
+        "DiversityWithInPopulationEvaluator"
+    ],
+    "random_seed": 1943746817,
+    "timestamp": "20261011_184451",
+    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/A_photo_of_a_Japanese_Porcelain_Imari_vase_on_the_ground_below_a_wooden_chair/A_photo_of_a_Japanese_Porcelain_Imari_vase_on_the_ground_below_a_wooden_chair_1943746817_20261011_184409",
+    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/A_photo_of_a_Japanese_Porcelain_Imari_vase_on_the_ground_below_a_wooden_chair/A_photo_of_a_Japanese_Porcelain_Imari_vase_on_the_ground_below_a_wooden_chair_1943746817_20261011_184409/A_photo_of_a_Japanese_Porcelain_Imari_vase_on_the_ground_below_a_wooden_chair_1943746817_20261011_184409.csv"
+}
