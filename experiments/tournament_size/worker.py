@@ -1,4 +1,4 @@
-"""Run one job of the experiment tournament_size (called by ``submit_job.sh``).
+"""Run one job of the experiment tournament_size.
 
     python -m experiments.tournament_size.worker <job_id>
 """

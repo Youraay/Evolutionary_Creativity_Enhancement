@@ -1,4 +1,4 @@
-"""Run one job of the experiment fitness_embedding (called by ``submit_job.sh``).
+"""Run one job of the experiment fitness_embedding.
 
     python -m experiments.fitness_embedding.worker <job_id>
 """

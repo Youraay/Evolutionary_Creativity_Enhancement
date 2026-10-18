@@ -1,4 +1,4 @@
-"""Run one job of the experiment long_runs (called by ``submit_job.sh``).
+"""Run one job of the experiment long_runs.
 
     python -m experiments.long_runs.worker <job_id>
 """

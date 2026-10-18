@@ -11,8 +11,7 @@ Standard configuration: population 60, SDXL with 30 steps, uniform crossover (ra
 diversity in BLIP-2, CLIP, DINOv2 and SigLIP 2 space (see ``experiments.common.embedding_spaces``).
 
     python -m experiments.tournament_size.create_jobs --db new_jobs.db
-    TOURNAMENT_SIZE_DB_FILE=new_jobs.db python -m experiments.tournament_size.dispatch
-    experiments/common/start_experiments.sh tournament_size start      # alternative: run under another Slurm user
+    TOURNAMENT_SIZE_DB_FILE=new_jobs.db python -m experiments.tournament_size.worker <job id>
 
 ``data/jobs/tournament_size.db`` lists the analysed runs.
 """

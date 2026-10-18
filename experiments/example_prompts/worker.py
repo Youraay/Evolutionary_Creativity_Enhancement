@@ -1,4 +1,4 @@
-"""Run one job of the experiment example_prompts (called by ``submit_job.sh``).
+"""Run one job of the experiment example_prompts.
 
     python -m experiments.example_prompts.worker <job_id>
 """

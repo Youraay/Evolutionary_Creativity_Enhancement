@@ -91,17 +91,6 @@ def table_dir(experiment: str) -> Path:
     return DATA_DIR / "results" / experiment
 
 
-def submit_script(experiment: str) -> str:
-    """Slurm batch script of an experiment: ``<EXPERIMENT>_SUBMIT_SCRIPT``, by default its ``submit_job.sh``.
-
-    Args:
-        experiment: Package name below ``experiments``.
-
-    Returns:
-        Path of the batch script, relative to the repository root.
-    """
-    return env_str(f"{experiment.upper()}_SUBMIT_SCRIPT", f"experiments/{experiment}/submit_job.sh")
-
 HF_CACHE = env_str("HF_CACHE", "")
 """Hugging Face cache directory passed as ``cache_dir`` to every ``from_pretrained`` call."""
 
@@ -109,16 +98,3 @@ DEVICE = env_str("DEVICE", "cuda")
 
 POPULATION_SIZE = env_int("POPULATION_SIZE", 60)
 NUM_GENERATIONS = env_int("NUM_GENERATIONS", 30)
-
-POLL_INTERVAL = env_int("POLL_INTERVAL", 30)
-"""Seconds the dispatcher waits when nothing can be submitted."""
-BACKOFF_ON_LIMIT = env_int("BACKOFF_ON_LIMIT", 1800)
-"""Seconds the dispatcher waits after Slurm rejected a submission because of a limit."""
-MAX_RUNNING_JOBS = env_int("MAX_RUNNING_JOBS", 4)
-"""Maximum number of pending or running Slurm jobs of the user (all dispatchers together)."""
-STALE_CLAIM_MINUTES = env_int("STALE_CLAIM_MINUTES", 60)
-"""Claimed but never submitted jobs are reopened after this many minutes."""
-STALE_RUNNING_MINUTES = env_int("STALE_RUNNING_MINUTES", 180)
-"""Running jobs whose Slurm job disappeared are reopened after this many minutes."""
-SBATCH_EXTRA_ARGS = env_str("SBATCH_EXTRA_ARGS", "")
-"""Extra ``sbatch`` options added to every submission, e.g. ``--exclude=gpu30-022``."""

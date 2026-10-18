@@ -18,7 +18,6 @@ elitism 1, novelty fitness in BLIP-2 space (see ``experiments.common.variants``)
 CLIP scores of the images are in ``<result dir>/clip_scores``.
 
     python -m experiments.crossover_function.create_jobs --db new_jobs.db       # open jobs for all variants
-    CROSSOVER_FUNCTION_DB_FILE=new_jobs.db python -m experiments.crossover_function.dispatch
-
+    CROSSOVER_FUNCTION_DB_FILE=new_jobs.db python -m experiments.crossover_function.worker <job id>
 ``data/jobs/crossover_function.db`` lists the analysed runs (``create_jobs --register``).
 """

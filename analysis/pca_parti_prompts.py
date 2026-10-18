@@ -9,7 +9,7 @@ The joint noise PCAs use every 5th generation (0, 5, ..., 30), otherwise the dat
 BLIP-2 uses all generations. As in the original noise analysis without standardisation, PCA with 10
 components (randomised; IncrementalPCA for all noises together).
 
-    # compute (compute node, about 1.5 h): sbatch analysis/submit_pca.sh, or
+    # compute (about 1.5 h on a compute node):
     python -m analysis.pca_parti_prompts compute
     # plot (login node):
     python -m analysis.pca_parti_prompts plot

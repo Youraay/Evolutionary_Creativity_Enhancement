@@ -47,7 +47,7 @@ def main() -> None:
     queue.create_table()
     print(f"{queue.add_jobs(jobs)} jobs written to {args.db} "
           f"({len(models)} models x {len(rows)} prompts x {len(args.seeds)} seeds)")
-    print(f"Start with: MODEL_COMPARISON_DB_FILE={args.db} python -m experiments.model_comparison.dispatch")
+    print(f"Run a job with: MODEL_COMPARISON_DB_FILE={args.db} python -m experiments.model_comparison.worker <job id>")
 
 
 if __name__ == "__main__":

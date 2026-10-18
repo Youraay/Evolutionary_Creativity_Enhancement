@@ -12,8 +12,7 @@ Standard configuration: population 60, SDXL with 30 steps, uniform crossover (ra
 diversity in BLIP-2, CLIP, DINOv2 and SigLIP 2 space (see ``experiments.common.embedding_spaces``).
 
     python -m experiments.fitness_embedding.create_jobs --db new_jobs.db
-    FITNESS_EMBEDDING_DB_FILE=new_jobs.db python -m experiments.fitness_embedding.dispatch
-    experiments/common/start_experiments.sh fitness_embedding start      # alternative: run under another Slurm user
+    FITNESS_EMBEDDING_DB_FILE=new_jobs.db python -m experiments.fitness_embedding.worker <job id>
 
 ``data/jobs/fitness_embedding.db`` lists the analysed runs.
 """

@@ -5,8 +5,8 @@ images. A population of noise tensors is rendered by a frozen text-to-image mode
 image is embedded with BLIP-2, and the fitness of a candidate is its distance to the mean embedding of the
 current population. Tournament selection, crossover and mutation act directly on the noise tensors.
 
-This repository contains the method, the Slurm infrastructure of all experiments, the job databases and
-candidate tables of all analysed runs, and the code of all figures and tables.
+This repository contains the method, the code of all experiments, the job databases and candidate tables of
+all analysed runs, and the code of all figures and tables.
 
 ## Repository layout
 
@@ -19,9 +19,9 @@ evolutionary_creativity/     the method
 ├── evaluators/              novelty (distance to mean embedding, k nearest neighbours), diversity, CLIP score
 └── models/                  text-to-image models (SDXL, UNet and DiT models of the model comparison)
                              and image embeddings (BLIP-2, CLIP, DINOv2, SigLIP 2)
-experiments/                 one package per experiment: create_jobs -> dispatch -> worker (Slurm)
-└── common/                  settings, SQLite job queue, dispatcher, standard GA, configurable experiment
-                             families (variants, embedding_spaces), start_experiments.sh, collect_tables
+experiments/                 one package per experiment: create_jobs -> worker
+└── common/                  settings, SQLite job database, standard GA, configurable experiment families
+                             (variants, embedding_spaces), collect_tables, data_release
 analysis/                    one module per experiment, writes plots/<module>/
 └── common/                  paths, style, loading of runs, statistical tests, shared plot types
 data/
@@ -113,31 +113,27 @@ pip install -e ".[analysis]"          # or ".[flux2-dev]" for the GPU environmen
 cp .env.example .env                  # then adapt paths
 ```
 
-All settings (result directories, Hugging Face cache, population size, Slurm limits) are read from the
-environment or from `.env`. All modules are run from the repository root.
+All settings (result directories, Hugging Face cache, population size) are read from the environment or
+from `.env`. All modules are run from the repository root.
 
 ## Running experiments
 
-Every experiment package has `config.py`, `create_jobs.py`, `dispatch.py`, `worker.py` and `submit_job.sh`.
-`create_jobs` writes one row per run into an SQLite job database; a dispatcher on the login node (e.g. in
-tmux) submits one Slurm job per open row and respects the per-user job limit; the worker runs the genetic
-algorithm and marks the row `DONE` or `FAILED`. Rows with another status (e.g. `HOLD`) are ignored by the
-dispatcher. The databases in `data/jobs` list the analysed runs, so new jobs go into a new database:
+Every experiment package has `config.py`, `create_jobs.py` and `worker.py`. `create_jobs` writes one row per
+run into an SQLite job database; `worker <job id>` runs the genetic algorithm of one row on a GPU and marks it
+`RUNNING` and then `DONE` or `FAILED`, so the jobs can be started by hand or by any batch system. The
+databases in `data/jobs` list the analysed runs, so new jobs go into a new database:
 
 ```bash
 python -m experiments.archive_size.create_jobs --db new_jobs.db
-ARCHIVE_SIZE_DB_FILE=new_jobs.db python -m experiments.archive_size.dispatch
+ARCHIVE_SIZE_DB_FILE=new_jobs.db python -m experiments.archive_size.worker 1      # one call per job id
 
-# run an experiment under another Slurm user with its own database, results and logs
-experiments/common/start_experiments.sh tournament_size start
-
-# model comparison: single runs, or fixed per-GPU queues in one Slurm job
+# model comparison
 python -m experiments.model_comparison.create_jobs --db new_jobs.db --prompts "a cat" "a chair" boredom --models all
-sbatch --gres=gpu:2 experiments/model_comparison/submit_gpu_queue.sh "125 127" "126 128"
+MODEL_COMPARISON_DB_FILE=new_jobs.db python -m experiments.model_comparison.worker 1
 
 # Think-Then-Generate: rewrite prompts, then seed optimisation with SDXL
-sbatch experiments/think_then_generate/submit_rewrite.sh plots/think_then_generate/rewrite_test
-sbatch experiments/think_then_generate/submit_sdxl.sh "a cat" 1943746817 100
+python -m experiments.think_then_generate.rewrite_prompts --out plots/think_then_generate/rewrite_test
+python -m experiments.think_then_generate.worker --prompt "a cat" --seed 1943746817 --generations 100
 ```
 
 Two configurations are used:
@@ -161,7 +157,7 @@ Run with the analysis environment from the repository root; every module writes 
 ```bash
 python -m analysis                          # all modules
 python -m analysis.example_prompts          # or a single one
-sbatch analysis/submit_pca.sh               # PCA projections of the PartiPrompts (CPU node, about 1.5 h), then:
+python -m analysis.pca_parti_prompts compute   # PCA projections of the PartiPrompts (about 1.5 h), then:
 python -m analysis.pca_parti_prompts plot
 ```
 

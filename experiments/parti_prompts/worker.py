@@ -1,4 +1,4 @@
-"""Run one job of the PartiPrompts experiment (called by ``submit_job.sh``).
+"""Run one job of the PartiPrompts experiment.
 
 Setup: SDXL with 30 steps, population 60, 30 generations, tournament size 3, uniform crossover,
 Gaussian mutation, elitism 1; fitness = novelty in BLIP-2 space.

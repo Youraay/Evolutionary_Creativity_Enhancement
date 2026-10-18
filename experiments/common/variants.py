@@ -130,17 +130,15 @@ class VariantExperiment:
         variants: All variants of the experiment.
         db_file: Job database.
         result_dir: Directory of the run directories.
-        time_limit: Slurm time limit that replaces the one of the batch script, if set.
+        transfer_source_dir: Directory of the runs whose noise transfer jobs render (only for transfer experiments).
         source_corrections: Prefix of a transfer run directory (``<source>_Seed_<label>``) -> prompt of the run
             whose noise it actually rendered, for directories named after the wrong source.
-        transfer_source_dir: Directory of the runs whose noise transfer jobs render (only for transfer experiments).
     """
 
     name: str
     variants: list[Variant]
     db_file: Path
     result_dir: Path
-    time_limit: str | None = None
     transfer_source_dir: Path | None = None
     source_corrections: dict[str, str] = field(default_factory=dict)
 
@@ -243,11 +241,11 @@ def finished_rows(experiment: VariantExperiment) -> list[tuple[dict, Path, str |
         config_path = run_dir / f"{run_dir.name}.json"
         config = json.loads(config_path.read_text()) if config_path.exists() else {}
         seed = str(config.get("random_seed", SEED_SETS[variant.seeds].get(label, "")))
+        row = job_row(variant, label, seed, note="registered run")
+        row["run_name"] = run_dir.name
         if corrected:
             row["note"] += (f"; the directory is named after {transfer['source'].replace('_', ' ')!r}, but the "
                             f"rendered noise is that of {corrected!r} seed {label}")
-        row = job_row(variant, label, seed, note="registered run")
-        row["run_name"] = run_dir.name
         if config.get("prompt") and config["prompt"] != row["prompt"]:
             print(f"[WARN] {run_dir.name}: prompt {row['prompt']!r} != {config['prompt']!r} (configuration file wins)")
             row["prompt"] = config["prompt"]
@@ -301,7 +299,7 @@ def create_jobs(experiment: VariantExperiment, db: Path, variants: list[str] | N
     queue = experiment.job_queue(db)
     queue.create_table()
     print(f"{queue.add_jobs(jobs)} jobs written to {db}")
-    print(f"Start with: {experiment.name.upper()}_DB_FILE={db} python -m experiments.{experiment.name}.dispatch")
+    print(f"Run a job with: {experiment.name.upper()}_DB_FILE={db} python -m experiments.{experiment.name}.worker <job id>")
 
 
 def create_jobs_cli(experiment: VariantExperiment, description: str) -> None:
@@ -324,18 +322,6 @@ def create_jobs_cli(experiment: VariantExperiment, description: str) -> None:
         register_runs(experiment, args.db, args.append)
     else:
         create_jobs(experiment, args.db, args.variants, args.seeds, args.append)
-
-
-def dispatch_cli(experiment: VariantExperiment) -> None:
-    """Command line entry point of ``experiments.<name>.dispatch``.
-
-    Args:
-        experiment: The experiment.
-    """
-    from experiments.common.dispatcher import run_dispatcher
-
-    run_dispatcher(experiment.job_queue(), experiment.submit_script, time_limit=lambda job: experiment.time_limit,
-                   describe=lambda job: f"({job['run_name']})")
 
 
 # --- worker -------------------------------------------------------------------------------------------------
@@ -458,8 +444,6 @@ def transfer_populations(job: sqlite3.Row, source_dir: Path, dtype) -> list:
 
 
 def run_job(experiment: VariantExperiment, job: sqlite3.Row) -> str:
-    import torch
-
     """Run (or, for transfer jobs, evaluate) one job.
 
     The recorded metrics are those of all current experiments: distance to the mean of generation 0
@@ -473,6 +457,8 @@ def run_job(experiment: VariantExperiment, job: sqlite3.Row) -> str:
     Returns:
         Result directory of the run (or of the experiment, if the run had already finished).
     """
+    import torch
+
     from evolutionary_creativity.models.embeddings import Blip2EmbeddingModel, ClipEmbeddingModel
     from evolutionary_creativity.models.text_to_image.sdxl import StableDiffusionXLModel
     from evolutionary_creativity.noise_factory import NoiseFactory

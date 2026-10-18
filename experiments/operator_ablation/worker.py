@@ -1,4 +1,4 @@
-"""Run one job of the experiment operator_ablation (called by ``submit_job.sh``).
+"""Run one job of the experiment operator_ablation.
 
     python -m experiments.operator_ablation.worker <job_id>
 """

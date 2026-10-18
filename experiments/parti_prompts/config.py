@@ -2,12 +2,11 @@
 from pathlib import Path
 
 from experiments.common.job_queue import JobQueue
-from experiments.common.settings import DATA_DIR, db_file, result_dir, submit_script
+from experiments.common.settings import DATA_DIR, db_file, result_dir
 
 DB_FILE = db_file("parti_prompts")
 RESULT_DIR = result_dir("parti_prompts")
 PROMPT_FILE = DATA_DIR / "prompts" / "parti_prompts_selection.tsv"
-SUBMIT_SCRIPT = submit_script("parti_prompts")
 
 COLUMNS = [
     ("prompt", "TEXT NOT NULL"),

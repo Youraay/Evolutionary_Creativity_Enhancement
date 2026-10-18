@@ -4,8 +4,8 @@
 2. ``worker.py`` runs the standard GA with SDXL and the rewritten prompt (``--condition t2g``) or the
    original prompt (``--condition original``).
 
-    sbatch experiments/think_then_generate/submit_rewrite.sh <output dir>
-    sbatch experiments/think_then_generate/submit_sdxl.sh "a cat" 1943746817 100
+    python -m experiments.think_then_generate.rewrite_prompts --out <output dir>
+    python -m experiments.think_then_generate.worker --prompt "a cat" --seed 1943746817 --generations 100
 
 Results:
 ``<THINK_THEN_GENERATE_RESULT_DIR>/sdxl_<condition>_g<generations>/<prompt_slug>/<prompt_slug>_<seed>_<timestamp>/``.

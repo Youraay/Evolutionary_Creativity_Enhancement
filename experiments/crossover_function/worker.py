@@ -1,4 +1,4 @@
-"""Run one job of the experiment crossover_function (called by ``submit_job.sh``).
+"""Run one job of the experiment crossover_function.
 
     python -m experiments.crossover_function.worker <job_id>
 """

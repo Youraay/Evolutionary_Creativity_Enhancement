@@ -1,4 +1,4 @@
-"""Run one job of the model comparison (called by ``submit_job.sh`` and ``submit_gpu_queue.sh``).
+"""Run one job of the model comparison.
 
 Same GA as the PartiPrompts experiment; the text-to-image model comes from the ``model`` column.
 

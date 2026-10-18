@@ -17,7 +17,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from experiments.common.job_queue import JobQueue
-from experiments.common.settings import NUM_GENERATIONS, POPULATION_SIZE, SEEDS, submit_script
+from experiments.common.settings import NUM_GENERATIONS, POPULATION_SIZE, SEEDS
 
 logger = logging.getLogger(__name__)
 
@@ -54,14 +54,12 @@ class EmbeddingExperiment:
         variants: ``(variant, deviation from BASE)`` per variant.
         db_file: Job database.
         result_dir: Directory of the variant directories.
-        time_limit: Slurm time limit that replaces the one of the batch script, if set.
     """
 
     name: str
     variants: list[tuple[str, dict]]
     db_file: Path
     result_dir: Path
-    time_limit: str | None = None
 
     def job_queue(self, db_file: Path | None = None) -> JobQueue:
         """Return the job database.
@@ -75,7 +73,8 @@ class EmbeddingExperiment:
 def create_jobs_cli(experiment: EmbeddingExperiment, description: str) -> None:
     """Command line entry point of ``experiments.<name>.create_jobs``: variant x prompt x seed.
 
-    The dispatcher claims jobs by id, so the variants finish one after another and can be analysed early.
+    The jobs are numbered variant by variant, so running them in the order of their ids finishes one variant
+    after another.
 
     Args:
         experiment: The experiment.
@@ -98,19 +97,8 @@ def create_jobs_cli(experiment: EmbeddingExperiment, description: str) -> None:
     queue = experiment.job_queue(args.db)
     queue.create_table()
     print(f"{queue.add_jobs(jobs)} jobs written to {args.db} ({', '.join(v for v, _ in experiment.variants)})")
-    print(f"Start with: {experiment.name.upper()}_DB_FILE={args.db} python -m experiments.{experiment.name}.dispatch")
-
-
-def dispatch_cli(experiment: EmbeddingExperiment) -> None:
-    """Command line entry point of ``experiments.<name>.dispatch``.
-
-    Args:
-        experiment: The experiment.
-    """
-    from experiments.common.dispatcher import run_dispatcher
-
-    run_dispatcher(experiment.job_queue(), submit_script(experiment.name), time_limit=lambda job: experiment.time_limit,
-                   describe=lambda job: f"({job['variant']})")
+    print(f"Run a job with: {experiment.name.upper()}_DB_FILE={args.db} "
+          f"python -m experiments.{experiment.name}.worker <job id>")
 
 
 def named(evaluator, name: str):

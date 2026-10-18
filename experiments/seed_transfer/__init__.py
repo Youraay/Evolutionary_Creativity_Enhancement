@@ -12,7 +12,6 @@ crossover (rate 0.9), Gaussian mutation of 10 % of the values with standard devi
 elitism 1, novelty fitness in BLIP-2 space (see ``experiments.common.variants``).
 
     python -m experiments.seed_transfer.create_jobs --db new_jobs.db       # open jobs for all variants
-    SEED_TRANSFER_DB_FILE=new_jobs.db python -m experiments.seed_transfer.dispatch
-
+    SEED_TRANSFER_DB_FILE=new_jobs.db python -m experiments.seed_transfer.worker <job id>
 ``data/jobs/seed_transfer.db`` lists the analysed runs (``create_jobs --register``).
 """

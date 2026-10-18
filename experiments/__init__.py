@@ -1,10 +1,10 @@
-"""Slurm job infrastructure and workers for all experiments.
+"""Job databases and workers of all experiments.
 
 Every experiment follows the same pattern:
 
 1. ``create_jobs`` writes one row per run (prompt x seed x variant) into an SQLite job database.
-2. ``dispatch`` claims open jobs and submits one Slurm job per run, respecting the user's job limit.
-3. ``worker`` runs the genetic algorithm for one job id and marks the job as done or failed.
+2. ``worker <job id>`` runs the genetic algorithm of one row on a GPU and marks the job as done or failed; the
+   jobs can be started by hand or by any batch system.
 
 Experiments (see the README for the figures of the manuscript they belong to):
     example_prompts      SDXL on twelve example prompts, population 100.
@@ -22,7 +22,7 @@ Experiments (see the README for the figures of the manuscript they belong to):
     think_then_generate  Prompt rewriting with Think-Then-Generate, followed by seed optimisation.
     mutation_grid_search Mutated fraction and strength of the Gaussian mutation (Methods).
 
-Shared code is in ``common``: settings, job queue, dispatcher, the standard GA (``ga``) and the two families
+Shared code is in ``common``: settings, job database, the standard GA (``ga``) and the two families
 of configurable experiments (``variants``: population 100, operators per job; ``embedding_spaces``:
 population 60, metrics in four embedding spaces).
 """

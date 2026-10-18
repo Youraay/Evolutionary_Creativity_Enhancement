@@ -178,6 +178,7 @@ def run_queued_job(queue: JobQueue, run: Callable[[sqlite3.Row], str], descripti
     job = queue.get_job(job_id)
     if job is None:
         raise SystemExit(f"Job {job_id} not found in {queue.db_file}")
+    queue.mark_running(job_id)
     try:
         output_path = run(job)
     except Exception as error:

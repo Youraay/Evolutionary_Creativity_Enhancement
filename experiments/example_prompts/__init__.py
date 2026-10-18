@@ -14,7 +14,6 @@ elitism 1, novelty fitness in BLIP-2 space (see ``experiments.common.variants``)
 CLIP scores of the images and random baselines (computed after the runs) are in ``<result dir>/clip_scores``.
 
     python -m experiments.example_prompts.create_jobs --db new_jobs.db       # open jobs for all variants
-    EXAMPLE_PROMPTS_DB_FILE=new_jobs.db python -m experiments.example_prompts.dispatch
-
+    EXAMPLE_PROMPTS_DB_FILE=new_jobs.db python -m experiments.example_prompts.worker <job id>
 ``data/jobs/example_prompts.db`` lists the analysed runs (``create_jobs --register``).
 """

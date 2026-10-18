@@ -1,4 +1,4 @@
-"""Run one job of the experiment archive_size (called by ``submit_job.sh``).
+"""Run one job of the experiment archive_size.
 
     python -m experiments.archive_size.worker <job_id>
 """

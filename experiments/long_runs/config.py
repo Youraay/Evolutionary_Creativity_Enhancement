@@ -7,6 +7,5 @@ EXPERIMENT = EmbeddingExperiment(
     variants=[("gen_300", {"num_generations": 300})],
     db_file=db_file("long_runs"),
     result_dir=result_dir("long_runs"),
-    time_limit="3-00:00:00",
 )
-"""300 SDXL generations take about 15 h; the time limit replaces the 15 h of the batch script."""
+"""One variant with 300 generations (about 15 h per run with SDXL)."""

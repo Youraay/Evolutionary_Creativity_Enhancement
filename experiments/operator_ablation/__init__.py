@@ -14,7 +14,6 @@ crossover (rate 0.9), Gaussian mutation of 10 % of the values with standard devi
 elitism 1, novelty fitness in BLIP-2 space (see ``experiments.common.variants``).
 
     python -m experiments.operator_ablation.create_jobs --db new_jobs.db       # open jobs for all variants
-    OPERATOR_ABLATION_DB_FILE=new_jobs.db python -m experiments.operator_ablation.dispatch
-
+    OPERATOR_ABLATION_DB_FILE=new_jobs.db python -m experiments.operator_ablation.worker <job id>
 ``data/jobs/operator_ablation.db`` lists the analysed runs (``create_jobs --register``).
 """

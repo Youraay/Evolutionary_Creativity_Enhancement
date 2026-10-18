@@ -15,7 +15,6 @@ elitism 1, novelty fitness in BLIP-2 space (see ``experiments.common.variants``)
 CLIP scores of the images are in ``<result dir>/clip_scores``.
 
     python -m experiments.archive_size.create_jobs --db new_jobs.db       # open jobs for all variants
-    ARCHIVE_SIZE_DB_FILE=new_jobs.db python -m experiments.archive_size.dispatch
-
+    ARCHIVE_SIZE_DB_FILE=new_jobs.db python -m experiments.archive_size.worker <job id>
 ``data/jobs/archive_size.db`` lists the analysed runs (``create_jobs --register``).
 """

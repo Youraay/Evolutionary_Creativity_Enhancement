@@ -1,15 +1,12 @@
-"""SQLite job queue shared by dispatcher and workers.
+"""SQLite job database of an experiment: one row per run.
 
-Every row describes one run. Its life cycle is::
-
-    OPEN -> CLAIMED (dispatcher) -> RUNNING (submitted to Slurm) -> DONE | FAILED
-                \\-> RETRY (submission failed, claim or Slurm job lost) -> CLAIMED ...
-
-Jobs with any other status (e.g. ``HOLD``) are ignored by the dispatcher and can be run manually.
+``create_jobs`` adds rows with status ``OPEN``; the worker of the experiment runs one row by its id and marks it
+``RUNNING`` and then ``DONE`` or ``FAILED``. Runs started otherwise are registered as ``DONE``
+(:meth:`JobQueue.register_finished`).
 """
 import sqlite3
 from collections.abc import Iterable
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 
 STATUS_COLUMNS = """
     status TEXT NOT NULL DEFAULT 'OPEN',
@@ -21,9 +18,8 @@ STATUS_COLUMNS = """
     job_id TEXT,
     last_error TEXT,
     output_path TEXT"""
-"""Bookkeeping columns present in every job table (``job_id`` is the Slurm job id)."""
-
-UNFINISHED = ("OPEN", "RETRY", "CLAIMED", "RUNNING")
+"""Bookkeeping columns present in every job table (``job_id``: id of the batch job that ran the run, if known;
+``claimed_by``, ``claimed_at`` and ``retry_count`` are kept for the job databases of the analysed runs)."""
 
 
 def utc_now() -> str:
@@ -122,89 +118,28 @@ class JobQueue:
         rows = self._fetch("SELECT * FROM jobs WHERE id = ?", (job_id,))
         return rows[0] if rows else None
 
-    def get_running_jobs(self) -> list[sqlite3.Row]:
-        """Return all jobs with status ``RUNNING``."""
-        return self._fetch("SELECT * FROM jobs WHERE status = 'RUNNING'")
-
-    def claim_next_job(self, worker_name: str) -> sqlite3.Row | None:
-        """Atomically claim the open or retried job with the lowest id.
-
-        Args:
-            worker_name: Name stored in ``claimed_by``.
-
-        Returns:
-            The claimed job, or ``None`` if no job is open or another dispatcher was faster.
-        """
-        connection = self._connect()
-        try:
-            connection.execute("BEGIN IMMEDIATE")
-            row = connection.execute(
-                "SELECT id FROM jobs WHERE status IN ('OPEN', 'RETRY') ORDER BY id ASC LIMIT 1").fetchone()
-            if row is None:
-                connection.commit()
-                return None
-            connection.execute("UPDATE jobs SET status = 'CLAIMED', claimed_by = ?, claimed_at = ? "
-                               "WHERE id = ? AND status IN ('OPEN', 'RETRY')", (worker_name, utc_now(), row["id"]))
-            updated = connection.execute("SELECT changes()").fetchone()[0]
-            connection.commit()
-        finally:
-            connection.close()
-        return self.get_job(row["id"]) if updated == 1 else None
-
-    def mark_running(self, job_id: int, slurm_job_id: str) -> None:
-        """Record the Slurm job id after a successful submission."""
-        self._execute("UPDATE jobs SET status = 'RUNNING', job_id = ?, started_at = ? WHERE id = ?",
-                      (str(slurm_job_id), utc_now(), job_id))
+    def mark_running(self, job_id: int) -> None:
+        """Mark a job as started."""
+        self._execute("UPDATE jobs SET status = 'RUNNING', started_at = ? WHERE id = ?", (utc_now(), job_id))
 
     def mark_done(self, job_id: int, output_path: str | None = None) -> None:
         """Mark a job as finished and store its result directory."""
         self._execute("UPDATE jobs SET status = 'DONE', output_path = ?, finished_at = ?, last_error = NULL "
                       "WHERE id = ?", (output_path, utc_now(), job_id))
 
-    def register_finished(self, job_id: int, output_path: str, slurm_job_id: str | None, finished_at: str) -> None:
-        """Mark a job as done that ran outside the dispatcher (e.g. a run started with its own script).
+    def register_finished(self, job_id: int, output_path: str, batch_job_id: str | None, finished_at: str) -> None:
+        """Mark a job as done that ran outside the worker (e.g. a run started with its own script).
 
         Args:
             job_id: Row id.
             output_path: Result directory of the run.
-            slurm_job_id: Slurm job id of the run, if known.
+            batch_job_id: Id of the batch job of the run, if known.
             finished_at: ISO timestamp (UTC) of the end of the run.
         """
         self._execute("UPDATE jobs SET status = 'DONE', output_path = ?, job_id = ?, finished_at = ?, last_error = NULL "
-                      "WHERE id = ?", (output_path, slurm_job_id, finished_at, job_id))
+                      "WHERE id = ?", (output_path, batch_job_id, finished_at, job_id))
 
     def mark_failed(self, job_id: int, error_message: str) -> None:
         """Mark a job as failed; the message is truncated to 2000 characters."""
         self._execute("UPDATE jobs SET status = 'FAILED', last_error = ?, finished_at = ? WHERE id = ?",
                       (error_message[:2000], utc_now(), job_id))
-
-    def requeue_job(self, job_id: int, error_message: str) -> None:
-        """Reopen a claimed job whose submission failed."""
-        self._execute("UPDATE jobs SET status = 'RETRY', last_error = ?, claimed_by = NULL, claimed_at = NULL, "
-                      "job_id = NULL, retry_count = retry_count + 1 WHERE id = ?", (error_message[:2000], job_id))
-
-    def reset_stale_claimed_jobs(self, max_age_minutes: int = 60) -> int:
-        """Reopen jobs that were claimed longer than ``max_age_minutes`` ago but never submitted.
-
-        Returns:
-            Number of reopened jobs.
-        """
-        cutoff = (datetime.now(timezone.utc).replace(tzinfo=None)
-                  - timedelta(minutes=max_age_minutes)).isoformat(timespec="seconds")
-        return self._execute("UPDATE jobs SET status = 'RETRY', last_error = 'Claim timed out', claimed_by = NULL, "
-                             "claimed_at = NULL, retry_count = retry_count + 1 "
-                             "WHERE status = 'CLAIMED' AND claimed_at IS NOT NULL AND claimed_at < ?", (cutoff,))
-
-    def requeue_stale_running_job(self, job_id: int, error_message: str) -> None:
-        """Reopen a running job whose Slurm job no longer exists."""
-        self._execute("UPDATE jobs SET status = 'RETRY', last_error = ?, job_id = NULL, retry_count = retry_count + 1 "
-                      "WHERE id = ? AND status = 'RUNNING'", (error_message[:2000], job_id))
-
-    def has_unfinished_jobs(self) -> bool:
-        """Whether any job is open, retried, claimed or running."""
-        placeholders = ", ".join("?" for _ in UNFINISHED)
-        return bool(self._fetch(f"SELECT 1 FROM jobs WHERE status IN ({placeholders}) LIMIT 1", UNFINISHED))
-
-    def count_jobs_by_status(self) -> dict[str, int]:
-        """Return the number of jobs per status."""
-        return {row["status"]: row["n"] for row in self._fetch("SELECT status, COUNT(*) AS n FROM jobs GROUP BY status")}

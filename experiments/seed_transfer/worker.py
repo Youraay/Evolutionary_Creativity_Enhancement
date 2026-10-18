@@ -1,4 +1,4 @@
-"""Run one job of the experiment seed_transfer (called by ``submit_job.sh``).
+"""Run one job of the experiment seed_transfer.
 
     python -m experiments.seed_transfer.worker <job_id>
 """

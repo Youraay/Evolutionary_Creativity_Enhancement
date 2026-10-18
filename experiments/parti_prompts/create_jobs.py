@@ -55,7 +55,7 @@ def main() -> None:
     queue = job_queue(args.db)
     queue.create_table()
     print(f"{queue.add_jobs(jobs)} jobs written to {args.db} ({len(rows)} prompts x {len(args.seeds)} seeds)")
-    print(f"Start with: PARTI_PROMPTS_DB_FILE={args.db} python -m experiments.parti_prompts.dispatch")
+    print(f"Run a job with: PARTI_PROMPTS_DB_FILE={args.db} python -m experiments.parti_prompts.worker <job id>")
 
 
 if __name__ == "__main__":

@@ -1,4 +1,4 @@
-"""Run one job of the experiment mutation_only (called by ``submit_job.sh``).
+"""Run one job of the experiment mutation_only.
 
     python -m experiments.mutation_only.worker <job_id>
 """

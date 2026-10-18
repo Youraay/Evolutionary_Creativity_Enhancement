@@ -11,8 +11,7 @@ Standard configuration: population 60, SDXL with 30 steps, uniform crossover (ra
 diversity in BLIP-2, CLIP, DINOv2 and SigLIP 2 space (see ``experiments.common.embedding_spaces``).
 
     python -m experiments.long_runs.create_jobs --db new_jobs.db
-    LONG_RUNS_DB_FILE=new_jobs.db python -m experiments.long_runs.dispatch
-    experiments/common/start_experiments.sh long_runs start      # alternative: run under another Slurm user
+    LONG_RUNS_DB_FILE=new_jobs.db python -m experiments.long_runs.worker <job id>
 
 ``data/jobs/long_runs.db`` lists the analysed runs.
 """

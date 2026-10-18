@@ -2,7 +2,6 @@ __pycache__/
 *.pyc
 .env
 .venv/
-logs/*
-!logs/.gitkeep
+logs/
 **/.ipynb_checkpoints
 *.egg-info/
