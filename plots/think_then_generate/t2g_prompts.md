@@ -1,6 +1,6 @@
 # Think-Then-Generate: prompts used
 
-The three original prompts and their version rewritten by Think-Then-Generate (T2G), as used in the T2G runs (SDXL, 100 generations; variant A with the T2G DiT was not completed).
+The three original prompts and their version rewritten by Think-Then-Generate (T2G), as used in the T2G runs (SDXL, 100 generations).
 
 - **Model:** `SJTU-DENG-Lab/Think-Then-Generate-T2I` (Revision `7fbbdecf711e`)
 - **Rewriting:** system prompt and greedy decoding (`do_sample=False`, at most 1024 new tokens) as in `inference.py` of the T2G repository; deterministic, so exactly one version per prompt

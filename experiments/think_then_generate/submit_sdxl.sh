@@ -1,5 +1,5 @@
 #!/bin/bash
-# Variant B: rewritten (or original) prompt + seed optimisation with SDXL, one run per job.
+# Rewritten (or original) prompt + seed optimisation with SDXL, one run per job.
 #   sbatch experiments/think_then_generate/submit_sdxl.sh "<original prompt>" <seed> [generations=100] [t2g|original] [population=60]
 #SBATCH --job-name=t2g_sdxl
 #SBATCH --output=logs/t2g-sdxl-%j.out

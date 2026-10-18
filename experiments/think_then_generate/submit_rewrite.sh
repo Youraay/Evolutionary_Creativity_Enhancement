@@ -1,5 +1,5 @@
 #!/bin/bash
-# Rewrite the prompts with Think-Then-Generate, measure the DiT and render example images.
+# Rewrite the prompts with the language model of Think-Then-Generate.
 #   sbatch experiments/think_then_generate/submit_rewrite.sh <output dir>
 #SBATCH --job-name=t2g_rewrite
 #SBATCH --output=logs/t2g-%j.out

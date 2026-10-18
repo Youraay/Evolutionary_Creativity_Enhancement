@@ -17,7 +17,7 @@ evolutionary_creativity/     the method
 ├── noise_factory.py         initial population and candidate ids
 ├── operators/               tournament selection, crossover (uniform, n-point, arithmetic), mutation
 ├── evaluators/              novelty (distance to mean embedding, k nearest neighbours), diversity, CLIP score
-└── models/                  text-to-image models (SDXL, UNet and DiT models, Think-Then-Generate)
+└── models/                  text-to-image models (SDXL, UNet and DiT models of the model comparison)
                              and image embeddings (BLIP-2, CLIP, DINOv2, SigLIP 2)
 experiments/                 one package per experiment: create_jobs -> dispatch -> worker (Slurm)
 └── common/                  settings, SQLite job queue, dispatcher, standard GA, configurable experiment
@@ -135,10 +135,9 @@ experiments/common/start_experiments.sh tournament_size start
 python -m experiments.model_comparison.create_jobs --db new_jobs.db --prompts "a cat" "a chair" boredom --models all
 sbatch --gres=gpu:2 experiments/model_comparison/submit_gpu_queue.sh "125 127" "126 128"
 
-# Think-Then-Generate: rewrite prompts, then seed optimisation with SDXL or the T2G DiT
+# Think-Then-Generate: rewrite prompts, then seed optimisation with SDXL
 sbatch experiments/think_then_generate/submit_rewrite.sh plots/think_then_generate/rewrite_test
 sbatch experiments/think_then_generate/submit_sdxl.sh "a cat" 1943746817 100
-sbatch experiments/think_then_generate/submit_t2g_dit.sh "a cat" 1943746817 t2g
 ```
 
 Two configurations are used:

@@ -4,5 +4,3 @@ from experiments.common.settings import DATA_DIR, result_dir
 RESULT_DIR = result_dir("think_then_generate")
 REWRITES = DATA_DIR / "prompts" / "t2g_rewritten_prompts.json"
 """Rewritten prompts: ``{"_source": {...}, "prompts": {original: {"revised_prompt", "reasoning", ...}}}``."""
-GENERATORS = {"sdxl": "sdxl", "t2g": "t2gdit"}
-"""``--generator`` -> prefix of the result directory."""

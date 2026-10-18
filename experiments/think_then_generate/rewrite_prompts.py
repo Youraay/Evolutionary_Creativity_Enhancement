@@ -1,15 +1,13 @@
 """Preparation of the Think-Then-Generate experiment (T2G, https://github.com/SJTU-DENG-Lab/Think-Then-Generate).
 
-1. Rewrite prompts (reasoning + "Revised Prompt") exactly as ``inference.py`` of the T2G repository:
-   same system prompt, greedy decoding (``do_sample=False``), ``max_new_tokens=1024``.
-2. Measure run time and memory of the T2G DiT (Qwen-Image based, 1024 x 1024, true CFG 4.0) for several
-   step counts and batch sizes.
-3. Render example images for the original and the rewritten prompt (same seeds).
+Rewrites the prompts (reasoning + "Revised Prompt") exactly as ``inference.py`` of the T2G repository: the
+Qwen2.5-VL language model of the T2G pipeline, the same system prompt, greedy decoding (``do_sample=False``),
+``max_new_tokens=1024``.
 
-    python -m experiments.think_then_generate.rewrite_prompts --out <dir> [--skip-images] [--skip-timing]
+    python -m experiments.think_then_generate.rewrite_prompts --out <dir>
 
-Output: ``rewrites.json`` / ``rewrites.tsv``, ``timing.csv``, ``images/*.jpg``. The rewrites used by the
-worker are stored in ``data/prompts/t2g_rewritten_prompts.json``.
+Output: ``rewrites.json`` / ``rewrites.tsv``. The rewrites used by the worker are stored in
+``data/prompts/t2g_rewritten_prompts.json``.
 """
 import argparse
 import json
@@ -54,8 +52,6 @@ PROMPTS = [
     "a green pepper to the left of a red pepper",
     "a red cube on top of a blue cube",
 ]
-IMAGE_PROMPTS = ["a cat", "a chair", "boredom"]
-IMAGE_SEEDS = [1943746817, 1394004965]
 
 
 def extract_prompt(text: str) -> str:
@@ -110,36 +106,10 @@ def rewrite(text_encoder, tokenizer, prompts: list[str], device: str) -> list[di
     return rows
 
 
-def timed(pipe, prompt: str, steps: int, batch: int, seed: int, device: str) -> tuple[list, float, float]:
-    """Generate images and measure time and peak memory.
-
-    Args:
-        pipe: T2G (Qwen-Image) pipeline.
-        prompt: Prompt.
-        steps: Number of denoising steps.
-        batch: Number of images.
-        seed: Seed of the first image (``seed + i`` for image ``i``).
-        device: CUDA device.
-
-    Returns:
-        ``(images, seconds, peak memory in GiB)``.
-    """
-    generators = [torch.Generator(device=device).manual_seed(seed + i) for i in range(batch)]
-    torch.cuda.synchronize()
-    torch.cuda.reset_peak_memory_stats()
-    start = time.time()
-    images = pipe(prompt=prompt, negative_prompt=" ", width=1024, height=1024, num_inference_steps=steps,
-                  true_cfg_scale=4.0, num_images_per_prompt=batch, generator=generators).images
-    torch.cuda.synchronize()
-    return images, time.time() - start, torch.cuda.max_memory_allocated() / 2**30
-
-
 def main() -> None:
-    """Rewrite the prompts, measure the DiT and render example images."""
+    """Rewrite the prompts."""
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--out", type=Path, required=True)
-    parser.add_argument("--skip-images", action="store_true")
-    parser.add_argument("--skip-timing", action="store_true")
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     device = "cuda"
@@ -156,33 +126,6 @@ def main() -> None:
     rows = rewrite(pipe.text_encoder, tokenizer, PROMPTS, device)
     (args.out / "rewrites.json").write_text(json.dumps(rows, indent=2, ensure_ascii=False))
     pd.DataFrame(rows).to_csv(args.out / "rewrites.tsv", sep="\t", index=False)
-    revised = {row["prompt"]: row["revised_prompt"] for row in rows}
-
-    if not args.skip_timing:
-        timing = []
-        timed(pipe, revised["a cat"], 4, 1, 0, device)                      # warm-up
-        for steps, batch in [(50, 1), (50, 4), (30, 4), (20, 4), (50, 8)]:
-            try:
-                _, seconds, memory = timed(pipe, revised["a cat"], steps, batch, 0, device)
-                timing.append({"steps": steps, "batch": batch, "seconds": round(seconds, 1),
-                               "s_per_image": round(seconds / batch, 1), "peak_vram_gb": round(memory, 1)})
-            except torch.cuda.OutOfMemoryError:
-                torch.cuda.empty_cache()
-                timing.append({"steps": steps, "batch": batch, "seconds": None, "s_per_image": None,
-                               "peak_vram_gb": "OOM"})
-            print(f"[TIMING] {timing[-1]}", flush=True)
-        pd.DataFrame(timing).to_csv(args.out / "timing.csv", index=False)
-
-    if not args.skip_images:
-        image_dir = args.out / "images"
-        image_dir.mkdir(exist_ok=True)
-        for prompt in IMAGE_PROMPTS:
-            for condition, text in (("original", prompt), ("revised", revised[prompt])):
-                for seed in IMAGE_SEEDS:
-                    images, seconds, _ = timed(pipe, text, 50, 1, seed, device)
-                    path = image_dir / f"{prompt.replace(' ', '_')}_{condition}_{seed}.jpg"
-                    images[0].save(path, quality=92)
-                    print(f"[IMAGE] {path.name} ({seconds:.0f}s)", flush=True)
     print("[INFO] done", flush=True)
 
 

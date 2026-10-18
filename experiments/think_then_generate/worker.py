@@ -3,8 +3,7 @@
 The prompt is rewritten beforehand (``data/prompts/t2g_rewritten_prompts.json``, created with
 ``rewrite_prompts.py``). The GA then runs with exactly the setup of the PartiPrompts experiment (SDXL with
 30 steps, population 60, tournament 3, uniform crossover, Gaussian mutation, fitness = novelty in BLIP-2
-space), only with more generations. Variant A (``--generator t2g``) uses the T2G DiT with 30 steps, true
-CFG 4 and batch size 4 instead of SDXL.
+space), only with more generations.
 
 Recorded metrics:
     model_LocalMaxMeanDivergence / model_DiversityWithinPopulation  as before (BLIP-2)
@@ -14,7 +13,6 @@ Recorded metrics:
 
     python -m experiments.think_then_generate.worker --prompt "a cat" --seed 1943746817 --generations 100
     python -m experiments.think_then_generate.worker --prompt "a cat" --seed 1943746817 --condition original
-    python -m experiments.think_then_generate.worker --prompt "a cat" --seed 1943746817 --generator t2g --generations 30
 """
 import argparse
 import json
@@ -28,11 +26,10 @@ from evolutionary_creativity.evaluators import (BaseImageEvaluator, CLIPScoreEva
                                                 MaxMeanDivergenceEvaluator)
 from evolutionary_creativity.models.embeddings import Blip2EmbeddingModel, ClipEmbeddingModel
 from evolutionary_creativity.models.text_to_image.sdxl import StableDiffusionXLModel
-from evolutionary_creativity.models.text_to_image.think_then_generate import ThinkThenGenerate
 from experiments.common.ga import (build_pipeline, configure_logging, log_environment, new_run_id, set_all_seeds,
                                    success_marker)
 from experiments.common.settings import DEVICE, HF_CACHE
-from experiments.think_then_generate.config import GENERATORS, RESULT_DIR, REWRITES
+from experiments.think_then_generate.config import RESULT_DIR, REWRITES
 
 logger = logging.getLogger(__name__)
 
@@ -62,12 +59,11 @@ def load_rewrites() -> dict:
     return json.loads(REWRITES.read_text())
 
 
-def run(prompt: str, seed: int, generations: int, population: int, condition: str, generator: str = "sdxl",
-        steps: int | None = None) -> str:
+def run(prompt: str, seed: int, generations: int, population: int, condition: str, steps: int | None = None) -> str:
     """Run the GA with the rewritten or the original prompt.
 
-    Besides the standard result files, ``<run>_t2g.json`` records condition, generator, both prompts and
-    the reasoning of the rewrite.
+    Besides the standard result files, ``<run>_t2g.json`` records condition, both prompts and the reasoning
+    of the rewrite.
 
     Args:
         prompt: Original prompt (key in the rewrite file).
@@ -75,7 +71,6 @@ def run(prompt: str, seed: int, generations: int, population: int, condition: st
         generations: Number of evolution steps.
         population: Population size.
         condition: ``"t2g"`` (generate with the rewritten prompt) or ``"original"``.
-        generator: ``"sdxl"`` or ``"t2g"`` (T2G DiT).
         steps: Number of denoising steps (default 30).
 
     Returns:
@@ -93,7 +88,7 @@ def run(prompt: str, seed: int, generations: int, population: int, condition: st
         generation_prompt = prompt
 
     slug, run_id = new_run_id(prompt, seed)
-    directory = RESULT_DIR / f"{GENERATORS[generator]}_{condition}_g{generations}" / slug
+    directory = RESULT_DIR / f"sdxl_{condition}_g{generations}" / slug
     directory.mkdir(parents=True, exist_ok=True)
     marker = success_marker(directory, seed)
     if marker.exists():
@@ -101,13 +96,10 @@ def run(prompt: str, seed: int, generations: int, population: int, condition: st
         return str(directory)
     logger.info("Original prompt: %s", prompt)
     logger.info("Generation prompt: %s", generation_prompt)
-    logger.info("Seed %s | generations %s | population %s | generator %s", seed, generations, population, generator)
+    logger.info("Seed %s | generations %s | population %s", seed, generations, population)
 
     set_all_seeds(seed)
-    if generator == "sdxl":
-        model, batch_size = StableDiffusionXLModel(DEVICE, HF_CACHE, num_inference_steps=steps or 30), 8
-    else:
-        model, batch_size = ThinkThenGenerate(DEVICE, HF_CACHE, num_inference_steps=steps or 30), 4
+    model, batch_size = StableDiffusionXLModel(DEVICE, HF_CACHE, num_inference_steps=steps or 30), 8
     clip = ClipEmbeddingModel(DEVICE, HF_CACHE)
     blip2 = Blip2EmbeddingModel(DEVICE, HF_CACHE)
 
@@ -123,7 +115,7 @@ def run(prompt: str, seed: int, generations: int, population: int, condition: st
     pipe.save_config()
     run_dir = Path(pipe.result_path)
     (run_dir / f"{run_id}_t2g.json").write_text(json.dumps({
-        "condition": condition, "generator": generator, "num_inference_steps": steps or 30,
+        "condition": condition, "generator": "sdxl", "num_inference_steps": steps or 30,
         "original_prompt": prompt, "generation_prompt": generation_prompt,
         "seed": seed, "num_generations": generations, "population_size": population,
         "rewrite_source": rewrites["_source"] if condition == "t2g" else None,
@@ -142,12 +134,11 @@ def main() -> None:
     parser.add_argument("--generations", type=int, default=100)
     parser.add_argument("--population", type=int, default=60)
     parser.add_argument("--condition", choices=["t2g", "original"], default="t2g")
-    parser.add_argument("--generator", choices=list(GENERATORS), default="sdxl")
     parser.add_argument("--steps", type=int, default=None, help="denoising steps (default 30)")
     args = parser.parse_args()
     configure_logging()
     log_environment()
-    result = run(args.prompt, args.seed, args.generations, args.population, args.condition, args.generator, args.steps)
+    result = run(args.prompt, args.seed, args.generations, args.population, args.condition, args.steps)
     logger.info("Result: %s", result)
 
 
