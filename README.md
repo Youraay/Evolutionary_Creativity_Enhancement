@@ -49,6 +49,7 @@ plots/                       all generated figures (PDF + SVG) with their tables
 | `mutation_only` | Gaussian or uniform mutation without crossover | Supp. Fig. 9 | `plots/mutation_only` |
 | `operator_ablation` | no crossover / no elitism / no mutation | not in the manuscript | `plots/operator_ablation` |
 | `think_then_generate` | prompt rewriting with Think-Then-Generate, then seed optimisation | not in the manuscript | `plots/think_then_generate` |
+| `mutation_grid_search` | every candidate mutated once per mutated fraction and strength | Methods (Mutation) | `plots/mutation_grid_search` |
 
 The human study and the vision-language-model ratings of the manuscript (Fig. 4, Supp. Figs. 12-13) are not
 part of this repository.

@@ -20,6 +20,7 @@ Experiments (see the README for the figures of the manuscript they belong to):
     long_runs            300 generations.
     operator_ablation    The GA without crossover, elitism or mutation.
     think_then_generate  Prompt rewriting with Think-Then-Generate, followed by seed optimisation.
+    mutation_grid_search Mutated fraction and strength of the Gaussian mutation (Methods).
 
 Shared code is in ``common``: settings, job queue, dispatcher, the standard GA (``ga``) and the two families
 of configurable experiments (``variants``: population 100, operators per job; ``embedding_spaces``:

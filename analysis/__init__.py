@@ -17,6 +17,7 @@ One module per experiment (each runnable with ``python -m analysis.<module>``):
     pca_parti_prompts      PCA of initial noise and BLIP-2 embeddings of the PartiPrompts
     operator_ablation      not part of the manuscript
     think_then_generate    not part of the manuscript
+    mutation_grid_search   Methods (choice of the mutation parameters)
 
 ``python -m analysis`` runs all of them. Shared code is in ``common``: paths, style, loading of runs, statistical
 tests and the plot types used by several figures. Error bands are the standard error of the mean over runs.
