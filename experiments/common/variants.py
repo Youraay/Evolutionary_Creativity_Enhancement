@@ -131,6 +131,8 @@ class VariantExperiment:
         db_file: Job database.
         result_dir: Directory of the run directories.
         time_limit: Slurm time limit that replaces the one of the batch script, if set.
+        source_corrections: Prefix of a transfer run directory (``<source>_Seed_<label>``) -> prompt of the run
+            whose noise it actually rendered, for directories named after the wrong source.
         transfer_source_dir: Directory of the runs whose noise transfer jobs render (only for transfer experiments).
     """
 
@@ -140,13 +142,7 @@ class VariantExperiment:
     result_dir: Path
     time_limit: str | None = None
     transfer_source_dir: Path | None = None
-
-    @property
-    def submit_script(self) -> str:
-        """Slurm batch script of the experiment (see :func:`experiments.common.settings.submit_script`)."""
-        from experiments.common.settings import submit_script
-
-        return submit_script(self.name)
+    source_corrections: dict[str, str] = field(default_factory=dict)
 
     def job_queue(self, db_file: Path | None = None) -> JobQueue:
         """Return the job database.
@@ -236,7 +232,9 @@ def finished_rows(experiment: VariantExperiment) -> list[tuple[dict, Path, str |
     for run_dir in sorted(p for p in experiment.result_dir.iterdir() if p.is_dir() and p.name != "clip_scores"):
         transfer = TRANSFER_PATTERN.match(run_dir.name) if experiment.transfer_source_dir else None
         match = None if transfer else RUN_PATTERN.match(run_dir.name)
-        name = f"{transfer['source']}_to_{transfer['target']}" if transfer else match and match["name"]
+        corrected = transfer and experiment.source_corrections.get(f"{transfer['source']}_Seed_{transfer['label']}")
+        source = prompt_name(corrected) if corrected else transfer and transfer["source"]
+        name = f"{source}_to_{transfer['target']}" if transfer else match and match["name"]
         variant = experiment.find_variant(name) if name else None
         if variant is None:
             print(f"[WARN] {run_dir.name}: no matching variant, skipped")
@@ -245,6 +243,9 @@ def finished_rows(experiment: VariantExperiment) -> list[tuple[dict, Path, str |
         config_path = run_dir / f"{run_dir.name}.json"
         config = json.loads(config_path.read_text()) if config_path.exists() else {}
         seed = str(config.get("random_seed", SEED_SETS[variant.seeds].get(label, "")))
+        if corrected:
+            row["note"] += (f"; the directory is named after {transfer['source'].replace('_', ' ')!r}, but the "
+                            f"rendered noise is that of {corrected!r} seed {label}")
         row = job_row(variant, label, seed, note="registered run")
         row["run_name"] = run_dir.name
         if config.get("prompt") and config["prompt"] != row["prompt"]:

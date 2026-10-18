@@ -4,15 +4,14 @@ A run configuration is a dict with ``path`` (run directory with ``<name>.csv`` b
 :func:`analysis.common.paths.tables`), ``name`` (variant or prompt), ``seed`` (label of the run within its
 name) and ``color``. All directory listings are sorted, so the selection does not depend on the file system.
 """
+import sqlite3
 from pathlib import Path
 
 import pandas as pd
 
-from analysis.common.paths import tables
+from analysis.common.paths import DATA_DIR, tables
 from analysis.common.style import COLOR_MAP
 from experiments.common.variants import RUN_PATTERN
-
-TRANSFER_SEEDS = ["Seed A", "Seed B", "Seed C"]
 
 
 def find(directory: Path, pattern: str) -> list[Path]:
@@ -95,10 +94,12 @@ def variant_runs(experiment: str, variant: str, color: str = "#000000") -> list[
 
 
 def transfer_runs(sources: list[str], targets: list[str]) -> list[dict]:
-    """Pair every transfer run (source prompt -> target prompt) with an original run of the target prompt.
+    """Pair every transfer run (source prompt -> target prompt) with the run optimised for the target prompt.
 
-    Transfer runs ``<source>_*_<target>`` (``seed_transfer``) and runs optimised for the target prompt
-    ``<target>_*`` (``example_prompts``) are paired in sorted order, at most three pairs per transfer.
+    The transfer runs are selected by their source and target prompt in the job database
+    ``data/jobs/seed_transfer.db``, not by directory name: the directories of seed 1 of "a chair" and
+    "a coffee mug" are named after the wrong source (see ``experiments.seed_transfer.config``). Every transfer run
+    is paired with the ``example_prompts`` run of the target prompt with the same seed label.
 
     Args:
         sources: Source prompts.
@@ -108,15 +109,19 @@ def transfer_runs(sources: list[str], targets: list[str]) -> list[dict]:
         Configurations with ``path`` (transfer run), ``original_path``, ``seed``, ``source``, ``target``,
         ``source color``, ``target color`` and ``name``.
     """
-    transfer_dir, original_dir = tables("seed_transfer"), tables("example_prompts")
+    connection = sqlite3.connect(f"file:{DATA_DIR / 'jobs' / 'seed_transfer.db'}?mode=ro", uri=True)
+    jobs = connection.execute("SELECT run_name, source_prompt, prompt, seed_label FROM jobs WHERE status = 'DONE' "
+                              "ORDER BY seed_label, run_name").fetchall()
+    connection.close()
     configs = []
     for source in sources:
         for target in targets:
-            transfer_paths = find(transfer_dir, f"{source.replace(' ', '_')}_*_{target.replace(' ', '_')}")
-            original_paths = find(original_dir, f"{target.replace(' ', '_')}_*")
-            for seed, (path, original) in zip(TRANSFER_SEEDS, zip(transfer_paths, original_paths)):
-                configs.append({"path": path, "original_path": original, "seed": seed, "source": source,
-                                "target": target, "source color": COLOR_MAP.get(source, "blue"),
+            originals = {c["seed"]: c["path"] for c in variant_runs("example_prompts", target.replace(" ", "_"))}
+            for run_name, _, _, label in [j for j in jobs if j[1] == source and j[2] == target]:
+                seed = f"Seed {label}"
+                configs.append({"path": tables("seed_transfer") / run_name, "original_path": originals[seed],
+                                "seed": seed, "source": source, "target": target,
+                                "source color": COLOR_MAP.get(source, "blue"),
                                 "target color": COLOR_MAP.get(target, "orange"), "name": f"{source} -> {target}"})
     return configs
 

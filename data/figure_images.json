@@ -1,5 +1,5 @@
 {
-  "_description": "Images shown in the figures, as run directory and file name in the archive (<run>.zip, folder /images/). example_prompts: per prompt eight images of generations 0, 15 and 30 of one run (detail) and eight images of generation 30 of each of the three runs (final). seed_transfer: images of generations 0, 10, 20 and 30 of a run optimised for the source prompt and the same candidates rendered with the target prompt.",
+  "_description": "Images shown in the figures, as run directory and file name in the archive (<run>.zip, folder /images/). example_prompts: per prompt eight images of generations 0, 15 and 30 of one run (detail) and eight images of generation 30 of each of the three runs (final). seed_transfer: images of generations 0, 10, 20 and 30 of a run optimised for the source prompt and the same candidates rendered with the target prompt. The transfer images of the pairs with source \"a chair\" come from the run that rendered the noise of the shown \"a chair\" run (see experiments.seed_transfer.config).",
   "example_prompts": {
     "a cat": {
       "detail_run": "a_Cat_Seed_1_1623357_25",
@@ -501,7 +501,7 @@
     },
     "a chair -> boredom": {
       "source_run": "a_Chair_Seed_1_1623355_19",
-      "transfer_run": "a_chair_Seed_1_to_boredom",
+      "transfer_run": "a_coffee_mug_Seed_1_to_boredom",
       "source_images": [
         "g0_idn_0026_f0.099609375.JPEG",
         "g10_idn_1008_f0.13671875.JPEG",
@@ -510,14 +510,14 @@
       ],
       "transfer_images": [
         "g0_id0026_f0.1455078125.JPEG",
-        "g10_id1008_f0.10986328125.JPEG",
-        "g20_id2072_f0.138671875.JPEG",
-        "g30_id2979_f0.1103515625.JPEG"
+        "g10_id1008_f0.08056640625.JPEG",
+        "g20_id2072_f0.0751953125.JPEG",
+        "g30_id2979_f0.08984375.JPEG"
       ]
     },
     "a chair -> a cat": {
       "source_run": "a_Chair_Seed_1_1623355_19",
-      "transfer_run": "a_chair_Seed_1_to_a_cat",
+      "transfer_run": "a_coffee_mug_Seed_1_to_a_cat",
       "source_images": [
         "g0_idn_0003_f0.072265625.JPEG",
         "g10_idn_1010_f0.142578125.JPEG",
@@ -526,9 +526,9 @@
       ],
       "transfer_images": [
         "g0_id0003_f0.0625.JPEG",
-        "g10_id1010_f0.09375.JPEG",
-        "g20_id2007_f0.08544921875.JPEG",
-        "g30_id3047_f0.07177734375.JPEG"
+        "g10_id1010_f0.07177734375.JPEG",
+        "g20_id2007_f0.072265625.JPEG",
+        "g30_id3047_f0.0673828125.JPEG"
       ]
     }
   }
