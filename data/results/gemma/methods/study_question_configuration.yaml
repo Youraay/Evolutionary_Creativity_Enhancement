@@ -1,0 +1,135 @@
+# Configuration for comparing VLM judgements with all six questions from the human study.
+# Paths are resolved relative to this file. This is a new immutable run; do not merge its
+# predictions with stimuli-pilot-v3-greedy-routing.
+data:
+  manifest: ../data/manifest.csv
+  human_rating_column: human_rating
+
+output_dir: ../runs
+
+run:
+  name: stimuli-study-questions-en-v1
+  seed: 2025
+  repeats: 1
+
+models:
+  - id: qwen2.5-vl-7b
+    backend: transformers
+    model: Qwen/Qwen2.5-VL-7B-Instruct
+    backend_options:
+      dtype: bfloat16
+      device_map: auto
+      # For a confirmatory run, pin revision to a full Hugging Face commit.
+    generation:
+      max_new_tokens: 64
+      do_sample: false
+
+  - id: llava-onevision-7b
+    backend: transformers
+    model: llava-hf/llava-onevision-qwen2-7b-ov-hf
+    backend_options:
+      dtype: bfloat16
+      device_map: auto
+      supports_system: false
+      # For a confirmatory run, pin revision to a full Hugging Face commit.
+    generation:
+      max_new_tokens: 64
+      do_sample: false
+
+  - id: gemma4-26b-a4b
+    backend: transformers
+    model: google/gemma-4-26B-A4B-it
+    backend_options:
+      dtype: bfloat16
+      device_map: auto
+      supports_system: true
+      # Gemma 4 requires the 80 GB A100 profile used by the cluster template.
+      # For a confirmatory run, pin revision to a full Hugging Face commit.
+    generation:
+      max_new_tokens: 64
+      do_sample: false
+
+prompts:
+  - id: study-suitability
+    human_rating_column: suitability_to_prompt_vlm_scale
+    score_min: 1
+    score_max: 5
+    system: ""
+    variables:
+      study_prompt:
+        manifest_column: generation_prompt
+        value_map:
+          Katze: cat
+          Stuhl: chair
+          Langeweile: boredom
+    user: >-
+      How appropriate do you find the image for the prompt "{study_prompt}"?
+      Use a continuous score from {score_min} to {score_max}, where higher scores mean that
+      you find the image more appropriate for the prompt. Return only valid JSON in this exact
+      shape: {"score": <number>}
+
+  - id: study-creativity
+    human_rating_column: creativity_vlm_scale
+    score_min: 1
+    score_max: 5
+    system: ""
+    user: >-
+      How creative do you find the image?
+      Use a continuous score from {score_min} to {score_max}, where higher scores mean that
+      you find the image more creative. Return only valid JSON in this exact shape:
+      {"score": <number>}
+
+  - id: study-unusualness
+    human_rating_column: uncommonness_vlm_scale
+    score_min: 1
+    score_max: 5
+    system: ""
+    user: >-
+      How unusual do you find the image?
+      Use a continuous score from {score_min} to {score_max}, where higher scores mean that
+      you find the image more unusual. Return only valid JSON in this exact shape:
+      {"score": <number>}
+
+  - id: study-boredom
+    human_rating_column: boredom_vlm_scale
+    score_min: 1
+    score_max: 5
+    system: ""
+    user: >-
+      How boring do you find the image?
+      Use a continuous score from {score_min} to {score_max}, where higher scores mean that
+      you find the image more boring. Return only valid JSON in this exact shape:
+      {"score": <number>}
+
+  - id: study-pleasantness
+    human_rating_column: affect_vlm_scale
+    score_min: 1
+    score_max: 5
+    system: ""
+    user: >-
+      How pleasant do you find the image?
+      Use a continuous score from {score_min} to {score_max}, where higher scores mean that
+      you find the image more pleasant. Return only valid JSON in this exact shape:
+      {"score": <number>}
+
+  - id: study-excitement
+    human_rating_column: arousal_vlm_scale
+    score_min: 1
+    score_max: 5
+    system: ""
+    user: >-
+      How exciting do you find the image?
+      Use a continuous score from {score_min} to {score_max}, where higher scores mean that
+      you find the image more exciting. Return only valid JSON in this exact shape:
+      {"score": <number>}
+
+analysis:
+  bootstrap_samples: 2000
+  confidence_level: 0.95
+  # These curated filenames do not encode experiment_id or lineage, so retain observations and
+  # use image-level resampling unless the team supplies an experiment mapping.
+  duplicate_policy: retain
+  bootstrap_unit: image_id
+  # Add whole-experiment split labels to the manifest before enabling primary_split.
+  # split_column: split
+  # primary_split: development

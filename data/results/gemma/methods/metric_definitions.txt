@@ -1,0 +1,36 @@
+Numerical definitions used for the supplied Gemma-in-loop figure
+
+Gemma fitness: mean saved image rating within a population of 100 images.
+Each evolutionary condition uses its own image-only adjective/question and 1–5 scale.
+The question templates are supplied separately; no common creativity rerating is implied.
+
+BLIP2 encoder: Salesforce/blip2-opt-2.7b
+Revision: 59a1ef6c1e5117b3f65523d1c6066825bcf315e3
+Feature: vision_model.pooler_output, 1408 dimensions.
+Historical embedding inference used FP16 model weights and RGB 224-pixel inputs.
+Distance calculations use float64 raw features and retain population multiplicity.
+
+For one run, let v_i(g) be raw image features in generation g and
+c_0 = mean_i v_i(0), the frozen raw generation-0 centroid.
+
+Divergence(g) = mean_i 0.5 * [1 - cosine(v_i(g), c_0)].
+Generation 0 is not required to have divergence zero: individual images differ
+from the centroid. The reference is run-specific and is never recomputed at later generations.
+
+Diversity(g) = mean_(i != j) 0.5 * [1 - cosine(v_i(g), v_j(g))].
+Diagonal self-pairs are excluded. Repeated elites are retained as image observations.
+This is the distinct-pair half-cosine convention of the executable evaluator.
+The printed manuscript equation has a different half-factor/pair-summation notation;
+no identity with its literal printed formula is claimed.
+
+Uncertainty: sample SD (ddof=1) across seed-run metric means, not image-level SD,
+SEM or confidence intervals. For target-pooled comparisons, average the three
+prompts equally within seed before calculating mean/SD across seeds.
+
+Actual-generation rule: creativity/seed2025/cat and boredom end at generation29.
+Their generation29 values and examples remain29. Exclude incomplete seed2025
+generation30 prompt-pooled block; do not use chair alone and do not relabel29.
+
+Spearman correlations: rank correlations of VLM scores and the saved per-image
+human aggregate scores. Four invalid LLaVA unusualness scores are omitted;
+all other cells use36images and that cell32. No participant-level analysis is performed.

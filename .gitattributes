@@ -1,0 +1,9 @@
+# Preserve the audited Gemma input and generated-artifact bytes across platforms.
+/data/results/gemma/** -text
+/plots/gemma_ratings/** -text
+/plots/gemma_evolution/** -text
+/analysis/common/gemma/*.py text eol=lf
+/analysis/gemma_ratings.py text eol=lf
+/analysis/gemma_evolution.py text eol=lf
+/tests/test_gemma_analysis.py text eol=lf
+/docs/gemma.md text eol=lf

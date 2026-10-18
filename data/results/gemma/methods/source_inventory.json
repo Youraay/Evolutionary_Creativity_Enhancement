@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "items": [
+    {
+      "package_file": "posthoc/run_generation_summary.csv",
+      "source_file": "results/gemma-generation-ratings-114-uniform-v1/run_generation_summary.csv",
+      "sha256": "a597b3b0dbc258571138ffa24c8386b7df593b1c1ff7cde53129d1336b73e8e2",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "data/posthoc/run_generation_summary.csv"
+    },
+    {
+      "package_file": "posthoc/source_prompt_generation_summary.csv",
+      "source_file": "results/gemma-generation-ratings-114-uniform-v1/source_prompt_generation_summary.csv",
+      "sha256": "b1df655b91361447b9b6fc189fee99a1470a428cdb545bd04167f5041c47896b",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "data/posthoc/source_prompt_generation_summary.csv"
+    },
+    {
+      "package_file": "posthoc/question_generation_summary.csv",
+      "source_file": "results/gemma-generation-ratings-114-uniform-v1/question_generation_summary.csv",
+      "sha256": "52f964a781387f7916371956784238c2260c5690f126c04b211cbb950f642482",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "data/posthoc/question_generation_summary.csv"
+    },
+    {
+      "package_file": "posthoc/ratings.csv.gz",
+      "source_file": "results/gemma-generation-ratings-114-uniform-v1/ratings.csv",
+      "source_sha256": "2c9cb32a0e1c7cf4c1600cb859dd82cbb185c45d28f2343e0fc7e984eb765a59",
+      "sha256": "6a8410de4f852f0952b060fbd4d7027e7106ff3d76976fe2d05c0bce62e74b52",
+      "transformation": "lossless gzip; decompressed bytes verified",
+      "original_package_file": "data/posthoc/ratings.csv.gz"
+    },
+    {
+      "package_file": "statistics/generation_0_vs_30_tests.csv",
+      "source_file": "results/gemma-generation-0-vs-30-significance-v1/generation_0_vs_30_tests.csv",
+      "sha256": "384445da0754234be0e8a1c1a3eceb1e0171f47e0e74782ab4ec105f91ccfb44",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "statistics/generation_0_vs_30_tests.csv"
+    },
+    {
+      "package_file": "statistics/paired_prompt_values.csv",
+      "source_file": "results/gemma-generation-0-vs-30-significance-v1/paired_prompt_values.csv",
+      "sha256": "e51aa3e63a4b196a6a53073d4367fe4959f5d345cbe237e2a1e9080d1b84e9f8",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "statistics/paired_prompt_values.csv"
+    },
+    {
+      "package_file": "statistics/complete_endpoint_sensitivity.csv",
+      "source_file": "results/gemma-generation-0-vs-30-significance-v1/complete_endpoint_sensitivity.csv",
+      "sha256": "54bda16e8dad8658a1875a216b335f0fc946d0e6871093824f230109473572fd",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "statistics/complete_endpoint_sensitivity.csv"
+    },
+    {
+      "package_file": "statistics/methods_and_results.txt",
+      "source_file": "results/gemma-generation-0-vs-30-significance-v1/methods_and_results.txt",
+      "sha256": "33df0a62cacd492bd8820a49013710dcb016d5cb8702c30edd9b850bcde231ba",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "statistics/methods_and_results.txt"
+    },
+    {
+      "source_file": "tmp/gemma-additional-figures-code/cluster/compare_gemma_generations.py",
+      "transformation": "Scientific functions retained; unused standalone CLI and plotting paths removed; imports formatted",
+      "original_package_file": "analysis/generation_tests.py",
+      "repository_file": "analysis/common/gemma/statistics.py",
+      "original_package_sha256": "d5af4adcad3e5fe195a78429a3111a408498bc4aa847087e6e84b204776c2f6e",
+      "sha256": "14ca95cda25ae92788b67643b29c54307170e46a406d5efb4b7ee85d23004f61"
+    },
+    {
+      "source_file": "results/gemma-generation-ratings-114-uniform-v1/source_code/plot_gemma_construct_ratings.py",
+      "transformation": "Scientific functions retained; unused standalone CLI and plotting paths removed; imports formatted",
+      "original_package_file": "analysis/posthoc_source.py",
+      "repository_file": "analysis/common/gemma/aggregation.py",
+      "original_package_sha256": "3e37f631e144294bb39069ff2f22f22b50c85ec890fe65a9b0dfb34dc925e170",
+      "sha256": "9c57861606e46c30e94770667715f6b01a58d2966e3365eab5d94bfa798d5bae"
+    },
+    {
+      "package_file": "evolution/run_generation_summary.csv",
+      "source_file": "results/gemma-fitness-paper-figures-compact-v2/run_generation_summary.csv",
+      "sha256": "3514328e8735ea3b5323ce242513954d1902e18518a55d27a3bda0036ae3b91a",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "data/evolution/run_generation_summary.csv"
+    },
+    {
+      "package_file": "evolution/pooled_generation_summary.csv",
+      "source_file": "results/gemma-fitness-paper-figures-compact-v2/pooled_generation_summary.csv",
+      "sha256": "ba291cbfb2791c67abcf65d3198a47780cb0ebe4b6dacfb1cae6ff2b02ab53d9",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "data/evolution/pooled_generation_summary.csv"
+    },
+    {
+      "package_file": "evolution/prompt_pooled_seed_means.csv",
+      "source_file": "results/gemma-fitness-combined-curves-v2/prompt_pooled_seed_means.csv",
+      "sha256": "047b4d0d6769ef52c55fde8f36dc0cf9a4a935e0bcc8f41a8393e7be636e9163",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "data/evolution/prompt_pooled_seed_means.csv"
+    },
+    {
+      "package_file": "evolution/prompt_pooled_curves.csv",
+      "source_file": "results/gemma-fitness-combined-curves-v2/prompt_pooled_curves.csv",
+      "sha256": "628f79d42d4ae2246a9573d7ec3584c7867477f52c5cc5feafcfd9765f5775b2",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "data/evolution/prompt_pooled_curves.csv"
+    },
+    {
+      "package_file": "evolution/selected_examples.csv",
+      "source_file": "results/gemma-fitness-paper-figures-compact-v2/selected_examples.csv",
+      "source_sha256": "d9eda7d9fb71c57bce375f69e4c0d0b0937e60baf265f43f821317ae7821cbce",
+      "sha256": "760590e7fd75f4fa7db82d48350700ad063e264d456029e2396109e6e85f90e2",
+      "transformation": "select construct=creativity; omit absolute source_zip column only",
+      "original_package_file": "data/evolution/selected_examples.csv"
+    },
+    {
+      "package_file": "examples/creativity/cat/seed-2025-g29.JPEG",
+      "source_file": "results/gemma-fitness-paper-figures-compact-v2/examples/creativity/cat/seed-2025-g29.JPEG",
+      "sha256": "ff9a17dd82a89c335f3133751cd185eb38b5b6381d6acaf1d5a31bc19d5ab96d",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "examples/creativity/cat/seed-2025-g29.JPEG"
+    },
+    {
+      "package_file": "examples/creativity/cat/seed-2026-g30.JPEG",
+      "source_file": "results/gemma-fitness-paper-figures-compact-v2/examples/creativity/cat/seed-2026-g30.JPEG",
+      "sha256": "ff0741b4e09c7fbd20597ec0e2bbc776b14fa33e7c4cb2ffd49aa18f2d5f579e",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "examples/creativity/cat/seed-2026-g30.JPEG"
+    },
+    {
+      "package_file": "examples/creativity/cat/seed-2027-g30.JPEG",
+      "source_file": "results/gemma-fitness-paper-figures-compact-v2/examples/creativity/cat/seed-2027-g30.JPEG",
+      "sha256": "b7b5ec24eeee3deb55f7d5ae61c042fa272273cb9bf456ab47c1456f0ada1e92",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "examples/creativity/cat/seed-2027-g30.JPEG"
+    },
+    {
+      "package_file": "examples/creativity/chair/seed-2025-g30.JPEG",
+      "source_file": "results/gemma-fitness-paper-figures-compact-v2/examples/creativity/chair/seed-2025-g30.JPEG",
+      "sha256": "0010bda42df19076f732f7abba96f11726a8f82945b99ff344f0c59be7850766",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "examples/creativity/chair/seed-2025-g30.JPEG"
+    },
+    {
+      "package_file": "examples/creativity/chair/seed-2026-g30.JPEG",
+      "source_file": "results/gemma-fitness-paper-figures-compact-v2/examples/creativity/chair/seed-2026-g30.JPEG",
+      "sha256": "fce24c934e7fbf99f6b514f4aeafea256eb947fb85d6950740d3f001aa3cab8a",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "examples/creativity/chair/seed-2026-g30.JPEG"
+    },
+    {
+      "package_file": "examples/creativity/chair/seed-2027-g30.JPEG",
+      "source_file": "results/gemma-fitness-paper-figures-compact-v2/examples/creativity/chair/seed-2027-g30.JPEG",
+      "sha256": "156603bbc318e63f8c5814c3b71a3f9f4ccfa84efcb3beace41cb25dc85f6091",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "examples/creativity/chair/seed-2027-g30.JPEG"
+    },
+    {
+      "package_file": "examples/creativity/boredom/seed-2025-g29.JPEG",
+      "source_file": "results/gemma-fitness-paper-figures-compact-v2/examples/creativity/boredom/seed-2025-g29.JPEG",
+      "sha256": "6687c10d64ffe88aeee73398bd6a0c13845f02aead25dec81122b6d92daddfa2",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "examples/creativity/boredom/seed-2025-g29.JPEG"
+    },
+    {
+      "package_file": "examples/creativity/boredom/seed-2026-g30.JPEG",
+      "source_file": "results/gemma-fitness-paper-figures-compact-v2/examples/creativity/boredom/seed-2026-g30.JPEG",
+      "sha256": "10ea3dff11aa52c57326d55f34b65d8175d84af7840167fd2483e03075b666e7",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "examples/creativity/boredom/seed-2026-g30.JPEG"
+    },
+    {
+      "package_file": "examples/creativity/boredom/seed-2027-g30.JPEG",
+      "source_file": "results/gemma-fitness-paper-figures-compact-v2/examples/creativity/boredom/seed-2027-g30.JPEG",
+      "sha256": "78dbca6f303ed0806bfb116962048dd5ecfde7ac792dfed1a3168b897be8334d",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "examples/creativity/boredom/seed-2027-g30.JPEG"
+    },
+    {
+      "package_file": "benchmark/metrics.csv",
+      "source_file": "paper-release/gemma-image-evolution-data-v2/plot_data/human_vlm_study_correlations/metrics.csv",
+      "sha256": "629a80aaf9865790c9810709a0a8898eb7ee63d0344b013de3bc660a7e8c04bd",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "data/benchmark/metrics.csv"
+    },
+    {
+      "package_file": "benchmark/headline_analysis_units.csv",
+      "source_file": "paper-release/gemma-image-evolution-data-v2/plot_data/human_vlm_study_correlations/headline_analysis_units.csv",
+      "sha256": "b47484ed6afe38660b3c1f2cf1b49e42917517d2d11ffcff23b2bec777bd3b63",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "data/benchmark/headline_analysis_units.csv"
+    },
+    {
+      "package_file": "benchmark/prediction_completeness.json",
+      "source_file": "paper-release/gemma-image-evolution-data-v2/plot_data/human_vlm_study_correlations/prediction_completeness.json",
+      "sha256": "06424f7d9aceea898aa4c5b5354a7178bc26e67f15d2136ecb09465e4406e5e0",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "data/benchmark/prediction_completeness.json"
+    },
+    {
+      "package_file": "benchmark/dataset_summary.json",
+      "source_file": "paper-release/gemma-image-evolution-data-v2/plot_data/human_vlm_study_correlations/dataset_summary.json",
+      "sha256": "514c375393ef5f83231301e39482583ce332c233783787dc116b0262fa5a26ef",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "data/benchmark/dataset_summary.json"
+    },
+    {
+      "package_file": "benchmark/analysis_inputs.json",
+      "source_file": "paper-release/gemma-image-evolution-data-v2/plot_data/human_vlm_study_correlations/analysis_inputs.json",
+      "sha256": "145039a852723377e72486a8b25253b68a0b65c500b88e3d53584b66cb430b1c",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "data/benchmark/analysis_inputs.json"
+    },
+    {
+      "package_file": "methods/study_question_configuration.yaml",
+      "source_file": "configs/study_questions.example.yaml",
+      "sha256": "305251874eb9e7e46bc1353f0965e7375fb5e096e238b05063bb1d0de4d3c8fd",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "methods/study_question_configuration.yaml"
+    },
+    {
+      "package_file": "methods/fitness_construct_questions.py",
+      "source_file": "paper-release/gemma-image-evolution/evolution/src/gemma_constructs.py",
+      "sha256": "a947700ca429e6e3243dfdc8401eb9bd1e00b0e5564c1f25318f6b0afe1dcf29",
+      "transformation": "byte-preserved copy",
+      "original_package_file": "methods/fitness_construct_questions.py"
+    }
+  ],
+  "datasets_are_distinct": true,
+  "inference_performed": false,
+  "path_base": "data/results/gemma"
+}
