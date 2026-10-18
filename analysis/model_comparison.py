@@ -5,6 +5,8 @@ Output in ``plots/model_comparison/``:
     model_comp_<metric>_curves   one panel per model, mean +- SEM per prompt
     model_comp_<metric>_violins  one panel per model, violins of generations 0/10/20/30 (prompts pooled)
     model_comp_examples_<prompt> random example images of generations 0 and 30, all models except SDXL
+    model_comp_tests.csv         Supplementary Fig. 3A-B: Mann-Whitney U tests of generation 0 vs. 30 per model,
+                                 prompt and metric (runs pooled), Holm correction over the table
 
     python -m analysis.model_comparison
 """
@@ -19,6 +21,7 @@ from analysis.common.paths import PLOTS_DIR
 from analysis.common.plotting import (METRIC_LABELS, PROMPTS, SEED_ORDER, gen_violins, prompt_curves,
                                       prompt_legend_handles, set_ticks)
 from analysis.common.results import load_images, load_model_comparison, random_candidates
+from analysis.common.statistics import generation_test, holm, stars
 from analysis.common.style import (ANNOTATE_SIZE, LABEL_SIZE, PAGE_WIDTH_IN, TICK_SIZE, TITLE_SIZE, save_figure,
                                    set_preview_dir)
 
@@ -46,6 +49,34 @@ MODEL_GRID = [["sd15", "sd_turbo", "sdxl", "sdxl_turbo", "ssd_1b"],
               ["segmind_vega", "playground_v25", "realvisxl_v5", "juggernaut_xl_v9", None],
               ["z_image", "flux2_klein_4b", "flux2_klein_9b_kv", "krea_2_turbo", "flux2_dev"]]
 """Panel layout; the empty slot holds the prompt legend."""
+
+
+def generation_tests(data: pd.DataFrame) -> pd.DataFrame:
+    """Mann-Whitney U tests of generation 0 vs. 30 for every model, prompt and metric (runs pooled).
+
+    Holm correction over all tests of the table.
+
+    Args:
+        data: Candidates of all models.
+
+    Returns:
+        One row per model, prompt and metric; also written to ``model_comp_tests.csv``.
+    """
+    rows = []
+    for model, (name, architecture) in MODELS.items():
+        for prompt in PROMPTS:
+            df = data[(data["model"] == model) & (data["prompt"] == prompt)]
+            if df.empty:
+                continue
+            for key in ("divergence", "diversity"):
+                rows.append({"model": name, "architecture": architecture, "prompt": prompt,
+                             "runs": df["seed"].nunique(), **generation_test(df, key, 0, 30)})
+    table = pd.DataFrame(rows)
+    table["p_holm"] = holm(table["p"])
+    table["sig"] = table["p_holm"].map(stars)
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    table.to_csv(OUT_DIR / "model_comp_tests.csv", index=False)
+    return table
 
 
 def render_model_panels(data: pd.DataFrame, key: str, kind: str) -> None:
@@ -142,6 +173,7 @@ def main() -> None:
     parser.add_argument("--preview", type=Path, help="also write PNG previews into this directory")
     set_preview_dir(parser.parse_args().preview)
     data, runs = load_model_comparison()
+    generation_tests(data)
     for key in ["diversity", "divergence"]:
         for kind in ("curves", "violins"):
             render_model_panels(data, key, kind)
