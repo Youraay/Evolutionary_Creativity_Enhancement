@@ -35,6 +35,7 @@ from analysis.common.paths import PLOTS_DIR, archive, tables
 from analysis.common.plotting import PROMPTS
 from analysis.common.results import attach_prompt_meta, discover_parti_runs, discover_runs
 from analysis.common.runs import runs_by_name
+from analysis.common.statistics import holm
 from analysis.common.style import (BOTTOM_MARGIN, COLOR_MAP, FIXED_COL_WIDTH, LABEL_SIZE, LEFT_MARGIN, RIGHT_MARGIN,
                                    TICK_SIZE, TITLE_SIZE, TOP_MARGIN, save_figure, set_preview_dir)
 from analysis.parti_prompts import GROUPINGS, prompt_colors
@@ -151,6 +152,9 @@ def build(experiment: str, recompute: bool = False, workers: int = 16) -> tuple[
 def normality_table(stats: pd.DataFrame, samples: np.ndarray, experiment: str) -> pd.DataFrame:
     """Write the statistics per run plus a COMBINED row per prompt (KS on 5000 values from all seeds).
 
+    ``ks_p_holm`` is the Holm-corrected KS p-value, corrected over all runs and generations of the experiment
+    (and separately over the COMBINED rows).
+
     Args:
         stats: Statistics per run and generation.
         samples: KS samples aligned with ``stats``.
@@ -172,7 +176,10 @@ def normality_table(stats: pd.DataFrame, samples: np.ndarray, experiment: str) -
                      "std": np.sqrt((subset["std"] ** 2 + (subset["mean"] - mean) ** 2).mean()),
                      "ks_p": scipy_stats.kstest(pooled, "norm").pvalue})
     out = pd.concat([stats, pd.DataFrame(rows)], ignore_index=True).sort_values(["prompt", "seed", "generation"])
+    out["ks_p_holm"] = out.groupby(out["seed"] == "COMBINED")["ks_p"].transform(holm)
     out.to_csv(OUT_DIR / f"{experiment}_normality.csv", index=False)
+    smallest = out.loc[out["seed"] != "COMBINED", "ks_p_holm"].min()
+    print(f"[INFO] {experiment}: smallest Holm-corrected KS p per run {smallest:.3f}")
     per_generation = stats.groupby("generation").agg(
         runs=("ks_p", "size"), ks_p_below_005=("ks_p", lambda v: (v < 0.05).sum()), mean=("mean", "mean"),
         std=("std", "mean"), skew=("skew", "mean"), kurtosis=("kurtosis", "mean"))
