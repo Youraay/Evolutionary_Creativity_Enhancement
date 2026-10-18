@@ -51,9 +51,6 @@ plots/                       all generated figures (PDF + SVG) with their tables
 | `think_then_generate` | prompt rewriting with Think-Then-Generate, then seed optimisation | Supp. Fig. 10 | `plots/think_then_generate` |
 | `mutation_grid_search` | every candidate mutated once per mutated fraction and strength | Methods (Mutation) | `plots/mutation_grid_search` |
 
-The human study and the vision-language-model ratings of the manuscript (Fig. 4, Supp. Figs. 13-14) are not
-part of this repository.
-
 Panels and files:
 
 | Panel | File (`plots/...`) |
@@ -80,25 +77,25 @@ Statistics: every figure with significance marks writes its tests next to it (`*
 two-sided Mann-Whitney U tests of generation 0 vs. 30 on all candidates of the runs, Wilcoxon signed-rank
 tests on run means where runs are paired, Holm correction as described in the module docstrings.
 
-## Data
+## Methods of the manuscript in the code
 
-* **Job databases** (`data/jobs/<experiment>.db`): one row per analysed run with its complete configuration,
-  status `DONE`, Slurm job id and result directory. Runs that were started with one script per run (the
-  experiments of `experiments.common.variants`) are listed with `create_jobs --register`.
-* **Candidate tables** (`data/results/<experiment>/`): copies of all `<run>.csv` and `<run>.json` files of the
-  result directories, with the same layout. The analysis reads only these tables, except for figures that need
-  images, embeddings or noise.
-* **Archives** (`<run>.zip`: images, embeddings and noise of every candidate) stay in the result directories,
-  `<RESULTS_ROOT>/<experiment>` or `<EXPERIMENT>_RESULT_DIR` (see `.env.example` for the directories on the
-  dldevel cluster). `python -m experiments.common.collect_tables <experiment>` copies new tables into the
-  repository (with `--db` also a job database, e.g. that of still running jobs).
-
-Column names: runs of `experiments.common.variants` that were registered from their result directories
-store `global_score` (distance to the mean of generation 0), `fitness`, `diversity_score` (the same value for
-all candidates of a generation) and `prompt_fidelty` (cosine similarity of the CLIP embeddings of image and
-prompt; the figures use the CLIP score instead, `clip_scores/`); all other runs store `model_<metric>`
-columns, e.g. `model_LocalMaxMeanDivergence`, `model_DiversityWithinPopulation` and `model_CLIPScore`.
-41 of the 87 tables of `seed_transfer` contain every row twice; the analysis drops exact duplicates.
+| Method | Code |
+|---|---|
+| SDXL base 1.0, Euler discrete scheduler (pipeline default), guidance 7.0, 1024 x 1024, 50 / 30 steps | `evolutionary_creativity/models/text_to_image/sdxl.py`; float16 for population 100 (`experiments/common/variants.py`), bfloat16 for population 60 |
+| Initial population from a seeded Gaussian, latents 4 x 128 x 128 | `evolutionary_creativity/noise_factory.py` |
+| Novelty ½(1 − cos) to the centroid of the current population (Eq. 3-4), optional archive | `evolutionary_creativity/evaluators/divergence.py` |
+| k nearest neighbours fitness (Supp. Fig. 4) | `evolutionary_creativity/evaluators/knn.py` |
+| BLIP-2 vision encoder (1408), CLIP ViT-B/32, DINOv2 base, SigLIP 2 base | `evolutionary_creativity/models/embeddings/` |
+| Tournament selection (k distinct candidates), elitism 1, crossover rate 0.9 (otherwise a copy of the first parent), mutation rate 0.05 | `evolutionary_creativity/operators/selection.py`, `evolutionary_creativity/pipeline.py`, `experiments/common/ga.py` |
+| Uniform (p_s = 0.5), n-point (equally spaced cut points over the 128 x 128 positions), arithmetic ((p1 + p2)/√2) crossover | `evolutionary_creativity/operators/crossover.py` |
+| Gaussian mutation of a fraction p_m = 0.1 with σ_m = 0.2; grid search of p_m and σ_m | `evolutionary_creativity/operators/mutation.py`, `experiments/mutation_grid_search/` |
+| Distance to the mean of generation 0 (Eq. 5), diversity (Eq. 6), CLIP score (Eq. 7, prefix "A photo depicts ", 2.5) | `evolutionary_creativity/evaluators/` |
+| CLIP scores and random baselines of runs without stored CLIP scores (Supp. Fig. 5A, 4, 6, 7) | `experiments/common/clip_scores.py` |
+| Text-to-image models of the comparison with their settings | `experiments/model_comparison/models.py`, `evolutionary_creativity/models/text_to_image/` |
+| Think-Then-Generate prompt rewriting (T2G system prompt, greedy decoding) | `experiments/think_then_generate/rewrite_prompts.py` |
+| Noise transfer (generations 0, 10, 20, 30 rendered with another prompt) | `experiments/common/variants.py` (`transfer_populations`) |
+| Statistical tests (Mann-Whitney U, Wilcoxon signed-rank, Kolmogorov-Smirnov, Holm) | `analysis/common/statistics.py`, `analysis/parti_prompts.py`, `analysis/noise_distribution.py`, `analysis/think_then_generate.py` |
+| PCA of the noise (Supp. Fig. 12B) | `analysis/example_prompts.py` (`noise_projection`) |
 
 ## Setup
 
