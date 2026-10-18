@@ -49,9 +49,13 @@ plots/                       all generated figures (PDF + SVG) with their tables
 | `mutation_only` | Gaussian or uniform mutation without crossover | Supp. Fig. 9 | `plots/mutation_only` |
 | `operator_ablation` | no crossover / no elitism / no mutation | not in the manuscript | `plots/operator_ablation` |
 | `think_then_generate` | prompt rewriting with Think-Then-Generate, then seed optimisation | not in the manuscript | `plots/think_then_generate` |
+| `gemma_ratings` | post-hoc Gemma ratings, 114 prompts for creativity/unusualness and 108 for four other dimensions | Gemma ratings across generations | `plots/gemma_ratings` |
+| `gemma_evolution` | human/VLM image-level agreement and seven Gemma fitness targets | Gemma evaluation and image evolution | `plots/gemma_evolution` |
 
-The human study and the vision-language-model ratings of the manuscript (Fig. 4, Supp. Figs. 12-13) are not
-part of this repository.
+The Gemma contribution includes the image-level human aggregates needed for the VLM comparison, post-hoc
+ratings and saved population metrics for Gemma-guided evolution. It does not include individual human
+participant records or the rest of the human-study analysis. See [the Gemma guide](docs/gemma.md) for
+the precise figure coverage and methods; final manuscript panel numbers can be assigned during assembly.
 
 Panels and files:
 
@@ -73,10 +77,15 @@ Panels and files:
 | Supp. Fig. 8 | `tournament_size/tournament_<metric>_violins`, `_curves` |
 | Supp. Fig. 9A, 9B | `mutation_only/examples_generation_8`, `mutation_only/distance_to_initial_mean` |
 | Supp. Fig. 11A, 11B | `noise_distribution/example_prompts_noise_hist` (+ `example_prompts_normality.csv`), `example_prompts/noise_pca` |
+| Gemma ratings across generations | `gemma_ratings/ratings_across_generations` (+ `_tests.csv`, `_pairs.csv`, `_sensitivity.csv`) |
+| Gemma evaluation and image evolution | `gemma_evolution/evaluation_and_evolution` (+ `human_vlm_correlations.csv`, `prompt_curves.csv`, `target_curves.csv`) |
 
 Statistics: every figure with significance marks writes its tests next to it (`*_tests.csv`, `tests.csv`):
 two-sided Mann-Whitney U tests of generation 0 vs. 30 on all candidates of the runs, Wilcoxon signed-rank
 tests on run means where runs are paired, Holm correction as described in the module docstrings.
+The Gemma generation comparison uses **one-sided paired prompt-level** Wilcoxon tests for an increase
+from generation 0 to 30, with Holm correction across six questions. Tests are saved separately; stars
+are not added to the descriptive figure. These are exploratory tests, not human-participant analyses.
 
 ## Data
 
@@ -168,6 +177,26 @@ python -m analysis.pca_parti_prompts plot
 ```
 
 Error bands are the standard error of the mean over runs (every run is first averaged over its
-candidates). Expensive intermediate data are cached in `plots/*/data/` (e.g. the candidate table of all
+candidates), except `gemma_evolution`, which retains **sample standard deviation** bands across seeds.
+Expensive intermediate data are cached in `plots/*/data/` (e.g. the candidate table of all
 PartiPrompts runs, the random CLIP baselines, the noise histograms, the noise PCA); `--recompute` rebuilds
 them from the tables and archives.
+
+### Gemma figures
+
+The inputs are included in `data/results/gemma/`: post-hoc image ratings, human/VLM image-level pairs,
+population metrics, nine original example images, question wording and source hashes. The two modules
+use the existing analysis dependencies and shared plotting theme. No GPU, model download or cluster
+access is needed to reproduce these figures.
+
+```bash
+python -m analysis.gemma_ratings --deep --verify-only
+python -m analysis.gemma_evolution --verify-only
+python -m analysis --only gemma_ratings gemma_evolution --preview previews
+```
+
+PDF/SVG figures and recalculated CSV tables are written under `plots/gemma_ratings/` and
+`plots/gemma_evolution/`; PNG previews go to the corresponding subdirectories of `previews/`.
+Use `python -m analysis.gemma_ratings --deep` to also reconstruct the summaries from all individual
+ratings when rendering. [The guide](docs/gemma.md) maps files to panels and explains cohort sizes,
+missing values, generation-29 endpoints and the distinction between SD and SEM.
