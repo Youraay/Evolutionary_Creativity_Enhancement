@@ -1,0 +1,58 @@
+{
+  "schema_version": 2,
+  "run_name": "stimuli-study-questions-en-v1",
+  "config_fingerprint": "94a756e5ff8ec5079320be2f461feb9911a01c667da7fe88e0f729eaa50a7714",
+  "manifest": {
+    "path": "/panfs/vdura1/dldevel/public/Evolutionary_Novelty_Enhancement/VLM_stuff/VLM_creativity/VLM_creativity/data/manifest.csv",
+    "sha256": "988a8f6086a5bc78d39ef6b0acc178181d6a944fec850be75c25a69fdaa0f758"
+  },
+  "ratings": {
+    "source": "external_csv",
+    "path": "/panfs/vdura1/dldevel/daecheret/Evolutionary_Novelty_Enhancement/VLM_stuff/private_ratings/study_ratings_long.csv",
+    "sha256": "dff20b36546c65cb8666e4a24ce4ce1885e9736f4f51fbc671a106dff23b1d67",
+    "metadata": {
+      "path": "/panfs/vdura1/dldevel/daecheret/Evolutionary_Novelty_Enhancement/VLM_stuff/private_ratings/study_ratings_long.metadata.json",
+      "sha256": "1ad7895dd4ffa42952b40eb666955ff864924b9dc3f1889984fc2d83548388dc"
+    },
+    "rating_id_column": "image_id",
+    "rating_column": null,
+    "rating_columns": [
+      "suitability_to_prompt_vlm_scale",
+      "creativity_vlm_scale",
+      "uncommonness_vlm_scale",
+      "boredom_vlm_scale",
+      "affect_vlm_scale",
+      "arousal_vlm_scale"
+    ],
+    "rating_columns_by_prompt": {
+      "study-suitability": "suitability_to_prompt_vlm_scale",
+      "study-creativity": "creativity_vlm_scale",
+      "study-unusualness": "uncommonness_vlm_scale",
+      "study-boredom": "boredom_vlm_scale",
+      "study-pleasantness": "affect_vlm_scale",
+      "study-excitement": "arousal_vlm_scale"
+    },
+    "manifest_join_column": "image_id",
+    "output_column": "human_rating"
+  },
+  "matched_images": 36,
+  "unrated_images": 0,
+  "matched_images_by_rating_column": {
+    "suitability_to_prompt_vlm_scale": 36,
+    "creativity_vlm_scale": 36,
+    "uncommonness_vlm_scale": 36,
+    "boredom_vlm_scale": 36,
+    "affect_vlm_scale": 36,
+    "arousal_vlm_scale": 36
+  },
+  "unrated_images_by_rating_column": {
+    "suitability_to_prompt_vlm_scale": 0,
+    "creativity_vlm_scale": 0,
+    "uncommonness_vlm_scale": 0,
+    "boredom_vlm_scale": 0,
+    "affect_vlm_scale": 0,
+    "arousal_vlm_scale": 0
+  },
+  "partial_ratings_allowed": false,
+  "created_at": "2026-09-04T13:30:38.592871+00:00"
+}

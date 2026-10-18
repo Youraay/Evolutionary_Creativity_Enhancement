@@ -1,0 +1,35 @@
+{
+  "status": "complete",
+  "module": "analysis.gemma_ratings",
+  "no_inference": true,
+  "deep_raw_score_rebuild": false,
+  "python": "3.12.10",
+  "numpy": "2.5.2",
+  "pandas": "2.3.3",
+  "scipy": "1.18.1",
+  "matplotlib": "3.11.1",
+  "source_manifest_sha256": "56c321b034690d6863169aebc8fa67bed95c508fd4085ca7cf20c5d94d7ce543",
+  "code_sha256": {
+    "analysis/common/gemma/__init__.py": "d6a6cdba5081f84a616ca5370185208e26706281855edd0c686ef203fb3b89d7",
+    "analysis/common/gemma/aggregation.py": "9c57861606e46c30e94770667715f6b01a58d2966e3365eab5d94bfa798d5bae",
+    "analysis/common/gemma/data.py": "80a5f95e9252af64f0aa946ec195b0a386730ae7408e24b7397aa6f45f255915",
+    "analysis/common/gemma/evolution.py": "4f3607ce9f3a678097d12a65bc3cc575ba4bc42f13e7f3ac599da95e216aefda",
+    "analysis/common/gemma/evolution_plot.py": "2aea236a5fd5fbac4422e7f61ca4e013ecd7106fac387858e8dc35cbad07a4e2",
+    "analysis/common/gemma/ratings_plot.py": "a8f71f9981186078937050176b101c788e538c6058a3259ed1271d7c88f158ff",
+    "analysis/common/gemma/statistics.py": "14ca95cda25ae92788b67643b29c54307170e46a406d5efb4b7ee85d23004f61",
+    "analysis/common/gemma/style.py": "971516d499233a428ad0f8c2b764962b761ce77d773fc2763aed88666e7ed94d",
+    "analysis/common/gemma/workflow.py": "f6cd6a1ccd160661678c9bf2961ee9ff356c544d4cb095a0f788f37fde3a3810",
+    "analysis/gemma_ratings.py": "882968864fdcb1c1ba8e3871c05adc5cb9fd45361b45cbd1a79c82432aa0aa88",
+    "analysis/common/style.py": "8af6d0d0f059db5a7cda8c6953b00a4fbc77a835ddc401afa067c35fc67e08c9",
+    "analysis/common/paths.py": "ac518402372502d21c3cb54dd41eaa6a4570e754ce15d88bf9c0737b4705f055",
+    "experiments/common/settings.py": "83d180acf29adb13b2f3a803a0f2d06b47b6dfa1cf6fe2c67342a0f304b01fb6"
+  },
+  "outputs_sha256": {
+    "ratings_across_generations.csv": "a1931f73eea254e546abaadbc8ec1665d8051175b839fb960c8c1462c82f7513",
+    "ratings_across_generations.pdf": "8e7d022965ab5e6c29493979ec71b546af820278c63d86f1c8a02a09d20e72e0",
+    "ratings_across_generations.svg": "d1bf41ffcaa7f4fe52de0d9e7a85bbade48a875fb76cfd882c7434ef6048a0fa",
+    "ratings_across_generations_pairs.csv": "e51aa3e63a4b196a6a53073d4367fe4959f5d345cbe237e2a1e9080d1b84e9f8",
+    "ratings_across_generations_sensitivity.csv": "54bda16e8dad8658a1875a216b335f0fc946d0e6871093824f230109473572fd",
+    "ratings_across_generations_tests.csv": "384445da0754234be0e8a1c1a3eceb1e0171f47e0e74782ab4ec105f91ccfb44"
+  }
+}

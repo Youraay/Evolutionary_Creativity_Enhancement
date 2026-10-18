@@ -10,7 +10,7 @@ from pathlib import Path
 MODULES = ["example_prompts", "parti_prompts", "seed_transfer", "model_comparison", "fitness_embedding",
            "fitness_function", "archive_size", "crossover_function", "tournament_size", "mutation_only", "long_runs",
            "noise_distribution", "operator_ablation", "think_then_generate", "mutation_grid_search",
-           "pca_parti_prompts"]
+           "pca_parti_prompts", "gemma_ratings", "gemma_evolution"]
 
 
 def main() -> None:

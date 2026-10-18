@@ -1,0 +1,11 @@
+{
+  "expected": 648,
+  "latest_records": 648,
+  "attempts": 648,
+  "inference_complete": 648,
+  "valid_responses": 644,
+  "parse_invalid": 4,
+  "inference_failed": 0,
+  "missing": 0,
+  "partial_analysis": false
+}

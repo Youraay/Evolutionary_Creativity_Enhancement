@@ -1,0 +1,31 @@
+Gemma ratings: generation 30 > generation 0
+
+Primary: six one-sided paired Wilcoxon signed-rank tests, Holm-adjusted across all six.
+Pairing unit: source prompt, using the same valid-image prompt means as the plot.
+114 prompts for Creativity/Unusualness; 108 for the other four ratings.
+Each generation mean covers three runs x 60 images, except omitted invalid scores.
+Images and seed runs are not treated as independent replicates for these tests.
+Asymptotic normal p-values with tie correction; zero differences discarded (wilcox).
+No continuity correction. Differences rounded to 12 decimals to remove floating-point artifacts.
+H1 is higher for every rating, including Boredom. No change of direction after seeing results.
+n.s. means no significant increase, not evidence of equivalence or no decrease.
+This is exploratory/post-hoc, not a preregistered confirmatory analysis.
+Signed-rank location interpretation assumes a reasonably symmetric difference distribution.
+Inference treats source prompts as independent units; closely related prompts may limit this.
+Results concern this prompt set and Gemma ratings, not human perception or all possible prompts.
+
+Sensitivity: complete-endpoint prompts only (excludes one Suitability prompt); same six-test Holm family.
+An exact one-sided sign test (with separate six-test Holm correction) is also supplied as a symmetry-robust check.
+These sensitivity checks are not replacements selected to obtain significance.
+
+RESULTS (adjusted p-values are authoritative for significance)
+Suitability: n=108, gen0=3.456889, gen30=2.927398, delta=-0.529491, W+=680.5, raw p=1, Holm p=1, n.s.
+Unusualness: n=114, gen0=2.384981, gen30=2.680404, delta=+0.295424, W+=4754, raw p=1.492186988e-05, Holm p=8.953121928e-05, ***
+Boredom: n=108, gen0=1.748745, gen30=1.733935, delta=-0.014810, W+=3295.5, raw p=0.1032171458, Holm p=0.4128685831, n.s.
+Pleasantness: n=108, gen0=4.140520, gen30=3.878632, delta=-0.261888, W+=336, raw p=1, Holm p=1, n.s.
+Excitement: n=108, gen0=2.901142, gen30=2.748210, delta=-0.152932, W+=1785, raw p=0.9998069795, Holm p=1, n.s.
+Creativity: n=114, gen0=2.670970, gen30=2.759366, delta=+0.088397, W+=4003.5, raw p=0.0200510763, Holm p=0.1002553815, n.s.
+
+Methods:
+https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.wilcoxon.html
+https://www.statsmodels.org/stable/generated/statsmodels.stats.multitest.multipletests.html

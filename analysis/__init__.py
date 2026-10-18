@@ -18,7 +18,10 @@ One module per experiment (each runnable with ``python -m analysis.<module>``):
     operator_ablation      not part of the manuscript
     think_then_generate    Supplementary Fig. 10
     mutation_grid_search   Methods (choice of the mutation parameters)
+    gemma_ratings          Gemma ratings across generations (114/108 source prompts)
+    gemma_evolution        human/VLM agreement and Gemma-guided image evolution
 
 ``python -m analysis`` runs all of them. Shared code is in ``common``: paths, style, loading of runs, statistical
-tests and the plot types used by several figures. Error bands are the standard error of the mean over runs.
+tests and the plot types used by several figures. Error bands are the standard error of the mean over runs,
+except gemma_evolution, which retains the sample standard deviation of its original analysis.
 """
