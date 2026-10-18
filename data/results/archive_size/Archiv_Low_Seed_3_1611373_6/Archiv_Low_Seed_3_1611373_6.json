@@ -13,6 +13,6 @@
     "evaluator": "LocalArchivMaxMeanDivergenceEvaluator",
     "random_seed": 12951769831226840325,
     "timestamp": "20260222_035916",
-    "result_path": "/work/dldevel/sinziri/Evolutionary_Diffusion_Enhancement/Results/Archiv_Comparison/Archiv_Low_Seed_3_1611373_6",
-    "stat_path": "/work/dldevel/sinziri/Evolutionary_Diffusion_Enhancement/Results/Archiv_Comparison/Archiv_Low_Seed_3_1611373_6/Archiv_Low_Seed_3_1611373_6.csv"
+    "result_path": "Archiv_Low_Seed_3_1611373_6",
+    "stat_path": "Archiv_Low_Seed_3_1611373_6/Archiv_Low_Seed_3_1611373_6.csv"
 }

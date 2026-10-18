@@ -27,6 +27,6 @@
     ],
     "random_seed": 3030801653,
     "timestamp": "20261005_205902",
-    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/experiments_elpelt/results/long_run/gen_300/a_chair/a_chair_3030801653_20261005_205851",
-    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/experiments_elpelt/results/long_run/gen_300/a_chair/a_chair_3030801653_20261005_205851/a_chair_3030801653_20261005_205851.csv"
+    "result_path": "gen_300/a_chair/a_chair_3030801653_20261005_205851",
+    "stat_path": "gen_300/a_chair/a_chair_3030801653_20261005_205851/a_chair_3030801653_20261005_205851.csv"
 }

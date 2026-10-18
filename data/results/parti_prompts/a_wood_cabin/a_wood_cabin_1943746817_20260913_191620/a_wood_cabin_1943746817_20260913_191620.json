@@ -20,6 +20,6 @@
     ],
     "random_seed": 1943746817,
     "timestamp": "20260913_191630",
-    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_wood_cabin/a_wood_cabin_1943746817_20260913_191620",
-    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_wood_cabin/a_wood_cabin_1943746817_20260913_191620/a_wood_cabin_1943746817_20260913_191620.csv"
+    "result_path": "a_wood_cabin/a_wood_cabin_1943746817_20260913_191620",
+    "stat_path": "a_wood_cabin/a_wood_cabin_1943746817_20260913_191620/a_wood_cabin_1943746817_20260913_191620.csv"
 }

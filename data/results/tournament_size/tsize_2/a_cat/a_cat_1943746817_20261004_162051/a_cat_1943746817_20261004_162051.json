@@ -27,6 +27,6 @@
     ],
     "random_seed": 1943746817,
     "timestamp": "20261004_162134",
-    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/experiments_elpelt/results/tournament/tsize_2/a_cat/a_cat_1943746817_20261004_162051",
-    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/experiments_elpelt/results/tournament/tsize_2/a_cat/a_cat_1943746817_20261004_162051/a_cat_1943746817_20261004_162051.csv"
+    "result_path": "tsize_2/a_cat/a_cat_1943746817_20261004_162051",
+    "stat_path": "tsize_2/a_cat/a_cat_1943746817_20261004_162051/a_cat_1943746817_20261004_162051.csv"
 }

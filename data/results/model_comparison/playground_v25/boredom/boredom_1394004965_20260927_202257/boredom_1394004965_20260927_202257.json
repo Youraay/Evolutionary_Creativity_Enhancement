@@ -20,6 +20,6 @@
     ],
     "random_seed": 1394004965,
     "timestamp": "20260927_202305",
-    "result_path": "/home/dldevel/sinziri/results/model_comp/playground_v25/boredom/boredom_1394004965_20260927_202257",
-    "stat_path": "/home/dldevel/sinziri/results/model_comp/playground_v25/boredom/boredom_1394004965_20260927_202257/boredom_1394004965_20260927_202257.csv"
+    "result_path": "playground_v25/boredom/boredom_1394004965_20260927_202257",
+    "stat_path": "playground_v25/boredom/boredom_1394004965_20260927_202257/boredom_1394004965_20260927_202257.csv"
 }

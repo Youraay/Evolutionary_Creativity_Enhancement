@@ -20,6 +20,6 @@
     ],
     "random_seed": 1394004965,
     "timestamp": "20260929_104932",
-    "result_path": "/home/dldevel/sinziri/results/model_comp/flux2_klein_4b/boredom/boredom_1394004965_20260929_104909",
-    "stat_path": "/home/dldevel/sinziri/results/model_comp/flux2_klein_4b/boredom/boredom_1394004965_20260929_104909/boredom_1394004965_20260929_104909.csv"
+    "result_path": "flux2_klein_4b/boredom/boredom_1394004965_20260929_104909",
+    "stat_path": "flux2_klein_4b/boredom/boredom_1394004965_20260929_104909/boredom_1394004965_20260929_104909.csv"
 }

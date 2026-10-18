@@ -13,6 +13,6 @@
     "evaluator": "LocalMaxMeanDivergenceEvaluator",
     "random_seed": 12876743012905148135,
     "timestamp": "20260222_164824",
-    "result_path": "/work/dldevel/sinziri/Evolutionary_Diffusion_Enhancement/Results/Evaluator_Comparison/Centroid_Seed_5_1611376_2",
-    "stat_path": "/work/dldevel/sinziri/Evolutionary_Diffusion_Enhancement/Results/Evaluator_Comparison/Centroid_Seed_5_1611376_2/Centroid_Seed_5_1611376_2.csv"
+    "result_path": "Centroid_Seed_5_1611376_2",
+    "stat_path": "Centroid_Seed_5_1611376_2/Centroid_Seed_5_1611376_2.csv"
 }

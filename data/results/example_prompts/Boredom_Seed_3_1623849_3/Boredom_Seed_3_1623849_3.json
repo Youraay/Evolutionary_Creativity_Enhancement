@@ -13,6 +13,6 @@
     "evaluator": "LocalMaxMeanDivergenceEvaluator",
     "random_seed": 12951769831226840325,
     "timestamp": "20260314_000956",
-    "result_path": "/work/dldevel/sinziri/Evolutionary_Diffusion_Enhancement/Results/Prompt/Boredom_Seed_3_1623849_3",
-    "stat_path": "/work/dldevel/sinziri/Evolutionary_Diffusion_Enhancement/Results/Prompt/Boredom_Seed_3_1623849_3/Boredom_Seed_3_1623849_3.csv"
+    "result_path": "Boredom_Seed_3_1623849_3",
+    "stat_path": "Boredom_Seed_3_1623849_3/Boredom_Seed_3_1623849_3.csv"
 }

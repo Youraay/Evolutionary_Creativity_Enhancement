@@ -20,6 +20,6 @@
     ],
     "random_seed": 3030801653,
     "timestamp": "20260914_041904",
-    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_small_kitchen_with_a_white_goat_in_it/a_small_kitchen_with_a_white_goat_in_it_3030801653_20260914_041854",
-    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_small_kitchen_with_a_white_goat_in_it/a_small_kitchen_with_a_white_goat_in_it_3030801653_20260914_041854/a_small_kitchen_with_a_white_goat_in_it_3030801653_20260914_041854.csv"
+    "result_path": "a_small_kitchen_with_a_white_goat_in_it/a_small_kitchen_with_a_white_goat_in_it_3030801653_20260914_041854",
+    "stat_path": "a_small_kitchen_with_a_white_goat_in_it/a_small_kitchen_with_a_white_goat_in_it_3030801653_20260914_041854/a_small_kitchen_with_a_white_goat_in_it_3030801653_20260914_041854.csv"
 }

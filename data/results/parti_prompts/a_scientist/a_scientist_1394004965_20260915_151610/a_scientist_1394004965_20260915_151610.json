@@ -20,6 +20,6 @@
     ],
     "random_seed": 1394004965,
     "timestamp": "20260915_151620",
-    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_scientist/a_scientist_1394004965_20260915_151610",
-    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_scientist/a_scientist_1394004965_20260915_151610/a_scientist_1394004965_20260915_151610.csv"
+    "result_path": "a_scientist/a_scientist_1394004965_20260915_151610",
+    "stat_path": "a_scientist/a_scientist_1394004965_20260915_151610/a_scientist_1394004965_20260915_151610.csv"
 }

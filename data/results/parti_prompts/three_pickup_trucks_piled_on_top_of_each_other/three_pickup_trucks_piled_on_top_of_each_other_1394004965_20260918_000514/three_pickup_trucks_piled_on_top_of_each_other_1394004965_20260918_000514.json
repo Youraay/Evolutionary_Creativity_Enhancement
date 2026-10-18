@@ -20,6 +20,6 @@
     ],
     "random_seed": 1394004965,
     "timestamp": "20260918_000522",
-    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/three_pickup_trucks_piled_on_top_of_each_other/three_pickup_trucks_piled_on_top_of_each_other_1394004965_20260918_000514",
-    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/three_pickup_trucks_piled_on_top_of_each_other/three_pickup_trucks_piled_on_top_of_each_other_1394004965_20260918_000514/three_pickup_trucks_piled_on_top_of_each_other_1394004965_20260918_000514.csv"
+    "result_path": "three_pickup_trucks_piled_on_top_of_each_other/three_pickup_trucks_piled_on_top_of_each_other_1394004965_20260918_000514",
+    "stat_path": "three_pickup_trucks_piled_on_top_of_each_other/three_pickup_trucks_piled_on_top_of_each_other_1394004965_20260918_000514/three_pickup_trucks_piled_on_top_of_each_other_1394004965_20260918_000514.csv"
 }

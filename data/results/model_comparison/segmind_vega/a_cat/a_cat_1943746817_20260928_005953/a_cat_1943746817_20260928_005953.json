@@ -20,6 +20,6 @@
     ],
     "random_seed": 1943746817,
     "timestamp": "20260928_010204",
-    "result_path": "/home/dldevel/sinziri/results/model_comp/segmind_vega/a_cat/a_cat_1943746817_20260928_005953",
-    "stat_path": "/home/dldevel/sinziri/results/model_comp/segmind_vega/a_cat/a_cat_1943746817_20260928_005953/a_cat_1943746817_20260928_005953.csv"
+    "result_path": "segmind_vega/a_cat/a_cat_1943746817_20260928_005953",
+    "stat_path": "segmind_vega/a_cat/a_cat_1943746817_20260928_005953/a_cat_1943746817_20260928_005953.csv"
 }

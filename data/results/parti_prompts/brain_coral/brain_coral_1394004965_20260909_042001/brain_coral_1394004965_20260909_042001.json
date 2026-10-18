@@ -20,6 +20,6 @@
     ],
     "random_seed": 1394004965,
     "timestamp": "20260909_042009",
-    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/brain_coral/brain_coral_1394004965_20260909_042001",
-    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/brain_coral/brain_coral_1394004965_20260909_042001/brain_coral_1394004965_20260909_042001.csv"
+    "result_path": "brain_coral/brain_coral_1394004965_20260909_042001",
+    "stat_path": "brain_coral/brain_coral_1394004965_20260909_042001/brain_coral_1394004965_20260909_042001.csv"
 }

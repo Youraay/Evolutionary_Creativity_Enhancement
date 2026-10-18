@@ -13,6 +13,6 @@
     "evaluator": "LocalMaxMeanDivergenceEvaluator",
     "random_seed": 17278950119299660979,
     "timestamp": "20260406_173156",
-    "result_path": "/work/dldevel/sinziri/Evolutionary_Diffusion_Enhancement/Results/Ablation_1642017_3/gaussean_only_Seed_9_1642017_3",
-    "stat_path": "/work/dldevel/sinziri/Evolutionary_Diffusion_Enhancement/Results/Ablation_1642017_3/gaussean_only_Seed_9_1642017_3/gaussean_only_Seed_9_1642017_3.csv"
+    "result_path": "gaussean_only_Seed_9_1642017_3",
+    "stat_path": "gaussean_only_Seed_9_1642017_3/gaussean_only_Seed_9_1642017_3.csv"
 }

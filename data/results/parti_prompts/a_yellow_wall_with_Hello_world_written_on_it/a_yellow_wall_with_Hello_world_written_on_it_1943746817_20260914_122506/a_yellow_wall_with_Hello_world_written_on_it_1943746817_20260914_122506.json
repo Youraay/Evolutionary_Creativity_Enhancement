@@ -20,6 +20,6 @@
     ],
     "random_seed": 1943746817,
     "timestamp": "20260914_122532",
-    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_yellow_wall_with_Hello_world_written_on_it/a_yellow_wall_with_Hello_world_written_on_it_1943746817_20260914_122506",
-    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_yellow_wall_with_Hello_world_written_on_it/a_yellow_wall_with_Hello_world_written_on_it_1943746817_20260914_122506/a_yellow_wall_with_Hello_world_written_on_it_1943746817_20260914_122506.csv"
+    "result_path": "a_yellow_wall_with_Hello_world_written_on_it/a_yellow_wall_with_Hello_world_written_on_it_1943746817_20260914_122506",
+    "stat_path": "a_yellow_wall_with_Hello_world_written_on_it/a_yellow_wall_with_Hello_world_written_on_it_1943746817_20260914_122506/a_yellow_wall_with_Hello_world_written_on_it_1943746817_20260914_122506.csv"
 }

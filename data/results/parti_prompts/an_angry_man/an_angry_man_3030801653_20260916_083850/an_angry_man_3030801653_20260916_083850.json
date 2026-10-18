@@ -20,6 +20,6 @@
     ],
     "random_seed": 3030801653,
     "timestamp": "20260916_084033",
-    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/an_angry_man/an_angry_man_3030801653_20260916_083850",
-    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/an_angry_man/an_angry_man_3030801653_20260916_083850/an_angry_man_3030801653_20260916_083850.csv"
+    "result_path": "an_angry_man/an_angry_man_3030801653_20260916_083850",
+    "stat_path": "an_angry_man/an_angry_man_3030801653_20260916_083850/an_angry_man_3030801653_20260916_083850.csv"
 }

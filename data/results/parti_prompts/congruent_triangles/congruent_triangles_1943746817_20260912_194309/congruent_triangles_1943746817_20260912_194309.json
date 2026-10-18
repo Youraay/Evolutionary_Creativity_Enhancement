@@ -20,6 +20,6 @@
     ],
     "random_seed": 1943746817,
     "timestamp": "20260912_194338",
-    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/congruent_triangles/congruent_triangles_1943746817_20260912_194309",
-    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/congruent_triangles/congruent_triangles_1943746817_20260912_194309/congruent_triangles_1943746817_20260912_194309.csv"
+    "result_path": "congruent_triangles/congruent_triangles_1943746817_20260912_194309",
+    "stat_path": "congruent_triangles/congruent_triangles_1943746817_20260912_194309/congruent_triangles_1943746817_20260912_194309.csv"
 }

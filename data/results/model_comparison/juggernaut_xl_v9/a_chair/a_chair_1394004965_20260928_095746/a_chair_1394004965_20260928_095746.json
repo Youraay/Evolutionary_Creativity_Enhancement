@@ -20,6 +20,6 @@
     ],
     "random_seed": 1394004965,
     "timestamp": "20260928_095754",
-    "result_path": "/home/dldevel/sinziri/results/model_comp/juggernaut_xl_v9/a_chair/a_chair_1394004965_20260928_095746",
-    "stat_path": "/home/dldevel/sinziri/results/model_comp/juggernaut_xl_v9/a_chair/a_chair_1394004965_20260928_095746/a_chair_1394004965_20260928_095746.csv"
+    "result_path": "juggernaut_xl_v9/a_chair/a_chair_1394004965_20260928_095746",
+    "stat_path": "juggernaut_xl_v9/a_chair/a_chair_1394004965_20260928_095746/a_chair_1394004965_20260928_095746.csv"
 }

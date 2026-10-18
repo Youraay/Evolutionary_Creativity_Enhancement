@@ -20,6 +20,6 @@
     ],
     "random_seed": 1394004965,
     "timestamp": "20260928_051043",
-    "result_path": "/home/dldevel/sinziri/results/model_comp/realvisxl_v5/a_chair/a_chair_1394004965_20260928_051036",
-    "stat_path": "/home/dldevel/sinziri/results/model_comp/realvisxl_v5/a_chair/a_chair_1394004965_20260928_051036/a_chair_1394004965_20260928_051036.csv"
+    "result_path": "realvisxl_v5/a_chair/a_chair_1394004965_20260928_051036",
+    "stat_path": "realvisxl_v5/a_chair/a_chair_1394004965_20260928_051036/a_chair_1394004965_20260928_051036.csv"
 }

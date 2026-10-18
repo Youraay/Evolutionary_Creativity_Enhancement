@@ -20,6 +20,6 @@
     ],
     "random_seed": 1394004965,
     "timestamp": "20260914_010419",
-    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_ceiling_fan_with_an_ornate_light_fixture/a_ceiling_fan_with_an_ornate_light_fixture_1394004965_20260914_010411",
-    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_ceiling_fan_with_an_ornate_light_fixture/a_ceiling_fan_with_an_ornate_light_fixture_1394004965_20260914_010411/a_ceiling_fan_with_an_ornate_light_fixture_1394004965_20260914_010411.csv"
+    "result_path": "a_ceiling_fan_with_an_ornate_light_fixture/a_ceiling_fan_with_an_ornate_light_fixture_1394004965_20260914_010411",
+    "stat_path": "a_ceiling_fan_with_an_ornate_light_fixture/a_ceiling_fan_with_an_ornate_light_fixture_1394004965_20260914_010411/a_ceiling_fan_with_an_ornate_light_fixture_1394004965_20260914_010411.csv"
 }

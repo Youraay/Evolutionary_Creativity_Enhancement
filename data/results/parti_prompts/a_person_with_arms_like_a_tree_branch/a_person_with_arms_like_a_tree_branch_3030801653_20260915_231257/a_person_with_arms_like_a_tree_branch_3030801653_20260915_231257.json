@@ -20,6 +20,6 @@
     ],
     "random_seed": 3030801653,
     "timestamp": "20260915_231325",
-    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_person_with_arms_like_a_tree_branch/a_person_with_arms_like_a_tree_branch_3030801653_20260915_231257",
-    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_person_with_arms_like_a_tree_branch/a_person_with_arms_like_a_tree_branch_3030801653_20260915_231257/a_person_with_arms_like_a_tree_branch_3030801653_20260915_231257.csv"
+    "result_path": "a_person_with_arms_like_a_tree_branch/a_person_with_arms_like_a_tree_branch_3030801653_20260915_231257",
+    "stat_path": "a_person_with_arms_like_a_tree_branch/a_person_with_arms_like_a_tree_branch_3030801653_20260915_231257/a_person_with_arms_like_a_tree_branch_3030801653_20260915_231257.csv"
 }

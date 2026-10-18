@@ -20,6 +20,6 @@
     ],
     "random_seed": 1394004965,
     "timestamp": "20260929_093000",
-    "result_path": "/home/dldevel/sinziri/results/model_comp/flux2_klein_4b/a_cat/a_cat_1394004965_20260929_092948",
-    "stat_path": "/home/dldevel/sinziri/results/model_comp/flux2_klein_4b/a_cat/a_cat_1394004965_20260929_092948/a_cat_1394004965_20260929_092948.csv"
+    "result_path": "flux2_klein_4b/a_cat/a_cat_1394004965_20260929_092948",
+    "stat_path": "flux2_klein_4b/a_cat/a_cat_1394004965_20260929_092948/a_cat_1394004965_20260929_092948.csv"
 }

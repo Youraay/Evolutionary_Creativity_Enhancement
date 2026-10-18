@@ -13,6 +13,6 @@
     "evaluator": "LocalMaxMeanDivergenceEvaluator",
     "random_seed": 3263689803816884559,
     "timestamp": "20260406_084923",
-    "result_path": "/work/dldevel/sinziri/Evolutionary_Diffusion_Enhancement/Results/Ablation_1642018_4/uniform_only_Seed_7",
-    "stat_path": "/work/dldevel/sinziri/Evolutionary_Diffusion_Enhancement/Results/Ablation_1642018_4/uniform_only_Seed_7/uniform_only_Seed_7.csv"
+    "result_path": "uniform_only_Seed_7",
+    "stat_path": "uniform_only_Seed_7/uniform_only_Seed_7.csv"
 }

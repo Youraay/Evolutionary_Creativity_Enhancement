@@ -20,6 +20,6 @@
     ],
     "random_seed": 1943746817,
     "timestamp": "20260915_190137",
-    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_politician_speaking_to_a_large_crowd/a_politician_speaking_to_a_large_crowd_1943746817_20260915_190129",
-    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_politician_speaking_to_a_large_crowd/a_politician_speaking_to_a_large_crowd_1943746817_20260915_190129/a_politician_speaking_to_a_large_crowd_1943746817_20260915_190129.csv"
+    "result_path": "a_politician_speaking_to_a_large_crowd/a_politician_speaking_to_a_large_crowd_1943746817_20260915_190129",
+    "stat_path": "a_politician_speaking_to_a_large_crowd/a_politician_speaking_to_a_large_crowd_1943746817_20260915_190129/a_politician_speaking_to_a_large_crowd_1943746817_20260915_190129.csv"
 }

@@ -20,6 +20,6 @@
     ],
     "random_seed": 1394004965,
     "timestamp": "20260916_124350",
-    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/an_orange/an_orange_1394004965_20260916_124342",
-    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/an_orange/an_orange_1394004965_20260916_124342/an_orange_1394004965_20260916_124342.csv"
+    "result_path": "an_orange/an_orange_1394004965_20260916_124342",
+    "stat_path": "an_orange/an_orange_1394004965_20260916_124342/an_orange_1394004965_20260916_124342.csv"
 }

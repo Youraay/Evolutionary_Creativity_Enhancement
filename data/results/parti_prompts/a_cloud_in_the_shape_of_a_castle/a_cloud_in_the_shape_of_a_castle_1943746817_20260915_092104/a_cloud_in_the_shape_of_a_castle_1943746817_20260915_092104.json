@@ -20,6 +20,6 @@
     ],
     "random_seed": 1943746817,
     "timestamp": "20260915_092112",
-    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_cloud_in_the_shape_of_a_castle/a_cloud_in_the_shape_of_a_castle_1943746817_20260915_092104",
-    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_cloud_in_the_shape_of_a_castle/a_cloud_in_the_shape_of_a_castle_1943746817_20260915_092104/a_cloud_in_the_shape_of_a_castle_1943746817_20260915_092104.csv"
+    "result_path": "a_cloud_in_the_shape_of_a_castle/a_cloud_in_the_shape_of_a_castle_1943746817_20260915_092104",
+    "stat_path": "a_cloud_in_the_shape_of_a_castle/a_cloud_in_the_shape_of_a_castle_1943746817_20260915_092104/a_cloud_in_the_shape_of_a_castle_1943746817_20260915_092104.csv"
 }

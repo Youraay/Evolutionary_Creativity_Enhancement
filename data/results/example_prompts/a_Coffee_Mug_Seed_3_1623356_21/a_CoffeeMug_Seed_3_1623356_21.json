@@ -13,6 +13,6 @@
     "evaluator": "LocalMaxMeanDivergenceEvaluator",
     "random_seed": 12951769831226840325,
     "timestamp": "20260313_052209",
-    "result_path": "/work/dldevel/sinziri/Evolutionary_Diffusion_Enhancement/Results/Prompt/a_CoffeeMug_Seed_3_1623356_21",
-    "stat_path": "/work/dldevel/sinziri/Evolutionary_Diffusion_Enhancement/Results/Prompt/a_CoffeeMug_Seed_3_1623356_21/a_CoffeeMug_Seed_3_1623356_21.csv"
+    "result_path": "a_Coffee_Mug_Seed_3_1623356_21",
+    "stat_path": "a_Coffee_Mug_Seed_3_1623356_21/a_CoffeeMug_Seed_3_1623356_21.csv"
 }

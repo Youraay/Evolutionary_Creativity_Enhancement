@@ -21,6 +21,6 @@
     ],
     "random_seed": 1394004965,
     "timestamp": "20261013_201822",
-    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/t2g/sdxl_t2g_g100/boredom/boredom_1394004965_20261013_201813",
-    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/t2g/sdxl_t2g_g100/boredom/boredom_1394004965_20261013_201813/boredom_1394004965_20261013_201813.csv"
+    "result_path": "sdxl_t2g_g100/boredom/boredom_1394004965_20261013_201813",
+    "stat_path": "sdxl_t2g_g100/boredom/boredom_1394004965_20261013_201813/boredom_1394004965_20261013_201813.csv"
 }

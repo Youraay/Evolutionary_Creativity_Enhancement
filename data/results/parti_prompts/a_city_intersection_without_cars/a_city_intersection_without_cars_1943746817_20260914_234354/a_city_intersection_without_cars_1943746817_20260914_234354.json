@@ -20,6 +20,6 @@
     ],
     "random_seed": 1943746817,
     "timestamp": "20260914_234402",
-    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_city_intersection_without_cars/a_city_intersection_without_cars_1943746817_20260914_234354",
-    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_city_intersection_without_cars/a_city_intersection_without_cars_1943746817_20260914_234354/a_city_intersection_without_cars_1943746817_20260914_234354.csv"
+    "result_path": "a_city_intersection_without_cars/a_city_intersection_without_cars_1943746817_20260914_234354",
+    "stat_path": "a_city_intersection_without_cars/a_city_intersection_without_cars_1943746817_20260914_234354/a_city_intersection_without_cars_1943746817_20260914_234354.csv"
 }

@@ -20,6 +20,6 @@
     ],
     "random_seed": 1943746817,
     "timestamp": "20261011_233104",
-    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_large_yellow_sphere_behind_a_small_purple_pyramid/a_large_yellow_sphere_behind_a_small_purple_pyramid_1943746817_20261011_233054",
-    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_large_yellow_sphere_behind_a_small_purple_pyramid/a_large_yellow_sphere_behind_a_small_purple_pyramid_1943746817_20261011_233054/a_large_yellow_sphere_behind_a_small_purple_pyramid_1943746817_20261011_233054.csv"
+    "result_path": "a_large_yellow_sphere_behind_a_small_purple_pyramid/a_large_yellow_sphere_behind_a_small_purple_pyramid_1943746817_20261011_233054",
+    "stat_path": "a_large_yellow_sphere_behind_a_small_purple_pyramid/a_large_yellow_sphere_behind_a_small_purple_pyramid_1943746817_20261011_233054/a_large_yellow_sphere_behind_a_small_purple_pyramid_1943746817_20261011_233054.csv"
 }

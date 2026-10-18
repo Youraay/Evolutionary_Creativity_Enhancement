@@ -20,6 +20,6 @@
     ],
     "random_seed": 3030801653,
     "timestamp": "20260917_111147",
-    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_motorcycle/a_motorcycle_3030801653_20260917_111138",
-    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_motorcycle/a_motorcycle_3030801653_20260917_111138/a_motorcycle_3030801653_20260917_111138.csv"
+    "result_path": "a_motorcycle/a_motorcycle_3030801653_20260917_111138",
+    "stat_path": "a_motorcycle/a_motorcycle_3030801653_20260917_111138/a_motorcycle_3030801653_20260917_111138.csv"
 }

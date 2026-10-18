@@ -13,6 +13,6 @@
     "evaluator": "LocalMaxMeanDivergenceEvaluator",
     "random_seed": 3263689803816884559,
     "timestamp": "20260224_014156",
-    "result_path": "/work/dldevel/sinziri/Evolutionary_Diffusion_Enhancement/Results/Ablation/No_Crossover_Seed_7_1611975_1",
-    "stat_path": "/work/dldevel/sinziri/Evolutionary_Diffusion_Enhancement/Results/Ablation/No_Crossover_Seed_7_1611975_1/No_Crossover_Seed_7_1611975_1.csv"
+    "result_path": "No_Crossover_Seed_7_1611975_1",
+    "stat_path": "No_Crossover_Seed_7_1611975_1/No_Crossover_Seed_7_1611975_1.csv"
 }

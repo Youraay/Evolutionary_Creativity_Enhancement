@@ -20,6 +20,6 @@
     ],
     "random_seed": 1394004965,
     "timestamp": "20260911_231734",
-    "result_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_half_empty_bottle_of_red_wine/a_half_empty_bottle_of_red_wine_1394004965_20260911_231724",
-    "stat_path": "/work/dldevel/public/Evolutionary_Novelty_Enhancement_Results/prompts/a_half_empty_bottle_of_red_wine/a_half_empty_bottle_of_red_wine_1394004965_20260911_231724/a_half_empty_bottle_of_red_wine_1394004965_20260911_231724.csv"
+    "result_path": "a_half_empty_bottle_of_red_wine/a_half_empty_bottle_of_red_wine_1394004965_20260911_231724",
+    "stat_path": "a_half_empty_bottle_of_red_wine/a_half_empty_bottle_of_red_wine_1394004965_20260911_231724/a_half_empty_bottle_of_red_wine_1394004965_20260911_231724.csv"
 }

@@ -13,6 +13,6 @@
     "evaluator": "LocalkNNEvaluator",
     "random_seed": 14115672566372762410,
     "timestamp": "20260223_012300",
-    "result_path": "/work/dldevel/sinziri/Evolutionary_Diffusion_Enhancement/Results/Evaluator_Comparison/kNN_100_Seed_4_1611376_4",
-    "stat_path": "/work/dldevel/sinziri/Evolutionary_Diffusion_Enhancement/Results/Evaluator_Comparison/kNN_100_Seed_4_1611376_4/kNN_100_Seed_4_1611376_4.csv"
+    "result_path": "kNN_100_Seed_4_1611376_4",
+    "stat_path": "kNN_100_Seed_4_1611376_4/kNN_100_Seed_4_1611376_4.csv"
 }

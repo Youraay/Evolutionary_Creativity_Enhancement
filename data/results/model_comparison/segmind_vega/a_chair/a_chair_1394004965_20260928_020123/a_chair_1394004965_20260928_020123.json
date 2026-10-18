@@ -20,6 +20,6 @@
     ],
     "random_seed": 1394004965,
     "timestamp": "20260928_020129",
-    "result_path": "/home/dldevel/sinziri/results/model_comp/segmind_vega/a_chair/a_chair_1394004965_20260928_020123",
-    "stat_path": "/home/dldevel/sinziri/results/model_comp/segmind_vega/a_chair/a_chair_1394004965_20260928_020123/a_chair_1394004965_20260928_020123.csv"
+    "result_path": "segmind_vega/a_chair/a_chair_1394004965_20260928_020123",
+    "stat_path": "segmind_vega/a_chair/a_chair_1394004965_20260928_020123/a_chair_1394004965_20260928_020123.csv"
 }

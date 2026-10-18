@@ -20,6 +20,6 @@
     ],
     "random_seed": 1943746817,
     "timestamp": "20260929_184310",
-    "result_path": "/home/dldevel/sinziri/results/model_comp/krea_2_turbo/a_chair/a_chair_1943746817_20260929_184054",
-    "stat_path": "/home/dldevel/sinziri/results/model_comp/krea_2_turbo/a_chair/a_chair_1943746817_20260929_184054/a_chair_1943746817_20260929_184054.csv"
+    "result_path": "krea_2_turbo/a_chair/a_chair_1943746817_20260929_184054",
+    "stat_path": "krea_2_turbo/a_chair/a_chair_1943746817_20260929_184054/a_chair_1943746817_20260929_184054.csv"
 }
