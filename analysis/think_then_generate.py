@@ -1,4 +1,4 @@
-"""Think-Then-Generate (T2G) + seed optimisation with SDXL compared with the original prompt.
+"""Think-Then-Generate (T2G) + seed optimisation with SDXL compared with the original prompt (Supplementary Fig. 10).
 
 Conditions (3 seeds per prompt, same GA setup, same initial noise per seed):
     original prompt           long run with the original prompt, generation 0
@@ -17,6 +17,8 @@ Output in ``plots/think_then_generate/``:
     t2g_<metric>_g30 / _g100       one panel per prompt, original vs. reasoning, mean +- SEM (3 seeds)
     t2g_conditions_g30 / _g100     the four conditions side by side (rows = metrics, columns = prompts)
     t2g_conditions_g*_tests.csv    tests generation 0 vs. 30/100 without and with reasoning (stars)
+    t2g_supplement_g30             Supplementary Fig. 10: four conditions and the course over 30 generations
+                                   (mean +- SEM over the 3 runs)
     t2g_pairwise_g30 / _g100       pairwise tests of all four conditions (colour = effect size, text = stars);
                                    table in t2g_pairwise_g*.csv
 
@@ -422,6 +424,80 @@ def render_conditions(lr: pd.DataFrame, t2g: pd.DataFrame, baseline: pd.DataFram
     save_figure(fig, OUT_DIR / f"t2g_conditions_g{gen}")
 
 
+SUPPLEMENT_LABELS = ["original prompt - initial", "original prompt - optimized", "reasoning - initial",
+                     "reasoning - optimized"]
+"""Condition labels of Supplementary Fig. 10A, in the order of :data:`CONDITIONS`."""
+
+
+def render_supplement(lr: pd.DataFrame, t2g: pd.DataFrame, gen: int = 30) -> None:
+    """Supplementary Fig. 10: (A) the four conditions, (B) the course over the generations.
+
+    (A) point = mean, error bar = SEM over the 3 runs (every run first averaged over its 60 images);
+    arrows show the seed optimisation from generation 0 to ``gen``. (B) original prompt (dashed) and reasoning
+    (solid), mean +- SEM over the 3 runs. Rows: divergence (distance to the mean of generation 0 of the original
+    prompt) and diversity within the generation.
+
+    Args:
+        lr: Long runs.
+        t2g: T2G runs.
+        gen: Generation of the optimised conditions and last generation of (B).
+    """
+    data = condition_data(lr, t2g, gen)
+    keys = ["divergence", "diversity"]
+    labels = {"divergence": "distance to mean of initial\ngeneration [a.u.]",
+              "diversity": "diversity within\ngeneration [a.u.]"}
+    fig = plt.figure(figsize=(PAGE_WIDTH_IN, PAGE_WIDTH_IN * 1.55), layout="constrained")
+    top, bottom = fig.subfigures(2, 1, height_ratios=[1.15, 1])
+    axes_a = top.subplots(len(keys), len(PROMPTS), sharey=True)
+    axes_b = bottom.subplots(len(keys), len(PROMPTS), sharey="row")
+    top.suptitle("A", x=0.0, ha="left", fontweight="bold", fontsize=TITLE_SIZE + 2)
+    bottom.suptitle("B", x=0.0, ha="left", fontweight="bold", fontsize=TITLE_SIZE + 2)
+    x = np.arange(len(CONDITIONS))
+    for c, prompt in enumerate(PROMPTS):
+        colors = [ORIG_COLOR[prompt], ORIG_COLOR[prompt], T2G_COLOR[prompt], T2G_COLOR[prompt]]
+        for r, key in enumerate(keys):
+            ax = axes_a[r, c]
+            run_means = [data[condition].loc[data[condition]["prompt"] == prompt].groupby("seed")[key].mean()
+                         for condition in CONDITIONS]
+            mean = np.array([v.mean() for v in run_means])
+            sem = np.array([v.std(ddof=1) / np.sqrt(len(v)) for v in run_means])
+            for i in (0, 2):
+                ax.annotate("", xy=(x[i + 1], mean[i + 1]), xytext=(x[i], mean[i]),
+                            arrowprops=dict(arrowstyle="-|>", color=colors[i], lw=1, shrinkA=4, shrinkB=4,
+                                            mutation_scale=8))
+            for i in range(len(CONDITIONS)):
+                ax.errorbar(x[i], mean[i], yerr=sem[i], fmt="o", color=colors[i], markersize=5, capsize=2.5,
+                            elinewidth=1, markerfacecolor=colors[i] if i % 2 else "white", markeredgewidth=1.2,
+                            zorder=3)
+            ax.set_xlim(-0.5, len(CONDITIONS) - 0.5)
+            ax.set_xticks(x, SUPPLEMENT_LABELS if r == len(keys) - 1 else [""] * len(CONDITIONS),
+                          fontsize=TICK_SIZE - 1, rotation=35, ha="right", rotation_mode="anchor")
+            ax.grid(axis="x", visible=False)
+            ax.tick_params(axis="y", labelsize=TICK_SIZE)
+            if r == 0:
+                ax.set_title(prompt, fontsize=TITLE_SIZE, fontweight="bold", pad=8)
+            if c == 0:
+                ax.set_ylabel(labels[key], fontsize=LABEL_SIZE - 1)
+            ax = axes_b[r, c]
+            for df, color, style in ((lr, ORIG_COLOR[prompt], "--"), (t2g, T2G_COLOR[prompt], "-")):
+                curve(ax, df[(df["prompt"] == prompt) & (df["generation"] <= gen)], key, color, lw=1.5)
+                ax.lines[-1].set_linestyle(style)
+            set_ticks(ax, [0, gen // 2, gen])
+            ax.set_xlabel("generation" if r == len(keys) - 1 else "", fontsize=LABEL_SIZE)
+            if r == 0:
+                ax.set_title(prompt, fontsize=TITLE_SIZE, fontweight="bold", pad=8)
+            if c == 0:
+                ax.set_ylabel(labels[key], fontsize=LABEL_SIZE - 1)
+    axes_a[0, 0].legend(handles=[Line2D([], [], marker="o", ls="", color="#525252", markerfacecolor="white",
+                                        label="gen. 0"),
+                                 Line2D([], [], marker="o", ls="", color="#525252", label=f"gen. {gen}")],
+                        loc="upper left", fontsize=TICK_SIZE - 1, frameon=False)
+    axes_b[0, 0].legend(handles=[Line2D([], [], color="#969696", lw=1.5, ls="--", label="original prompt"),
+                                 Line2D([], [], color="#252525", lw=1.5, label="reasoning")],
+                        loc="upper left", fontsize=TICK_SIZE - 1, frameon=False)
+    save_figure(fig, OUT_DIR / f"t2g_supplement_g{gen}")
+
+
 def main() -> None:
     """Command line entry point."""
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -435,6 +511,7 @@ def main() -> None:
         render_trajectories(lr, t2g, baseline, gen)
         render_conditions(lr, t2g, baseline, gen)
         render_pairwise(lr, t2g, gen)
+    render_supplement(lr, t2g, 30)
 
 
 if __name__ == "__main__":

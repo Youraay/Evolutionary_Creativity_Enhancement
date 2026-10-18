@@ -10,11 +10,11 @@ Output (``plots/example_prompts/``):
                                        the other prompts)
     images_<prompt>_detail, _final     Supplementary Fig. 1A-C: images of generations 0/15/30 of one run and of
                                        generation 30 of every run (selection in ``data/figure_images.json``)
-    noise_pca                          Supplementary Fig. 11B: PCA of the initial noise per prompt, colour =
+    noise_pca                          Supplementary Fig. 12B: PCA of the initial noise per prompt, colour =
                                        generation, arrows = course of every run (``data/noise_pca.csv``)
     tests.csv                          Mann-Whitney U tests of generation 0 vs. 30 of all prompts and metrics
 
-The noise distributions of Supplementary Fig. 11A are drawn by ``analysis.noise_distribution``.
+The noise distributions of Supplementary Fig. 12A are drawn by ``analysis.noise_distribution``.
 
     python -m analysis.example_prompts [--only curves violins clip_scores images noise_pca tests]
 """
@@ -170,7 +170,7 @@ def noise_projection(prompt: str, components: int = 10) -> tuple[pd.DataFrame, n
 
 
 def render_noise_pca(recompute: bool = False) -> None:
-    """Supplementary Fig. 11B: noise PCA per prompt with the course of every run.
+    """Supplementary Fig. 12B: noise PCA per prompt with the course of every run.
 
     The projections are cached in ``data/noise_pca.csv`` (explained variance in ``data/noise_pca_variance.csv``);
     computing them reads the noise of all candidates from the archives.

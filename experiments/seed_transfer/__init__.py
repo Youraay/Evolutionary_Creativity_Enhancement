@@ -1,6 +1,6 @@
 """Seed transfer: noise optimised for one prompt rendered with another prompt.
 
-Fig. 3 and Supplementary Fig. 10.
+Fig. 3 and Supplementary Fig. 11.
 
 Variants (configuration of every run in ``config.py`` and in the job database):
 

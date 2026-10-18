@@ -1,4 +1,4 @@
-"""Distribution of the initial noise values over the generations (Supplementary Fig. 11A and the same figure for
+"""Distribution of the initial noise values over the generations (Supplementary Fig. 12A and the same figure for
 the long runs and the PartiPrompts).
 
 Same figure as the noise histograms of the paper (one row per prompt or class, one column per
@@ -9,7 +9,7 @@ Gaussian kernel ``seaborn.kdeplot`` used on the 500k sample of the original figu
 kurtosis and a KS test against N(0, 1) on 5000 random values (as in the original normality table).
 
 Output in ``plots/noise_distribution/``:
-    example_prompts_noise_hist           Supplementary Fig. 11A: "a cat", "a chair", "boredom" (population 100),
+    example_prompts_noise_hist           Supplementary Fig. 12A: "a cat", "a chair", "boredom" (population 100),
                                          generations 0/10/20/30, 3 seeds pooled
     long_run_noise_hist                  rows = prompts, columns = generations 0/100/200/300 (3 seeds pooled)
     parti_noise_hist_all                 all 114 prompts pooled, generations 0/10/20/30
@@ -270,7 +270,7 @@ def _prompt_label(prompt: str, width: int = 28, max_lines: int = 3) -> str:
 
 
 def render_example_prompts(stats: pd.DataFrame, counts: np.ndarray) -> None:
-    """Rows = "a cat", "a chair", "boredom", columns = generations 0/10/20/30 (Supplementary Fig. 11A)."""
+    """Rows = "a cat", "a chair", "boredom", columns = generations 0/10/20/30 (Supplementary Fig. 12A)."""
     gens = EXPERIMENTS["example_prompts"]
     rows = [dict(label=_quoted(p), fill=COLOR_MAP[p], label_color=COLOR_MAP[p],
                  counts=_counts(stats, counts, stats["prompt"] == p, gens)) for p in PROMPTS]

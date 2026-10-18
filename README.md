@@ -36,9 +36,9 @@ plots/                       all generated figures (PDF + SVG) with their tables
 
 | Experiment | Setup | Manuscript | Analysis output |
 |---|---|---|---|
-| `example_prompts` | 12 prompts x 3 seeds, population 100 | Fig. 1E, 2A-C, 2E-F; Supp. Fig. 1A-C, 5A, 11 | `plots/example_prompts`, `plots/noise_distribution` |
+| `example_prompts` | 12 prompts x 3 seeds, population 100 | Fig. 1E, 2A-C, 2E-F; Supp. Fig. 1A-C, 5A, 12 | `plots/example_prompts`, `plots/noise_distribution` |
 | `parti_prompts` | 114 PartiPrompts x 3 seeds | Fig. 2D, 2G; Supp. Fig. 2, 5B; Supp. Table 1 | `plots/parti_prompts` |
-| `seed_transfer` | noise of `example_prompts` runs rendered with another prompt | Fig. 3; Supp. Fig. 10 | `plots/seed_transfer` |
+| `seed_transfer` | noise of `example_prompts` runs rendered with another prompt | Fig. 3; Supp. Fig. 11 | `plots/seed_transfer` |
 | `model_comparison` | 14 text-to-image models | Supp. Fig. 3A-B | `plots/model_comparison` |
 | `fitness_embedding` | novelty in BLIP-2, CLIP, DINOv2 or SigLIP 2 space | Supp. Fig. 3C-D | `plots/fitness_embedding` |
 | `fitness_function` | centroid vs. k nearest neighbours | Supp. Fig. 4 | `plots/fitness_function` |
@@ -48,10 +48,10 @@ plots/                       all generated figures (PDF + SVG) with their tables
 | `tournament_size` | tournaments of 2, 3, 5, 10 candidates | Supp. Fig. 8 | `plots/tournament_size` |
 | `mutation_only` | Gaussian or uniform mutation without crossover | Supp. Fig. 9 | `plots/mutation_only` |
 | `operator_ablation` | no crossover / no elitism / no mutation | not in the manuscript | `plots/operator_ablation` |
-| `think_then_generate` | prompt rewriting with Think-Then-Generate, then seed optimisation | not in the manuscript | `plots/think_then_generate` |
+| `think_then_generate` | prompt rewriting with Think-Then-Generate, then seed optimisation | Supp. Fig. 10 | `plots/think_then_generate` |
 | `mutation_grid_search` | every candidate mutated once per mutated fraction and strength | Methods (Mutation) | `plots/mutation_grid_search` |
 
-The human study and the vision-language-model ratings of the manuscript (Fig. 4, Supp. Figs. 12-13) are not
+The human study and the vision-language-model ratings of the manuscript (Fig. 4, Supp. Figs. 13-14) are not
 part of this repository.
 
 Panels and files:
@@ -63,8 +63,8 @@ Panels and files:
 | Fig. 2C | `example_prompts/distance_to_initial_mean` (+ `_tests.csv`) |
 | Fig. 2D, 2G | `parti_prompts/divergence_by_challenge`, `diversity_by_challenge` (+ `_stats.csv`) |
 | Fig. 2F | `example_prompts/diversity` (+ `_tests.csv`) |
-| Fig. 3A, Supp. Fig. 10A | `seed_transfer/examples_<source>_to_<target>` |
-| Fig. 3B-C, Supp. Fig. 10C-D | `seed_transfer/<source>_to_a_cat_distance`, `_diversity` (+ `tests.csv`) |
+| Fig. 3A, Supp. Fig. 11A | `seed_transfer/examples_<source>_to_<target>` |
+| Fig. 3B-C, Supp. Fig. 11C-D | `seed_transfer/<source>_to_a_cat_distance`, `_diversity` (+ `tests.csv`) |
 | Supp. Fig. 1D | `long_runs/long_run_metrics`, `long_run_examples_<prompt>` |
 | Supp. Fig. 2 | `parti_prompts/divergence_trajectories_by_challenge`, `diversity_trajectories_by_challenge` |
 | Supp. Fig. 3A-B | `model_comparison/model_comp_divergence_curves`, `model_comp_diversity_curves` |
@@ -73,7 +73,8 @@ Panels and files:
 | Supp. Fig. 5A, 5B | `example_prompts/clip_scores`, `parti_prompts/fidelity_pooled` |
 | Supp. Fig. 8 | `tournament_size/tournament_<metric>_violins`, `_curves` |
 | Supp. Fig. 9A, 9B | `mutation_only/examples_generation_8`, `mutation_only/distance_to_initial_mean` |
-| Supp. Fig. 11A, 11B | `noise_distribution/example_prompts_noise_hist` (+ `example_prompts_normality.csv`), `example_prompts/noise_pca` |
+| Supp. Fig. 10A, 10B | `think_then_generate/t2g_supplement_g30` (tests: `t2g_conditions_g30_tests.csv`, `t2g_pairwise_g30.csv`) |
+| Supp. Fig. 12A, 12B | `noise_distribution/example_prompts_noise_hist` (+ `example_prompts_normality.csv`), `example_prompts/noise_pca` |
 
 Statistics: every figure with significance marks writes its tests next to it (`*_tests.csv`, `tests.csv`):
 two-sided Mann-Whitney U tests of generation 0 vs. 30 on all candidates of the runs, Wilcoxon signed-rank

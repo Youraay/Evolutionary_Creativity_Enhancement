@@ -1,4 +1,4 @@
-"""Transfer figures: noise optimised for one prompt rendered with another (Fig. 3, Supplementary Fig. 10)."""
+"""Transfer figures: noise optimised for one prompt rendered with another (Fig. 3, Supplementary Fig. 11)."""
 from pathlib import Path
 
 import matplotlib.pyplot as plt

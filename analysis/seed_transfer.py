@@ -1,12 +1,12 @@
-"""Seed transfer: noise optimised for one prompt rendered with another prompt (Fig. 3, Supplementary Fig. 10).
+"""Seed transfer: noise optimised for one prompt rendered with another prompt (Fig. 3, Supplementary Fig. 11).
 
 Output (``plots/seed_transfer/``):
 
-    <source>_to_<target>_distance     Fig. 3B (a chair -> a cat), Supplementary Fig. 10C (a dog -> a cat):
+    <source>_to_<target>_distance     Fig. 3B (a chair -> a cat), Supplementary Fig. 11C (a dog -> a cat):
                                       distance to the mean of generation 0, transfer vs. direct optimisation
-    <source>_to_<target>_diversity    Fig. 3C, Supplementary Fig. 10D: diversity within the generation
+    <source>_to_<target>_diversity    Fig. 3C, Supplementary Fig. 11D: diversity within the generation
     *_tests.csv                       Mann-Whitney U tests of generation 0 vs. 30 of both curves
-    examples_<source>_to_<target>     Fig. 3A, Supplementary Fig. 10A: images of generations 0-30 of a run and the
+    examples_<source>_to_<target>     Fig. 3A, Supplementary Fig. 11A: images of generations 0-30 of a run and the
                                       same candidates rendered with the target prompt (``data/figure_images.json``)
 
     python -m analysis.seed_transfer
@@ -24,7 +24,7 @@ from analysis.common.transfer_plots import render_transfer_curves, render_transf
 
 OUT_DIR = PLOTS_DIR / "seed_transfer"
 CURVES = [("a chair", "a cat"), ("a dog", "a cat")]
-"""Transfers shown as curves (Fig. 3B-C, Supplementary Fig. 10C-D)."""
+"""Transfers shown as curves (Fig. 3B-C, Supplementary Fig. 11C-D)."""
 METRICS = {
     "distance": ("global_score", "distance to mean of\ninitial generation [a.u.]",
                  "Transferability of divergence\nfrom initial conditions", (0.0, 0.2)),

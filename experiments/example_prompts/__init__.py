@@ -1,6 +1,6 @@
 """Example prompts: the standard GA (population 100) on twelve prompts with three seeds each.
 
-Fig. 1E, Fig. 2A-C, 2E-F, Supplementary Figs. 1A-C, 5A and 11; the noise of these runs is the source of
+Fig. 1E, Fig. 2A-C, 2E-F, Supplementary Figs. 1A-C, 5A and 12; the noise of these runs is the source of
 ``seed_transfer``.
 
 Variants (configuration of every run in ``config.py`` and in the job database):
