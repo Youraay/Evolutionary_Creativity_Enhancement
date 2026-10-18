@@ -49,13 +49,15 @@ plots/                       all generated figures (PDF + SVG) with their tables
 | `mutation_only` | Gaussian or uniform mutation without crossover | Supp. Fig. 9 | `plots/mutation_only` |
 | `operator_ablation` | no crossover / no elitism / no mutation | not in the manuscript | `plots/operator_ablation` |
 | `think_then_generate` | prompt rewriting with Think-Then-Generate, then seed optimisation | not in the manuscript | `plots/think_then_generate` |
-| `gemma_ratings` | post-hoc Gemma ratings, 114 prompts for creativity/unusualness and 108 for four other dimensions | Gemma ratings across generations | `plots/gemma_ratings` |
-| `gemma_evolution` | human/VLM image-level agreement and seven Gemma fitness targets | Gemma evaluation and image evolution | `plots/gemma_evolution` |
+| `gemma_ratings` | post-hoc Gemma ratings, 114 prompts for creativity/unusualness and 108 for four other dimensions | Gemma ratings across generations (final figure/panel assignment pending) | `plots/gemma_ratings` |
+| `gemma_evolution` | human/VLM image-level agreement and seven Gemma fitness targets | Supp. Fig. 13A-E | `plots/gemma_evolution` |
 
 The Gemma contribution includes the image-level human aggregates needed for the VLM comparison, post-hoc
 ratings and saved population metrics for Gemma-guided evolution. It does not include individual human
 participant records or the rest of the human-study analysis. See [the Gemma guide](docs/gemma.md) for
-the precise figure coverage and methods; final manuscript panel numbers can be assigned during assembly.
+the precise figure coverage and methods. The mapping below follows the current Supplementary Figure 13
+caption. The separate 114/108-prompt ratings figure is proposed for inclusion in Supplementary Figure 13,
+but its final figure/panel assignment remains pending.
 
 Panels and files:
 
@@ -77,8 +79,26 @@ Panels and files:
 | Supp. Fig. 8 | `tournament_size/tournament_<metric>_violins`, `_curves` |
 | Supp. Fig. 9A, 9B | `mutation_only/examples_generation_8`, `mutation_only/distance_to_initial_mean` |
 | Supp. Fig. 11A, 11B | `noise_distribution/example_prompts_noise_hist` (+ `example_prompts_normality.csv`), `example_prompts/noise_pca` |
-| Gemma ratings across generations | `gemma_ratings/ratings_across_generations` (+ `_tests.csv`, `_pairs.csv`, `_sensitivity.csv`) |
-| Gemma evaluation and image evolution | `gemma_evolution/evaluation_and_evolution` (+ `human_vlm_correlations.csv`, `prompt_curves.csv`, `target_curves.csv`) |
+| Gemma ratings across generations (assignment pending) | `gemma_ratings/ratings_across_generations` (+ `_tests.csv`, `_pairs.csv`, `_sensitivity.csv`) |
+| Supp. Fig. 13A-E | `gemma_evolution/evaluation_and_evolution` (+ `human_vlm_correlations.csv`, `prompt_curves.csv`, `target_curves.csv`) |
+
+Supplementary Figure 13 is reproduced by [analysis/gemma_evolution.py](analysis/gemma_evolution.py).
+Its output composite, `plots/gemma_evolution/evaluation_and_evolution.pdf` and `.svg`, uses eight
+lettered panels (A-H); the manuscript groups the same content into five panels (A-E):
+
+| Manuscript panel | Generated panel(s) | Content | Supporting inputs or output tables |
+|---|---|---|---|
+| Supp. Fig. 13A | A | Human-VLM Spearman correlations | `plots/gemma_evolution/human_vlm_correlations.csv` |
+| Supp. Fig. 13B | B | Creativity-target fitness across generations | `plots/gemma_evolution/prompt_curves.csv` |
+| Supp. Fig. 13C, left/right | C / D | Creativity-target BLIP2 divergence / diversity | `plots/gemma_evolution/prompt_curves.csv` |
+| Supp. Fig. 13D | E | Best-rated final-population examples for each prompt and seed | `data/results/gemma/examples/` |
+| Supp. Fig. 13E | F-H | Seven-target fitness, divergence and diversity, pooled across prompts within seed | `plots/gemma_evolution/target_curves.csv` |
+
+This is a manuscript-to-output cross-reference, not a relabeling of the generated figures.
+The separate ratings figure is produced by [analysis/gemma_ratings.py](analysis/gemma_ratings.py)
+as `plots/gemma_ratings/ratings_across_generations.pdf` and `.svg`; no manuscript panel number
+is assigned to it here. Numerical definitions, sample SD bands and actual generation-29 endpoints
+remain as documented in [the Gemma guide](docs/gemma.md).
 
 Statistics: every figure with significance marks writes its tests next to it (`*_tests.csv`, `tests.csv`):
 two-sided Mann-Whitney U tests of generation 0 vs. 30 on all candidates of the runs, Wilcoxon signed-rank
