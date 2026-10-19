@@ -67,7 +67,7 @@ plots/                       all generated figures (PDF + SVG) with their tables
 | `gemma_evolution` | Gemma 4, LLaVA-OneVision and Qwen2.5-VL compared with human ratings; evolution with seven Gemma fitness targets | Supp. Fig. 14A-E | `plots/gemma_evolution` |
 
 The VLM analyses compare ratings from three models with human image ratings, evaluate how ratings change
-over generations, and examine image evolution driven by Gemma ratings. Model scores, image-level
+over generations, and examine image evolution driven by Gemma ratings. Model responses, image-level
 human averages, rating questions and numerical inputs are included in `data/results/gemma/`.
 [VLM evaluation and rating-guided evolution](docs/gemma.md) describes these analyses and their data.
 
@@ -124,7 +124,7 @@ The VLM analyses use three datasets:
 
 | Analysis | Models and images | Included data |
 |---|---|---|
-| Agreement with human ratings | Gemma 4 26B-A4B, LLaVA-OneVision 7B and Qwen2.5-VL 7B; 36 study images and six rating dimensions | `data/results/gemma/benchmark/`: 644 valid image-level pairs, 18 correlations and completeness records for 648 expected responses |
+| Agreement with human ratings | Gemma 4 26B-A4B, LLaVA-OneVision 7B and Qwen2.5-VL 7B; 36 study images and six rating dimensions | `data/results/gemma/benchmark/`: 648 original model responses, 644 valid image-level pairs, correlations and response completeness |
 | Ratings across generations | Gemma 4; distance-optimised images from the PartiPrompts selection, generations 0, 10, 20 and 30; three runs and 60 images per generation | `data/results/gemma/posthoc/`: individual scores and run, prompt and dimension summaries; `statistics/`: paired tests |
 | Rating-guided evolution | Seven Gemma fitness targets; cat, chair and boredom; three seeds and population 100 | `data/results/gemma/evolution/`: population metrics and pooled curves; `examples/`: nine selected original images |
 
@@ -137,8 +137,8 @@ retained as missing values.
 
 The 36-image human-VLM comparison is independent of this extension. Four LLaVA unusualness responses
 were invalid, leaving 32 image pairs for that correlation; the other 17 correlations use 36 pairs each.
-The valid model scores and human image averages are in
-[`benchmark/headline_analysis_units.csv`](data/results/gemma/benchmark/headline_analysis_units.csv).
+The original model outputs and runtime settings are in
+[`benchmark/latest_responses.csv`](data/results/gemma/benchmark/latest_responses.csv).
 The repository includes image-level human averages; individual participant records are not included.
 
 ## Methods of the manuscript in the code
@@ -160,7 +160,7 @@ The repository includes image-level human averages; individual participant recor
 | Noise transfer (generations 0, 10, 20, 30 rendered with another prompt) | `experiments/common/variants.py` (`transfer_populations`) |
 | Statistical tests (Mann-Whitney U, Wilcoxon signed-rank, Kolmogorov-Smirnov, Holm) | `analysis/common/statistics.py`, `analysis/parti_prompts.py`, `analysis/noise_distribution.py`, `analysis/think_then_generate.py` |
 | PCA of the noise (Supp. Fig. 12B) | `analysis/example_prompts.py` (`noise_projection`) |
-| VLM questions, model identities and decoding settings for Gemma 4, LLaVA-OneVision and Qwen2.5-VL | `data/results/gemma/methods/study_question_configuration.yaml` |
+| VLM questions, model identities and recorded inference settings for Gemma 4, LLaVA-OneVision and Qwen2.5-VL | `data/results/gemma/methods/study_question_configuration.yaml`, `data/results/gemma/benchmark/latest_responses.csv` |
 | Human-VLM agreement (Spearman correlations of image-level ratings, Supp. Fig. 14A) | `analysis/common/gemma/evolution.py` (`validate_benchmark`) |
 | Post-hoc rating summaries and generation-0/30 tests | `analysis/common/gemma/aggregation.py`, `analysis/common/gemma/statistics.py` |
 | Rating-guided evolution: population metrics and averaging across seeds (Supp. Fig. 14B-E) | `data/results/gemma/evolution/`, `analysis/common/gemma/evolution.py` |

@@ -61,7 +61,20 @@ The preserved [question configuration](../data/results/gemma/methods/study_quest
 defines all three models and the exact six questions. All models used BF16,
 greedy decoding, a maximum of 64 new tokens, seed 2025 and one response per
 image/question. Suitability includes the image's generation prompt; the other
-five questions use the image alone.
+five questions use the image alone. The original runtime was Python 3.12.14,
+Torch 2.11.0+cu128, Transformers 5.16.1 and Accelerate 1.14.0 on an A100 80GB GPU.
+
+The complete response export is
+[`benchmark/latest_responses.csv`](../data/results/gemma/benchmark/latest_responses.csv).
+It contains all 648 responses, including exact rendered questions, raw model
+outputs, parsed scores, parse errors and runtime provenance. Resolved model
+revisions are recorded for each response:
+
+| Model | Resolved revision |
+| --- | --- |
+| Gemma 4 | `4d7ae4984b7db7de8f8457170b3f1a419ee76d52` |
+| LLaVA-OneVision | `0d50680527681998e456c7b78950205bedd8a068` |
+| Qwen2.5-VL | `cc594898137f460bfe9f0759e9844b3ce807cfb5` |
 
 Four LLaVA unusualness responses fall outside the allowed scale and remain
 invalid. Their exclusion leaves 644 valid pairs in
@@ -153,21 +166,22 @@ the creativity question follows the study creativity wording.
 ## Data and original inference
 
 The repository includes all individual scores needed for the post-hoc ratings
-analysis, all valid three-model scores and paired human image aggregates
+analysis, the full three-model response export and paired human image aggregates
 for the benchmark, and the population metrics and nine original JPEG examples
 used in the evolution figure. The JPEGs are embedded at their original
 resolution in the SVG. Source hashes are checked before calculations.
 
 The VLM inference implementation is maintained in
 [`pdaech/vlm-creativity`](https://github.com/pdaech/vlm-creativity), under
-`src/creativity_eval/`. The preserved YAML records the original
+`src/creativity_eval/`; the benchmark records the producing revision
+`7a7d7a283ab181d669ae32b013e322f4e2648968`. The preserved YAML records the original
 questions and settings; its historical data paths are not configured for a new
-inference run in this repository. Replotting uses the included score
+inference run in this repository. Replotting uses the included response, score
 and population tables. Recomputing BLIP2 metrics or rerunning evolution also
 requires the original image/embedding/noise archives and inference environment.
 
 [`source_inventory.json`](../data/results/gemma/methods/source_inventory.json)
-records source files and hashes. Its `package_file` paths are
+records source files, archive members and hashes. Its `package_file` paths are
 relative to `data/results/gemma/`; `original_package_file` fields retain earlier
 export paths. These historical paths document provenance and are not required
 at runtime. `manifest.json` contains the input hashes used by the analysis.
