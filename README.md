@@ -4,10 +4,12 @@ A genetic algorithm that optimises the **initial noise** of text-to-image diffus
 images. A population of noise tensors is rendered by a frozen text-to-image model (SDXL by default), every
 image is embedded with BLIP-2, and the fitness of a candidate is its distance to the mean embedding of the
 current population. Tournament selection, crossover and mutation act directly on the noise tensors.
+We also compare VLM ratings with human image ratings and use Gemma ratings as an alternative fitness
+function for the evolutionary algorithm.
 
-This repository contains the method, the code of all experiments, the job databases and candidate tables of
-all analysed runs, and the code of all figures and tables. The run archives (images, embeddings and initial
-noise of the candidates) are on G-Node GIN, in two data repositories:
+This repository contains the evolutionary algorithm, experiment code, job databases, candidate tables and
+figure analyses. The run archives (images, embeddings and initial noise of the candidates) are on
+G-Node GIN, in two data repositories:
 
 * [Evolutionary_Creativity_Enhancement_1](https://gin.g-node.org/yourisinziri/Evolutionary_Creativity_Enhancement_1):
   the runs with population 100 (`example_prompts`, `seed_transfer`, `archive_size`, `crossover_function`,
@@ -61,15 +63,13 @@ plots/                       all generated figures (PDF + SVG) with their tables
 | `operator_ablation` | no crossover / no elitism / no mutation | not in the manuscript | `plots/operator_ablation` |
 | `think_then_generate` | prompt rewriting with Think-Then-Generate, then seed optimisation | Supp. Fig. 10 | `plots/think_then_generate` |
 | `mutation_grid_search` | every candidate mutated once per mutated fraction and strength | Methods (Mutation) | `plots/mutation_grid_search` |
-| `gemma_ratings` | post-hoc Gemma ratings, 114 prompts for creativity/unusualness and 108 for four other dimensions | Gemma ratings across generations (final figure/panel assignment pending) | `plots/gemma_ratings` |
-| `gemma_evolution` | human/VLM image-level agreement and seven Gemma fitness targets | Supp. Fig. 14A-E | `plots/gemma_evolution` |
+| `gemma_ratings` | Gemma ratings of distance-optimised images across six perceptual dimensions | Ratings across generations | `plots/gemma_ratings` |
+| `gemma_evolution` | Gemma 4, LLaVA-OneVision and Qwen2.5-VL compared with human ratings; evolution with seven Gemma fitness targets | Supp. Fig. 14A-E | `plots/gemma_evolution` |
 
-The Gemma contribution includes the image-level human aggregates needed for the VLM comparison, post-hoc
-ratings and saved population metrics for Gemma-guided evolution. It does not include individual human
-participant records or the rest of the human-study analysis. See [the Gemma guide](docs/gemma.md) for
-the precise figure coverage and methods. The mapping below follows the current Supplementary Figure 14
-caption. The separate 114/108-prompt ratings figure is proposed for inclusion in Supplementary Figure 14,
-but its final figure/panel assignment remains pending.
+The VLM analyses compare ratings from three models with human image ratings, evaluate how ratings change
+over generations, and examine image evolution driven by Gemma ratings. Model scores, image-level
+human averages, rating questions and numerical inputs are included in `data/results/gemma/`.
+[VLM evaluation and rating-guided evolution](docs/gemma.md) describes these analyses and their data.
 
 Panels and files:
 
@@ -92,26 +92,24 @@ Panels and files:
 | Supp. Fig. 9A, 9B | `mutation_only/examples_generation_8`, `mutation_only/distance_to_initial_mean` |
 | Supp. Fig. 10A, 10B | `think_then_generate/t2g_supplement_g30` (tests: `t2g_conditions_g30_tests.csv`, `t2g_pairwise_g30.csv`) |
 | Supp. Fig. 12A, 12B | `noise_distribution/example_prompts_noise_hist` (+ `example_prompts_normality.csv`), `example_prompts/noise_pca` |
-| Gemma ratings across generations (assignment pending) | `gemma_ratings/ratings_across_generations` (+ `_tests.csv`, `_pairs.csv`, `_sensitivity.csv`) |
+| Ratings across generations | `gemma_ratings/ratings_across_generations` (+ `_tests.csv`, `_pairs.csv`, `_sensitivity.csv`) |
 | Supp. Fig. 14A-E | `gemma_evolution/evaluation_and_evolution` (+ `human_vlm_correlations.csv`, `prompt_curves.csv`, `target_curves.csv`) |
 
-Supplementary Figure 14 is reproduced by [analysis/gemma_evolution.py](analysis/gemma_evolution.py).
-Its output composite, `plots/gemma_evolution/evaluation_and_evolution.pdf` and `.svg`, uses eight
-lettered panels (A-H); the manuscript groups the same content into five panels (A-E):
+[analysis/gemma_evolution.py](analysis/gemma_evolution.py) writes the VLM comparison and rating-guided
+evolution figure to `plots/gemma_evolution/evaluation_and_evolution.pdf` and `.svg`.
+The generated panels correspond to Supplementary Figure 14 as follows:
 
 | Manuscript panel | Generated panel(s) | Content | Supporting inputs or output tables |
 |---|---|---|---|
-| Supp. Fig. 14A | A | Human-VLM Spearman correlations | `plots/gemma_evolution/human_vlm_correlations.csv` |
+| Supp. Fig. 14A | A | Human-VLM Spearman correlations for Gemma 4, LLaVA-OneVision and Qwen2.5-VL | `plots/gemma_evolution/human_vlm_correlations.csv` |
 | Supp. Fig. 14B | B | Creativity-target fitness across generations | `plots/gemma_evolution/prompt_curves.csv` |
 | Supp. Fig. 14C, left/right | C / D | Creativity-target BLIP2 divergence / diversity | `plots/gemma_evolution/prompt_curves.csv` |
 | Supp. Fig. 14D | E | Best-rated final-population examples for each prompt and seed | `data/results/gemma/examples/` |
 | Supp. Fig. 14E | F-H | Seven-target fitness, divergence and diversity, pooled across prompts within seed | `plots/gemma_evolution/target_curves.csv` |
 
-This is a manuscript-to-output cross-reference, not a relabeling of the generated figures.
-The separate ratings figure is produced by [analysis/gemma_ratings.py](analysis/gemma_ratings.py)
-as `plots/gemma_ratings/ratings_across_generations.pdf` and `.svg`; no manuscript panel number
-is assigned to it here. Numerical definitions, sample SD bands and actual generation-29 endpoints
-remain as documented in [the Gemma guide](docs/gemma.md).
+[analysis/gemma_ratings.py](analysis/gemma_ratings.py) writes the six-dimension generation overview
+to `plots/gemma_ratings/ratings_across_generations.pdf` and `.svg`, with paired generation-0/30
+statistics in the accompanying CSV files.
 
 Statistics: every figure with significance marks writes its tests next to it (`*_tests.csv`, `tests.csv`):
 two-sided Mann-Whitney U tests of generation 0 vs. 30 on all candidates of the runs, Wilcoxon signed-rank
@@ -119,6 +117,29 @@ tests on run means where runs are paired, Holm correction as described in the mo
 The Gemma generation comparison uses **one-sided paired prompt-level** Wilcoxon tests for an increase
 from generation 0 to 30, with Holm correction across six questions. Tests are saved separately; stars
 are not added to the descriptive figure. These are exploratory tests, not human-participant analyses.
+
+### VLM evaluation data
+
+The VLM analyses use three datasets:
+
+| Analysis | Models and images | Included data |
+|---|---|---|
+| Agreement with human ratings | Gemma 4 26B-A4B, LLaVA-OneVision 7B and Qwen2.5-VL 7B; 36 study images and six rating dimensions | `data/results/gemma/benchmark/`: 644 valid image-level pairs, 18 correlations and completeness records for 648 expected responses |
+| Ratings across generations | Gemma 4; distance-optimised images from the PartiPrompts selection, generations 0, 10, 20 and 30; three runs and 60 images per generation | `data/results/gemma/posthoc/`: individual scores and run, prompt and dimension summaries; `statistics/`: paired tests |
+| Rating-guided evolution | Seven Gemma fitness targets; cat, chair and boredom; three seeds and population 100 | `data/results/gemma/evolution/`: population metrics and pooled curves; `examples/`: nine selected original images |
+
+The current generation-rating data cover 114 prompts for creativity and unusualness and 108 for
+suitability, boredom, pleasantness and excitement. The six additional prompts were first evaluated on
+creativity and unusualness. Evaluation of those images on the remaining four dimensions has been
+prepared; the tables, tests and plots will be updated to 114 prompts throughout after the new results
+have been verified. The included results currently contain 475,150 valid scores and 50 invalid responses
+retained as missing values.
+
+The 36-image human-VLM comparison is independent of this extension. Four LLaVA unusualness responses
+were invalid, leaving 32 image pairs for that correlation; the other 17 correlations use 36 pairs each.
+The valid model scores and human image averages are in
+[`benchmark/headline_analysis_units.csv`](data/results/gemma/benchmark/headline_analysis_units.csv).
+The repository includes image-level human averages; individual participant records are not included.
 
 ## Methods of the manuscript in the code
 
@@ -139,6 +160,10 @@ are not added to the descriptive figure. These are exploratory tests, not human-
 | Noise transfer (generations 0, 10, 20, 30 rendered with another prompt) | `experiments/common/variants.py` (`transfer_populations`) |
 | Statistical tests (Mann-Whitney U, Wilcoxon signed-rank, Kolmogorov-Smirnov, Holm) | `analysis/common/statistics.py`, `analysis/parti_prompts.py`, `analysis/noise_distribution.py`, `analysis/think_then_generate.py` |
 | PCA of the noise (Supp. Fig. 12B) | `analysis/example_prompts.py` (`noise_projection`) |
+| VLM questions, model identities and decoding settings for Gemma 4, LLaVA-OneVision and Qwen2.5-VL | `data/results/gemma/methods/study_question_configuration.yaml` |
+| Human-VLM agreement (Spearman correlations of image-level ratings, Supp. Fig. 14A) | `analysis/common/gemma/evolution.py` (`validate_benchmark`) |
+| Post-hoc rating summaries and generation-0/30 tests | `analysis/common/gemma/aggregation.py`, `analysis/common/gemma/statistics.py` |
+| Rating-guided evolution: population metrics and averaging across seeds (Supp. Fig. 14B-E) | `data/results/gemma/evolution/`, `analysis/common/gemma/evolution.py` |
 
 ## Setup
 
@@ -213,12 +238,11 @@ Expensive intermediate data are cached in `plots/*/data/` (e.g. the candidate ta
 PartiPrompts runs, the random CLIP baselines, the noise histograms, the noise PCA); `--recompute` rebuilds
 them from the tables and archives.
 
-### Gemma figures
+### VLM evaluation and rating-guided evolution
 
-The inputs are included in `data/results/gemma/`: post-hoc image ratings, human/VLM image-level pairs,
-population metrics, nine original example images, question wording and source hashes. The two modules
-use the existing analysis dependencies and shared plotting theme. No GPU, model download or cluster
-access is needed to reproduce these figures.
+The VLM comparison, generation-rating overview and evolution curves use the analysis environment above.
+Their saved inputs are in `data/results/gemma/`, so regenerating the figures requires no model inference
+or external run archives. The correlation analysis includes Gemma 4, LLaVA-OneVision and Qwen2.5-VL.
 
 ```bash
 python -m analysis.gemma_ratings --deep --verify-only
@@ -228,6 +252,7 @@ python -m analysis --only gemma_ratings gemma_evolution --preview previews
 
 PDF/SVG figures and recalculated CSV tables are written under `plots/gemma_ratings/` and
 `plots/gemma_evolution/`; PNG previews go to the corresponding subdirectories of `previews/`.
-Use `python -m analysis.gemma_ratings --deep` to also reconstruct the summaries from all individual
-ratings when rendering. [The guide](docs/gemma.md) maps files to panels and explains cohort sizes,
-missing values, generation-29 endpoints and the distinction between SD and SEM.
+Use `python -m analysis.gemma_ratings --deep` to reconstruct the summaries from all individual
+ratings when rendering. [VLM evaluation and rating-guided evolution](docs/gemma.md) gives the model
+identities, question wording, aggregation methods and output files. Evolution curves show mean ± sample
+SD across seeds. The two creativity runs that end at generation 29 retain their actual endpoints.
