@@ -66,11 +66,6 @@ plots/                       all generated figures (PDF + SVG) with their tables
 | `gemma_ratings` | Gemma ratings of distance-optimised images across six perceptual dimensions | Ratings across generations | `plots/gemma_ratings` |
 | `gemma_evolution` | Gemma 4, LLaVA-OneVision and Qwen2.5-VL compared with human ratings; evolution with seven Gemma fitness targets | Supp. Fig. 14A-E | `plots/gemma_evolution` |
 
-The VLM analyses compare ratings from three models with human image ratings, evaluate how ratings change
-over generations, and examine image evolution driven by Gemma ratings. Model responses, image-level
-human averages, rating questions and numerical inputs are included in `data/results/gemma/`.
-[VLM evaluation and rating-guided evolution](docs/gemma.md) describes these analyses and their data.
-
 Panels and files:
 
 | Panel | File (`plots/...`) |
@@ -93,23 +88,11 @@ Panels and files:
 | Supp. Fig. 10A, 10B | `think_then_generate/t2g_supplement_g30` (tests: `t2g_conditions_g30_tests.csv`, `t2g_pairwise_g30.csv`) |
 | Supp. Fig. 12A, 12B | `noise_distribution/example_prompts_noise_hist` (+ `example_prompts_normality.csv`), `example_prompts/noise_pca` |
 | Ratings across generations | `gemma_ratings/ratings_across_generations` (+ `_tests.csv`, `_pairs.csv`, `_sensitivity.csv`) |
-| Supp. Fig. 14A-E | `gemma_evolution/evaluation_and_evolution` (+ `human_vlm_correlations.csv`, `prompt_curves.csv`, `target_curves.csv`) |
-
-[analysis/gemma_evolution.py](analysis/gemma_evolution.py) writes the VLM comparison and rating-guided
-evolution figure to `plots/gemma_evolution/evaluation_and_evolution.pdf` and `.svg`.
-The generated panels correspond to Supplementary Figure 14 as follows:
-
-| Manuscript panel | Generated panel(s) | Content | Supporting inputs or output tables |
-|---|---|---|---|
-| Supp. Fig. 14A | A | Human-VLM Spearman correlations for Gemma 4, LLaVA-OneVision and Qwen2.5-VL | `plots/gemma_evolution/human_vlm_correlations.csv` |
-| Supp. Fig. 14B | B | Creativity-target fitness across generations | `plots/gemma_evolution/prompt_curves.csv` |
-| Supp. Fig. 14C, left/right | C / D | Creativity-target BLIP2 divergence / diversity | `plots/gemma_evolution/prompt_curves.csv` |
-| Supp. Fig. 14D | E | Best-rated final-population examples for each prompt and seed | `data/results/gemma/examples/` |
-| Supp. Fig. 14E | F-H | Seven-target fitness, divergence and diversity, pooled across prompts within seed | `plots/gemma_evolution/target_curves.csv` |
-
-[analysis/gemma_ratings.py](analysis/gemma_ratings.py) writes the six-dimension generation overview
-to `plots/gemma_ratings/ratings_across_generations.pdf` and `.svg`, with paired generation-0/30
-statistics in the accompanying CSV files.
+| Supp. Fig. 14A | `gemma_evolution/evaluation_and_evolution`, panel A (+ `human_vlm_correlations.csv`) |
+| Supp. Fig. 14B | `gemma_evolution/evaluation_and_evolution`, panel B (+ `prompt_curves.csv`) |
+| Supp. Fig. 14C | `gemma_evolution/evaluation_and_evolution`, panels C-D (+ `prompt_curves.csv`) |
+| Supp. Fig. 14D | `gemma_evolution/evaluation_and_evolution`, panel E (images in `data/results/gemma/examples/`) |
+| Supp. Fig. 14E | `gemma_evolution/evaluation_and_evolution`, panels F-H (+ `target_curves.csv`) |
 
 Statistics: every figure with significance marks writes its tests next to it (`*_tests.csv`, `tests.csv`):
 two-sided Mann-Whitney U tests of generation 0 vs. 30 on all candidates of the runs, Wilcoxon signed-rank
@@ -128,18 +111,12 @@ The VLM analyses use three datasets:
 | Ratings across generations | Gemma 4; distance-optimised images from the PartiPrompts selection, generations 0, 10, 20 and 30; three runs and 60 images per generation | `data/results/gemma/posthoc/`: individual scores and run, prompt and dimension summaries; `statistics/`: paired tests |
 | Rating-guided evolution | Seven Gemma fitness targets; cat, chair and boredom; three seeds and population 100 | `data/results/gemma/evolution/`: population metrics and pooled curves; `examples/`: nine selected original images |
 
-The current generation-rating data cover 114 prompts for creativity and unusualness and 108 for
-suitability, boredom, pleasantness and excitement. The six additional prompts were first evaluated on
-creativity and unusualness. Evaluation of those images on the remaining four dimensions has been
-prepared; the tables, tests and plots will be updated to 114 prompts throughout after the new results
-have been verified. The included results currently contain 475,150 valid scores and 50 invalid responses
-retained as missing values.
-
-The 36-image human-VLM comparison is independent of this extension. Four LLaVA unusualness responses
-were invalid, leaving 32 image pairs for that correlation; the other 17 correlations use 36 pairs each.
-The original model outputs and runtime settings are in
-[`benchmark/latest_responses.csv`](data/results/gemma/benchmark/latest_responses.csv).
-The repository includes image-level human averages; individual participant records are not included.
+The benchmark contains the original model responses and image-level human averages. The generation
+ratings include individual scores and their run, prompt and dimension summaries. Sample sizes and valid
+response counts are recorded in the
+[generation summary](data/results/gemma/posthoc/question_generation_summary.csv) and shown in the figure.
+Invalid responses remain missing values. Model settings, rating questions and aggregation methods are
+described in [VLM evaluation and rating-guided evolution](docs/gemma.md).
 
 ## Methods of the manuscript in the code
 
@@ -241,8 +218,8 @@ them from the tables and archives.
 ### VLM evaluation and rating-guided evolution
 
 The VLM comparison, generation-rating overview and evolution curves use the analysis environment above.
-Their saved inputs are in `data/results/gemma/`, so regenerating the figures requires no model inference
-or external run archives. The correlation analysis includes Gemma 4, LLaVA-OneVision and Qwen2.5-VL.
+Their inputs are in `data/results/gemma/`. The correlation analysis includes Gemma 4, LLaVA-OneVision
+and Qwen2.5-VL; the generation-rating and rating-guided evolution analyses use Gemma 4.
 
 ```bash
 python -m analysis.gemma_ratings --deep --verify-only
@@ -253,6 +230,4 @@ python -m analysis --only gemma_ratings gemma_evolution --preview previews
 PDF/SVG figures and recalculated CSV tables are written under `plots/gemma_ratings/` and
 `plots/gemma_evolution/`; PNG previews go to the corresponding subdirectories of `previews/`.
 Use `python -m analysis.gemma_ratings --deep` to reconstruct the summaries from all individual
-ratings when rendering. [VLM evaluation and rating-guided evolution](docs/gemma.md) gives the model
-identities, question wording, aggregation methods and output files. Evolution curves show mean ± sample
-SD across seeds. The two creativity runs that end at generation 29 retain their actual endpoints.
+ratings when rendering. These commands use the included numerical inputs and require no GPU inference.
