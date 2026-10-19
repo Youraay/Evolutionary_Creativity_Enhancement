@@ -6,7 +6,18 @@ image is embedded with BLIP-2, and the fitness of a candidate is its distance to
 current population. Tournament selection, crossover and mutation act directly on the noise tensors.
 
 This repository contains the method, the code of all experiments, the job databases and candidate tables of
-all analysed runs, and the code of all figures and tables.
+all analysed runs, and the code of all figures and tables. The run archives (images, embeddings and initial
+noise of the candidates) are on G-Node GIN, in two data repositories:
+
+* [Evolutionary_Creativity_Enhancement_1](https://gin.g-node.org/yourisinziri/Evolutionary_Creativity_Enhancement_1):
+  the runs with population 100 (`example_prompts`, `seed_transfer`, `archive_size`, `crossover_function`,
+  `fitness_function`, `mutation_only`, `operator_ablation`)
+* [Evolutionary_Creativity_Enhancement_2](https://gin.g-node.org/yourisinziri/Evolutionary_Creativity_Enhancement_2):
+  the runs with population 60 (`parti_prompts`, `model_comparison`, `fitness_embedding`, `tournament_size`,
+  `long_runs`, `think_then_generate`)
+
+To reproduce the figures from them, point the result directories in `.env` to the data repositories (commented
+block in `.env.example`).
 
 ## Repository layout
 
@@ -179,7 +190,10 @@ Two configurations are used:
   rates unless a variant changes them, SDXL with 50 steps, batch size 5, three seeds per variant.
 
 Every run writes `<run>.json` (configuration), `<run>.csv` (one row per candidate and generation with
-lineage, fitness and all metrics) and `<run>.zip` (images, embeddings and noise of every candidate).
+lineage, fitness and all metrics) and `<run>.zip` (images, embeddings and noise of every candidate). The GIN
+repositories above contain these files of all analysed runs; their READMEs describe how the released files
+differ from those written by the code (archives compacted and reduced to selected generations, no absolute
+paths in the configurations).
 
 ## Analysis
 

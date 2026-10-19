@@ -520,7 +520,8 @@ def build(experiment: str, workers: int) -> None:
 def manifest(name: str) -> None:
     """Write ``MANIFEST.sha256`` of a release repository (``sha256sum -c`` format).
 
-    Archives use the digest of their record when the size matches; all other files are hashed.
+    Archives use the digest of their record when the size matches; all other files are hashed. The files of
+    git and git-annex (``.git*``) are left out.
 
     Args:
         name: Release repository.
@@ -533,7 +534,9 @@ def manifest(name: str) -> None:
     for experiment in REPOSITORIES[name]:
         known.update(read_records(experiment, "release"))
     lines = []
-    for path in sorted(p for p in root.rglob("*") if p.is_file() and p.name != MANIFEST):
+    files = (p for p in root.rglob("*") if p.is_file() and p.name != MANIFEST
+             and not p.relative_to(root).parts[0].startswith(".git"))
+    for path in sorted(files):
         relative = str(path.relative_to(root))
         if path.name.endswith(".partial"):
             raise RuntimeError(f"unfinished archive {path}")
