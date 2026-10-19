@@ -4,6 +4,7 @@
     "benchmark/analysis_inputs.json": "145039a852723377e72486a8b25253b68a0b65c500b88e3d53584b66cb430b1c",
     "benchmark/dataset_summary.json": "514c375393ef5f83231301e39482583ce332c233783787dc116b0262fa5a26ef",
     "benchmark/headline_analysis_units.csv": "b47484ed6afe38660b3c1f2cf1b49e42917517d2d11ffcff23b2bec777bd3b63",
+    "benchmark/latest_responses.csv": "948f82a950a92f0676362858656cd90b917d97e114722d7d19a48cc2ac57a7c8",
     "benchmark/metrics.csv": "629a80aaf9865790c9810709a0a8898eb7ee63d0344b013de3bc660a7e8c04bd",
     "benchmark/prediction_completeness.json": "06424f7d9aceea898aa4c5b5354a7178bc26e67f15d2136ecb09465e4406e5e0",
     "evolution/pooled_generation_summary.csv": "ba291cbfb2791c67abcf65d3198a47780cb0ebe4b6dacfb1cae6ff2b02ab53d9",
@@ -30,7 +31,7 @@
     "examples/creativity/chair/seed-2027-g30.JPEG": "156603bbc318e63f8c5814c3b71a3f9f4ccfa84efcb3beace41cb25dc85f6091",
     "methods/fitness_construct_questions.py": "a947700ca429e6e3243dfdc8401eb9bd1e00b0e5564c1f25318f6b0afe1dcf29",
     "methods/metric_definitions.txt": "3c3815e213e1cd29d7f2023806d66ed2df50feeb8b5a0ed830c4e3280f7e1235",
-    "methods/source_inventory.json": "1654ca1a49c9a5f40786f73764c43406587927c1dd4706e289b731df7383c9be",
+    "methods/source_inventory.json": "0c08ef3920d8fab1bd67590d5acf2087503f06138daadc14fa2a9d90ecb18b14",
     "methods/study_question_configuration.yaml": "305251874eb9e7e46bc1353f0965e7375fb5e096e238b05063bb1d0de4d3c8fd"
   }
 }

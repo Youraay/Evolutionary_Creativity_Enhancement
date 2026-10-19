@@ -221,6 +221,22 @@
       "sha256": "a947700ca429e6e3243dfdc8401eb9bd1e00b0e5564c1f25318f6b0afe1dcf29",
       "transformation": "byte-preserved copy",
       "original_package_file": "methods/fitness_construct_questions.py"
+    },
+    {
+      "package_file": "benchmark/latest_responses.csv",
+      "source_file": "results/study-question-results.tar.gz",
+      "source_archive_sha256": "0b43d8d6f9a9c79b09b233b9f51b85b98a133c7a8c385db6b16caf2d21de519b",
+      "source_archive_member": "runs/stimuli-study-questions-en-v1/analysis/latest_responses.csv",
+      "sha256": "948f82a950a92f0676362858656cd90b917d97e114722d7d19a48cc2ac57a7c8",
+      "bytes": 1157539,
+      "transformation": "byte-preserved archive member; includes all three benchmark models and four invalid responses",
+      "producing_evaluator": {
+        "repository": "https://github.com/pdaech/vlm-creativity",
+        "git_commit": "7a7d7a283ab181d669ae32b013e322f4e2648968",
+        "git_dirty": false,
+        "source_file_count": 18,
+        "source_sha256": "dc2c184e88b3c30b23432b41e2c4911350a22347fefaaff00a72c5ef75e3b921"
+      }
     }
   ],
   "datasets_are_distinct": true,
