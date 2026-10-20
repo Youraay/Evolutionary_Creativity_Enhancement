@@ -1,4 +1,4 @@
-"""Plot building blocks shared by the analyses: mean +- SEM curves, violins and image grids."""
+"""Plot building blocks shared by the analyses: mean +- SD curves, violins and image grids."""
 from pathlib import Path
 
 import matplotlib as mpl
@@ -30,25 +30,22 @@ METRIC_LABELS = {
 }
 
 
-def run_sem(df: pd.DataFrame, col: str) -> pd.DataFrame:
-    """Mean and SEM per generation over runs (every run is first averaged over its candidates).
+def generation_stats(df: pd.DataFrame, col: str) -> pd.DataFrame:
+    """Mean and SD per generation over all candidates (the runs pooled).
 
     Args:
-        df: Candidates with the columns prompt, seed, generation and ``col``.
+        df: Candidates with the columns generation and ``col``.
         col: Metric.
 
     Returns:
-        Table indexed by generation with mean, std, count and sem.
+        Table indexed by generation with mean, std and count.
     """
-    per_run = df.groupby(["prompt", "seed", "generation"])[col].mean()
-    stats = per_run.groupby("generation").agg(["mean", "std", "count"])
-    stats["sem"] = stats["std"] / np.sqrt(stats["count"])
-    return stats
+    return df.groupby("generation")[col].agg(["mean", "std", "count"])
 
 
 def curve(ax: plt.Axes, df: pd.DataFrame, col: str, color: str, lw: float = 2, label: str | None = None,
           band: bool = True, band_alpha: float = BAND_ALPHA) -> pd.DataFrame:
-    """Draw mean +- SEM over runs (prompt x seed), the independent units.
+    """Draw mean +- SD over all candidates of a generation (the runs pooled).
 
     Args:
         ax: Target axes.
@@ -57,22 +54,22 @@ def curve(ax: plt.Axes, df: pd.DataFrame, col: str, color: str, lw: float = 2, l
         color: Line and band colour.
         lw: Line width.
         label: Legend label.
-        band: Whether to draw the SEM band.
+        band: Whether to draw the SD band.
         band_alpha: Opacity of the band.
 
     Returns:
-        The statistics of :func:`run_sem`.
+        The statistics of :func:`generation_stats`.
     """
-    stats = run_sem(df, col)
+    stats = generation_stats(df, col)
     ax.plot(stats.index, stats["mean"], color=color, linewidth=lw, label=label, zorder=3)
     if band:
-        ax.fill_between(stats.index, stats["mean"] - stats["sem"], stats["mean"] + stats["sem"], color=color,
+        ax.fill_between(stats.index, stats["mean"] - stats["std"], stats["mean"] + stats["std"], color=color,
                         alpha=band_alpha, linewidth=0)
     return stats
 
 
 def prompt_curves(ax: plt.Axes, df: pd.DataFrame, col: str, lw: float = 2) -> None:
-    """Draw one mean +- SEM curve per prompt of :data:`PROMPTS` in its paper colour.
+    """Draw one mean +- SD curve per prompt of :data:`PROMPTS` in its paper colour.
 
     Args:
         ax: Target axes.

@@ -8,7 +8,7 @@ import seaborn as sns
 from analysis.common.clip_scores import extract_generation
 from analysis.common.runs import read_run
 from analysis.common.style import (BOTTOM_MARGIN, ERRORBAR, FIXED_COL_WIDTH, LABEL_SIZE, LEFT_MARGIN, RIGHT_MARGIN,
-                                   TICK_SIZE, TITLE_SIZE, TOP_MARGIN, save_figure, seed_means, sem)
+                                   TICK_SIZE, TITLE_SIZE, TOP_MARGIN, save_figure)
 
 
 def _violins(ax: plt.Axes, df: pd.DataFrame, color: str) -> None:
@@ -58,7 +58,7 @@ def render_comparison_overview(path: Path, configs: list[dict], names: list[str]
                                yscale_viol=(0.0, 0.4), ylims_viol=(0.0, 0.4), yscale_div=(0.1, 0.3),
                                ylims_div=(0.1, 0.25), yscale_clip=(0.2, 0.3), ylims_clip=(0.2, 0.3)) -> None:
     """One row per variant: distance to the initial generation (violins of the first seed), diversity and
-    CLIP score (mean +- SEM over the seeds, with the random baseline of "a cat").
+    CLIP score (mean +- SD over all candidates, the seeds pooled, with the random baseline of "a cat").
 
     Args:
         path: Output path without extension.
@@ -98,7 +98,7 @@ def render_comparison_overview(path: Path, configs: list[dict], names: list[str]
         data = pd.concat(runs, ignore_index=True)
         ax_div = axes[row, 1]
         if "diversity_score" in data.columns:
-            sns.lineplot(data=seed_means(data, "diversity_score"), x="generation", y="diversity_score", ax=ax_div,
+            sns.lineplot(data=data, x="generation", y="diversity_score", ax=ax_div,
                          errorbar=ERRORBAR, color=color, linewidth=2)
             ax_div.set_yticks(yscale_div)
             ax_div.set_ylim(ylims_div)
@@ -110,12 +110,12 @@ def render_comparison_overview(path: Path, configs: list[dict], names: list[str]
         if baseline_clip_path and Path(baseline_clip_path).exists():
             baseline = pd.read_csv(baseline_clip_path)
             if "baseline_clip_score" in baseline.columns:
-                mean, error = baseline["baseline_clip_score"].mean(), sem(baseline["baseline_clip_score"])
+                mean, error = baseline["baseline_clip_score"].mean(), baseline["baseline_clip_score"].std()
                 ax_clip.axhline(mean, color=color, linestyle="--", linewidth=1)
                 ax_clip.fill_between([0, 30], mean - error, mean + error, color=color, alpha=0.15)
         clip = _clip_scores(Path(clip_scores_dir), name, variant)
         if clip is not None:
-            sns.lineplot(data=seed_means(clip, "clip_score"), x="generation", y="clip_score", ax=ax_clip,
+            sns.lineplot(data=clip, x="generation", y="clip_score", ax=ax_clip,
                          errorbar=ERRORBAR, color=color, linewidth=2)
         ax_clip.set_yticks(yscale_clip)
         ax_clip.set_ylim(ylims_clip)

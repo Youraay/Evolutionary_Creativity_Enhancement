@@ -14,11 +14,11 @@ Metrics:
     fidelity    CLIP score against the original prompt, random baseline as for the long runs
 
 Output in ``plots/think_then_generate/``:
-    t2g_<metric>_g30 / _g100       one panel per prompt, original vs. reasoning, mean +- SEM (3 seeds)
+    t2g_<metric>_g30 / _g100       one panel per prompt, original vs. reasoning, mean +- SD (3 seeds pooled)
     t2g_conditions_g30 / _g100     the four conditions side by side (rows = metrics, columns = prompts)
     t2g_conditions_g*_tests.csv    tests generation 0 vs. 30/100 without and with reasoning (stars)
     t2g_supplement_g30             Supplementary Fig. 10: four conditions and the course over 30 generations
-                                   (mean +- SEM over the 3 runs)
+                                   (mean +- SD over all images of the 3 runs)
     t2g_pairwise_g30 / _g100       pairwise tests of all four conditions (colour = effect size, text = stars);
                                    table in t2g_pairwise_g*.csv
 
@@ -139,7 +139,7 @@ def load(recompute: bool = False, max_gen: int = 100) -> tuple[pd.DataFrame, pd.
 
 
 def render_trajectories(lr: pd.DataFrame, t2g: pd.DataFrame, baseline: pd.DataFrame, max_gen: int) -> None:
-    """One panel per prompt: original prompt vs. reasoning, mean +- SEM over the seeds, up to ``max_gen``.
+    """One panel per prompt: original prompt vs. reasoning, mean +- SD (seeds pooled), up to ``max_gen``.
 
     Args:
         lr: Long runs.
@@ -171,7 +171,7 @@ def render_trajectories(lr: pd.DataFrame, t2g: pd.DataFrame, baseline: pd.DataFr
 
 
 def condition_summary(lr: pd.DataFrame, t2g: pd.DataFrame, gen: int) -> pd.DataFrame:
-    """Mean, SD, count and SEM over the seeds (run means) for the four conditions.
+    """Mean, SD and count over all candidates (the 3 seeds pooled) for the four conditions.
 
     Args:
         lr: Long runs.
@@ -185,11 +185,8 @@ def condition_summary(lr: pd.DataFrame, t2g: pd.DataFrame, gen: int) -> pd.DataF
     for condition, df, g in ((CONDITIONS[0], lr, 0), (CONDITIONS[1], lr, gen), (CONDITIONS[2], t2g, 0),
                              (CONDITIONS[3], t2g, gen)):
         subset = df[df["generation"] == g]
-        per_run = subset.groupby(["prompt", "seed"])[["divergence", "diversity", "fidelity"]].mean()
-        stats = per_run.groupby("prompt").agg(["mean", "std", "count"])
+        stats = subset.groupby("prompt")[["divergence", "diversity", "fidelity"]].agg(["mean", "std", "count"])
         stats.columns = [f"{m}_{a}" for m, a in stats.columns]
-        for metric in ("divergence", "diversity", "fidelity"):
-            stats[f"{metric}_sem"] = stats[f"{metric}_std"] / np.sqrt(stats[f"{metric}_count"])
         parts.append(stats.reset_index().assign(condition=condition.replace("\n", " "), generation=g))
     return pd.concat(parts, ignore_index=True)
 
@@ -365,7 +362,7 @@ def render_pairwise(lr: pd.DataFrame, t2g: pd.DataFrame, gen: int) -> pd.DataFra
 
 
 def render_conditions(lr: pd.DataFrame, t2g: pd.DataFrame, baseline: pd.DataFrame, gen: int) -> None:
-    """Four conditions per prompt: point = mean, error bar = SEM over the 3 seeds (run means).
+    """Four conditions per prompt: point = mean, error bar = SD over all candidates (the 3 seeds pooled).
 
     Arrows show the seed optimisation from generation 0 to ``gen``; stars give the Holm-adjusted
     Mann-Whitney U tests of :func:`condition_tests`.
@@ -390,16 +387,16 @@ def render_conditions(lr: pd.DataFrame, t2g: pd.DataFrame, baseline: pd.DataFram
         colors = [ORIG_COLOR[prompt], ORIG_COLOR[prompt], T2G_COLOR[prompt], T2G_COLOR[prompt]]
         for r, key in enumerate(keys):
             ax = axes[r, c]
-            mean, sem = s[f"{key}_mean"].to_numpy(), s[f"{key}_sem"].to_numpy()
+            mean, sd = s[f"{key}_mean"].to_numpy(), s[f"{key}_std"].to_numpy()
             for i, comparison in zip((0, 2), COMPARISONS):
                 ax.annotate("", xy=(x[i + 1], mean[i + 1]), xytext=(x[i], mean[i]),
                             arrowprops=dict(arrowstyle="-|>", color=colors[i], lw=1, shrinkA=4, shrinkB=4,
                                             mutation_scale=8))
-                ax.annotate(significance[(key, prompt, comparison)], xy=(x[i] + 0.5, max(mean[i:i + 2] + sem[i:i + 2])),
+                ax.annotate(significance[(key, prompt, comparison)], xy=(x[i] + 0.5, max(mean[i:i + 2] + sd[i:i + 2])),
                             xytext=(0, 3), textcoords="offset points", ha="center", va="bottom",
                             fontsize=TICK_SIZE - 1, color="#525252")
             for i in range(4):
-                ax.errorbar(x[i], mean[i], yerr=sem[i], fmt="o", color=colors[i], markersize=5, capsize=2.5,
+                ax.errorbar(x[i], mean[i], yerr=sd[i], fmt="o", color=colors[i], markersize=5, capsize=2.5,
                             elinewidth=1, markerfacecolor=colors[i] if i % 2 else "white", markeredgewidth=1.2,
                             zorder=3)
             if key == "fidelity":
@@ -432,9 +429,9 @@ SUPPLEMENT_LABELS = ["original prompt - initial", "original prompt - optimized",
 def render_supplement(lr: pd.DataFrame, t2g: pd.DataFrame, gen: int = 30) -> None:
     """Supplementary Fig. 10: (A) the four conditions, (B) the course over the generations.
 
-    (A) point = mean, error bar = SEM over the 3 runs (every run first averaged over its 60 images);
-    arrows show the seed optimisation from generation 0 to ``gen``. (B) original prompt (dashed) and reasoning
-    (solid), mean +- SEM over the 3 runs. Rows: divergence (distance to the mean of generation 0 of the original
+    (A) point = mean, error bar = SD over all images of the 3 runs; arrows show the seed optimisation from
+    generation 0 to ``gen``. (B) original prompt (dashed) and reasoning (solid), mean +- SD over all images of a
+    generation (the 3 runs pooled). Rows: divergence (distance to the mean of generation 0 of the original
     prompt) and diversity within the generation.
 
     Args:
@@ -457,16 +454,15 @@ def render_supplement(lr: pd.DataFrame, t2g: pd.DataFrame, gen: int = 30) -> Non
         colors = [ORIG_COLOR[prompt], ORIG_COLOR[prompt], T2G_COLOR[prompt], T2G_COLOR[prompt]]
         for r, key in enumerate(keys):
             ax = axes_a[r, c]
-            run_means = [data[condition].loc[data[condition]["prompt"] == prompt].groupby("seed")[key].mean()
-                         for condition in CONDITIONS]
-            mean = np.array([v.mean() for v in run_means])
-            sem = np.array([v.std(ddof=1) / np.sqrt(len(v)) for v in run_means])
+            values = [data[condition].loc[data[condition]["prompt"] == prompt, key] for condition in CONDITIONS]
+            mean = np.array([v.mean() for v in values])
+            sd = np.array([v.std(ddof=1) for v in values])
             for i in (0, 2):
                 ax.annotate("", xy=(x[i + 1], mean[i + 1]), xytext=(x[i], mean[i]),
                             arrowprops=dict(arrowstyle="-|>", color=colors[i], lw=1, shrinkA=4, shrinkB=4,
                                             mutation_scale=8))
             for i in range(len(CONDITIONS)):
-                ax.errorbar(x[i], mean[i], yerr=sem[i], fmt="o", color=colors[i], markersize=5, capsize=2.5,
+                ax.errorbar(x[i], mean[i], yerr=sd[i], fmt="o", color=colors[i], markersize=5, capsize=2.5,
                             elinewidth=1, markerfacecolor=colors[i] if i % 2 else "white", markeredgewidth=1.2,
                             zorder=3)
             ax.set_xlim(-0.5, len(CONDITIONS) - 0.5)

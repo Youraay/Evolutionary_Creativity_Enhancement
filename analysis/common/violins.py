@@ -3,7 +3,7 @@
 ``render_pooled_violins``: one panel per prompt or variant, all runs pooled, with the Mann-Whitney U test of the
 first vs. the last generation as bracket (Fig. 2C, Supplementary Fig. 9B).
 ``render_run_violins``: one row per variant, one panel per run plus the diversity within the generation
-(mean +- SEM over the runs) (Supplementary Figs. 4, 6, 7).
+(mean +- SD over all candidates, the runs pooled) (Supplementary Figs. 4, 6, 7).
 """
 from pathlib import Path
 
@@ -15,7 +15,7 @@ import seaborn as sns
 from analysis.common.runs import read_run
 from analysis.common.statistics import generation_test, stars
 from analysis.common.style import (BOTTOM_MARGIN, ERRORBAR, FIXED_COL_WIDTH, LABEL_SIZE, LEFT_MARGIN, RIGHT_MARGIN,
-                                   TICK_SIZE, TITLE_SIZE, TOP_MARGIN, save_figure, seed_means)
+                                   TICK_SIZE, TITLE_SIZE, TOP_MARGIN, save_figure)
 
 GENERATIONS = [0, 10, 20, 30]
 DISTANCE_LABEL = "distance to mean of\ninitial generation [a.u.]"
@@ -107,7 +107,7 @@ def render_pooled_violins(path: Path, panels: list[dict], metric: str = "global_
 
 def render_run_violins(path: Path, rows: list[dict], color: str = "#000000", ylims=(0.0, 0.3), yticks=(0.0, 0.3),
                        diversity_ylims=(0.1, 0.25), diversity_yticks=(0.1, 0.25)) -> None:
-    """One row per variant: violins of every run and the diversity within the generation (mean +- SEM).
+    """One row per variant: violins of every run and the diversity within the generation (mean +- SD).
 
     Args:
         path: Output path without extension.
@@ -143,7 +143,7 @@ def render_run_violins(path: Path, rows: list[dict], color: str = "#000000", yli
             axes[c].set_axis_off()
         ax = axes[-1]
         data = pd.concat(runs, ignore_index=True)
-        sns.lineplot(data=seed_means(data, "diversity_score"), x="generation", y="diversity_score", ax=ax,
+        sns.lineplot(data=data, x="generation", y="diversity_score", ax=ax,
                      errorbar=ERRORBAR, color=color, linewidth=1.5)
         ax.set_xlim(0, 30)
         ax.set_xticks([0, 10, 20, 30])

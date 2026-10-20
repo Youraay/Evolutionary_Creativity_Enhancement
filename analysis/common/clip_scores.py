@@ -8,7 +8,7 @@ import pandas as pd
 import seaborn as sns
 
 from analysis.common.style import (BOTTOM_MARGIN, ERRORBAR, FIXED_COL_WIDTH, LABEL_SIZE, LEFT_MARGIN, RIGHT_MARGIN,
-                                   TICK_SIZE, TITLE_SIZE, TOP_MARGIN, save_figure, seed_means, sem)
+                                   TICK_SIZE, TITLE_SIZE, TOP_MARGIN, save_figure)
 
 
 def extract_generation(image_path: str) -> float:
@@ -27,7 +27,7 @@ def extract_generation(image_path: str) -> float:
 def render_clip_scores(path: Path, clip_scores_dir: Path, colors: list[str], names: list[str], ncols: int = 3,
                        nrows: int = 2, yscale=(0.4, 0.5, 0.6, 0.7, 0.8), ylims=(0.4, 0.8),
                        positions=((0, 0), (1, 0), (0, 1), (1, 1), (0, 2), (1, 2))) -> None:
-    """One panel per prompt: CLIP score (mean +- SEM over the 3 seeds) and random baseline (mean +- SEM).
+    """One panel per prompt: CLIP score (mean +- SD over all images of the 3 seeds) and random baseline (mean +- SD).
 
     Reads ``scores_<prompt>_seed_<1-3>.csv`` and ``baseline_scores_<prompt>.csv`` from ``clip_scores_dir``.
 
@@ -60,13 +60,13 @@ def render_clip_scores(path: Path, clip_scores_dir: Path, colors: list[str], nam
                 frame["Seed"] = seed
                 frames.append(frame)
         if frames:
-            sns.lineplot(data=seed_means(pd.concat(frames, ignore_index=True), "clip_score"), x="generation",
+            sns.lineplot(data=pd.concat(frames, ignore_index=True), x="generation",
                          y="clip_score", ax=ax, errorbar=ERRORBAR, color=colors[i], linewidth=2)
 
         baseline_path = base_dir / f"baseline_scores_{suffix}.csv"
         if baseline_path.exists():
             baseline = pd.read_csv(baseline_path)["baseline_clip_score"]
-            mean, error = baseline.mean(), sem(baseline)
+            mean, error = baseline.mean(), baseline.std()
             ax.axhline(mean, color=colors[i], linestyle="--", linewidth=2)
             ax.fill_between([0, 30], mean - error, mean + error, color=colors[i], alpha=0.15)
 

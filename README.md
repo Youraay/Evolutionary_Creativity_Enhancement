@@ -200,8 +200,9 @@ python -m analysis.pca_parti_prompts compute   # PCA projections of the PartiPro
 python -m analysis.pca_parti_prompts plot
 ```
 
-Error bands are the standard error of the mean over runs (every run is first averaged over its
-candidates), except `gemma_evolution`, which retains **sample standard deviation** bands across seeds.
+Error bands and error bars are standard deviations: over all candidates of a generation with the runs pooled
+(the PartiPrompts class trajectories: over the run means of the three seeds; `gemma_evolution`: over the
+seeds), as in the original figures.
 Expensive intermediate data are cached in `plots/*/data/` (e.g. the candidate table of all
 PartiPrompts runs, the random CLIP baselines, the noise histograms, the noise PCA); `--recompute` rebuilds
 them from the tables and archives.

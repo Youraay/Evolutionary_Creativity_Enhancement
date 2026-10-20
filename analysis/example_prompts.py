@@ -5,7 +5,7 @@ Output (``plots/example_prompts/``):
     distance_to_current_mean_a_cat     Fig. 1E: distance to the mean of the current generation ("a cat")
     distance_to_initial_mean           Fig. 2C: distance to the mean of generation 0, generations 0/10/20/30,
                                        the three runs pooled, bracket = Mann-Whitney U test of generation 0 vs. 30
-    diversity                          Fig. 2F: diversity within the generation, mean +- SEM over the runs
+    diversity                          Fig. 2F: diversity within the generation, mean +- SD (runs pooled)
     clip_scores                        Supplementary Fig. 5A: CLIP score with the random baseline (100 images of
                                        the other prompts)
     images_<prompt>_detail, _final     Supplementary Fig. 1A-C: images of generations 0/15/30 of one run and of

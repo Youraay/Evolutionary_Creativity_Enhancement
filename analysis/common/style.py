@@ -8,7 +8,6 @@ from pathlib import Path
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 import seaborn as sns
 
 from analysis.common.paths import PLOTS_DIR
@@ -54,8 +53,8 @@ LEGEND_SIZE = 10
 ANNOTATE_SIZE = 9
 MAX_Y_TICKS = 5
 
-ERRORBAR = "se"
-"""Error bands are the standard error of the mean over runs (seeds), see :func:`seed_means`."""
+ERRORBAR = "sd"
+"""Error bands are the standard deviation over all candidates of a generation, the runs pooled."""
 
 PREVIEW_DIR: Path | None = None
 """If set, :func:`save_figure` also writes a PNG preview into this directory."""
@@ -82,34 +81,6 @@ def reset_style(thin_axes: bool = True) -> None:
     if thin_axes:
         mpl.rcParams["axes.linewidth"] = 0.5
     np.random.seed(0)
-
-
-def seed_means(df: pd.DataFrame, y: str, keys=("generation",), seed_col: str = "Seed") -> pd.DataFrame:
-    """Average all candidates per run (seed) and key, so that runs become the units of the error bands.
-
-    Args:
-        df: One row per candidate.
-        y: Column to average.
-        keys: Grouping columns besides the seed, e.g. the generation.
-        seed_col: Column identifying the run.
-
-    Returns:
-        One row per key and seed with the mean of ``y``.
-    """
-    return df.groupby(list(keys) + [seed_col], as_index=False)[y].mean()
-
-
-def sem(values) -> float:
-    """Standard error of the mean with ``ddof=1``.
-
-    Args:
-        values: Sample.
-
-    Returns:
-        ``std / sqrt(n)``.
-    """
-    values = np.asarray(values, dtype=float)
-    return values.std(ddof=1) / np.sqrt(len(values))
 
 
 def save_figure(fig: plt.Figure, path: Path, redraw: bool = False) -> None:

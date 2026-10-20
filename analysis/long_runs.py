@@ -3,11 +3,11 @@
 Output (``plots/long_runs/``):
 
     long_run_metrics               Supplementary Fig. 1D (bottom): fitness, divergence and diversity over 300
-                                   generations, all prompts in one panel (mean +- SEM over the three runs)
+                                   generations, all prompts in one panel (mean +- SD, the three runs pooled)
     long_run_<metric>              fitness / divergence / diversity / fidelity, one panel per prompt
     long_run_examples_<prompt>     example images of generations 0 / 50 / 100 / 200 / 300 (random candidates of
                                    the generation with a fixed random seed, not a selection)
-    data/long_run_mean_sem.csv     the curves as a table
+    data/long_run_mean_sd.csv      the curves as a table
 
 Divergence = distance to the mean of generation 0 in BLIP-2 space, diversity = diversity within the generation
 (BLIP-2), fitness = novelty in BLIP-2 space, fidelity = CLIP score with the random baseline of 100 images of
@@ -25,7 +25,7 @@ from matplotlib.lines import Line2D
 
 from analysis.common.paths import PLOTS_DIR
 from analysis.common.plotting import (INK_GREY, METRIC_LABELS, PROMPTS, SEED_NAMES, SEED_ORDER, curve, image_grid,
-                                      prompt_curves, prompt_legend_handles, run_sem, set_ticks)
+                                      prompt_curves, prompt_legend_handles, set_ticks)
 from analysis.common.results import load_embedding_experiment, load_images, random_candidates, random_clip_baseline
 from analysis.common.style import (BOTTOM_MARGIN, COLOR_MAP, FIXED_COL_WIDTH, LABEL_SIZE, LEFT_MARGIN, RIGHT_MARGIN,
                                    TICK_SIZE, TITLE_SIZE, TOP_MARGIN, save_figure, set_preview_dir)
@@ -79,7 +79,7 @@ def render_metrics(data: pd.DataFrame) -> None:
 
 
 def render_long_run() -> None:
-    """Curves of all metrics over 300 generations, a mean +- SEM table and example images."""
+    """Curves of all metrics over 300 generations, a mean +- SD table and example images."""
     data, runs = load_embedding_experiment("long_runs")
     render_metrics(data)
     baseline = long_run_baseline(data, runs)
@@ -93,8 +93,7 @@ def render_long_run() -> None:
             if key == "fidelity":
                 b = baseline.loc[baseline["prompt"] == prompt, "baseline_clip_score"]
                 ax.axhline(b.mean(), color=COLOR_MAP[prompt], linestyle="--", linewidth=2)
-                sem = b.std() / np.sqrt(len(b))          # SEM over the 100 random images
-                ax.fill_between([0, n_gen], b.mean() - sem, b.mean() + sem, color=COLOR_MAP[prompt], alpha=0.15,
+                ax.fill_between([0, n_gen], b.mean() - b.std(), b.mean() + b.std(), color=COLOR_MAP[prompt], alpha=0.15,
                                 linewidth=0)
             ax.set_title(prompt, fontsize=TITLE_SIZE, fontweight="bold", pad=10)
             set_ticks(ax, [0, n_gen // 2, n_gen])
@@ -106,14 +105,9 @@ def render_long_run() -> None:
                             loc="center right", fontsize=TICK_SIZE - 1, frameon=False, handlelength=1.8)
         save_figure(fig, OUT_DIR / f"long_run_{key}")
 
-    columns = [c for c, _ in LONG_RUN_METRICS.values()]
-    summary = pd.concat([run_sem(data[data["prompt"] == p], columns[0])[["mean", "sem", "count"]]
-                         .add_prefix(f"{columns[0]}_").assign(prompt=p) for p in PROMPTS]).reset_index()
-    for col in columns[1:]:
-        part = pd.concat([run_sem(data[data["prompt"] == p], col)[["mean", "sem"]].add_prefix(f"{col}_")
-                          .assign(prompt=p) for p in PROMPTS]).reset_index()
-        summary = summary.merge(part, on=["prompt", "generation"])
-    summary.to_csv(OUT_DIR / "data" / "long_run_mean_sem.csv", index=False)
+    summary = data.groupby(["prompt", "generation"])[[c for c, _ in LONG_RUN_METRICS.values()]].agg(["mean", "std"])
+    summary.columns = [f"{c}_{s}" for c, s in summary.columns]
+    summary.reset_index().to_csv(OUT_DIR / "data" / "long_run_mean_sd.csv", index=False)
 
     gens = [0, 50, 100, 200, 300]
     rng = np.random.default_rng(0)

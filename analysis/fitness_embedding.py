@@ -7,7 +7,7 @@ Output (``plots/fitness_embedding/``):
     embedding_<metric>_curves      course per fitness embedding (BLIP-2 metrics) in one axes;
                                    ``_panels``: one panel per fitness embedding
 
-Curves and bands: mean +- SEM over the 3 prompts x 3 seeds.
+Curves and bands: mean +- SD over all candidates of the 3 prompts x 3 seeds.
 
     python -m analysis.fitness_embedding
 """
@@ -98,7 +98,7 @@ def render_embedding_heatmap(data: pd.DataFrame) -> None:
 
 
 def render_embedding() -> None:
-    """Heat map and BLIP-2 curves per fitness embedding (mean +- SEM over 3 prompts x 3 seeds)."""
+    """Heat map and BLIP-2 curves per fitness embedding (mean +- SD over all candidates of 3 prompts x 3 seeds)."""
     data, _ = load_embedding_experiment("fitness_embedding")
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     render_embedding_heatmap(data)
@@ -109,7 +109,7 @@ def render_embedding() -> None:
             stats = curve(ax, data[data["variant"] == f"fitness_{embedding}"], key, EMBEDDING_COLORS[embedding],
                           lw=1.5, label=label)
             summary.append(stats.reset_index().assign(fitness_embedding=label))
-        pd.concat(summary).to_csv(OUT_DIR / f"embedding_{key}_curves_sem.csv", index=False)
+        pd.concat(summary).to_csv(OUT_DIR / f"embedding_{key}_curves_sd.csv", index=False)
         set_ticks(ax, [0, 15, 30])
         ax.set_xlabel("Generation", fontsize=LABEL_SIZE)
         ax.set_ylabel(EMBEDDING_YLABELS[key], fontsize=LABEL_SIZE)

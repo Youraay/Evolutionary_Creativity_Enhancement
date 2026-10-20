@@ -12,7 +12,7 @@ from analysis.common.results import load_images
 from analysis.common.runs import read_run
 from analysis.common.statistics import generation_test, stars
 from analysis.common.style import (BOTTOM_MARGIN, ERRORBAR, FIXED_COL_WIDTH, LABEL_SIZE, LEFT_MARGIN, RIGHT_MARGIN,
-                                   TICK_SIZE, TITLE_SIZE, TOP_MARGIN, save_figure, seed_means)
+                                   TICK_SIZE, TITLE_SIZE, TOP_MARGIN, save_figure)
 
 GENERATIONS = [0, 10, 20, 30]
 """Generations of the source runs that were rendered with the target prompt."""
@@ -47,7 +47,7 @@ def transfer_tables(configs: list[dict], metric: str) -> tuple[pd.DataFrame, pd.
 
 def render_transfer_curves(path: Path, configs: list[dict], metric: str, ylabel: str, title: str, yticks=(0.0, 0.2),
                            ylims=(0.0, 0.2)) -> pd.DataFrame:
-    """Transfer run vs. run optimised for the target prompt: mean +- SEM over the runs at generations 0-30.
+    """Transfer run vs. run optimised for the target prompt: mean +- SD over all candidates (runs pooled).
 
     The stars give the Mann-Whitney U test of generation 0 vs. 30 (all candidates of the runs pooled) for the
     transfer (colour of the source prompt) and the direct optimisation (colour of the target prompt).
@@ -70,7 +70,7 @@ def render_transfer_curves(path: Path, configs: list[dict], metric: str, ylabel:
     fig, ax = plt.subplots(figsize=(FIXED_COL_WIDTH * 1.4 + LEFT_MARGIN + RIGHT_MARGIN,
                                     FIXED_COL_WIDTH * 0.9 + TOP_MARGIN + BOTTOM_MARGIN), layout="constrained")
     for df, color in ((direct, target_color), (transfer, source_color)):
-        sns.lineplot(data=seed_means(df, metric), x="generation", y=metric, ax=ax, errorbar=ERRORBAR, color=color,
+        sns.lineplot(data=df, x="generation", y=metric, ax=ax, errorbar=ERRORBAR, color=color,
                      linewidth=2)
     tests = []
     for kind, df in (("transfer", transfer), ("direct", direct)):

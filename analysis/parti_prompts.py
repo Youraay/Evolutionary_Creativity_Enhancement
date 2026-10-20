@@ -10,10 +10,11 @@ Output in ``plots/parti_prompts/``:
     *_by_category            the same per PartiPrompts category
     *_split                  variant: generation 0 on the left, generation 30 on the right
     <metric>_trajectories_by_challenge / _by_category
-                             supplement: one panel per class, one curve per prompt (mean +- SEM over the
+                             supplement: one panel per class, one curve per prompt (mean +- SD over the
                              seeds); the legend is a separate figure ``trajectories_by_<group>_legend``
 
-Curves: mean +- SEM over runs (every run first averaged over its 60 candidates). One point of a box plot
+Curves: mean +- SD; pooled fidelity over all candidates, class trajectories over the seeds (every run first
+averaged over its 60 candidates). One point of a box plot
 is one prompt (mean over 3 seeds and all candidates of the generation). Test: Wilcoxon signed-rank,
 generation 0 vs. 30, paired over the prompts of a class.
 
@@ -178,7 +179,7 @@ def stars(p: float) -> str:
 
 
 def prompt_trajectories(candidates: pd.DataFrame, metric: str, col: str) -> pd.DataFrame:
-    """Mean and SEM over the seeds per prompt and generation (every run first averaged over its candidates).
+    """Mean and SD over the seeds per prompt and generation (every run first averaged over its candidates).
 
     Args:
         candidates: Candidates with the class column ``col``.
@@ -186,12 +187,10 @@ def prompt_trajectories(candidates: pd.DataFrame, metric: str, col: str) -> pd.D
         col: Class column.
 
     Returns:
-        Table with class, prompt, generation, mean, std, count and sem.
+        Table with class, prompt, generation, mean, std and count.
     """
     per_run = candidates.groupby([col, "prompt", "seed", "generation"])[metric].mean()
-    stats = per_run.groupby([col, "prompt", "generation"]).agg(["mean", "std", "count"]).reset_index()
-    stats["sem"] = stats["std"] / np.sqrt(stats["count"])
-    return stats
+    return per_run.groupby([col, "prompt", "generation"]).agg(["mean", "std", "count"]).reset_index()
 
 
 def prompt_colors(df: pd.DataFrame, col: str, order: list[str]) -> dict[str, str]:
@@ -222,8 +221,7 @@ def render_fidelity_pooled(candidates: pd.DataFrame, baseline: pd.DataFrame,
                            yscale=(0.2, 0.4, 0.6, 0.8, 1.0), ylims=(0.2, 1.0)) -> None:
     """Fidelity of all prompts pooled (as Supp. Fig. 4).
 
-    Data: mean +- SEM over all runs (prompts x seeds). Baseline: mean +- SEM over the prompts (per prompt
-    the mean of its 100 random images).
+    Data: mean +- SD over all candidates. Baseline: mean +- SD over all random images.
 
     Args:
         candidates: All candidates.
@@ -235,16 +233,14 @@ def render_fidelity_pooled(candidates: pd.DataFrame, baseline: pd.DataFrame,
     total_h = FIXED_COL_WIDTH * 0.7 + TOP_MARGIN + BOTTOM_MARGIN
     fig, ax = plt.subplots(figsize=(total_w, total_h), layout="constrained")
 
-    per_run = candidates.groupby(["prompt", "seed", "generation"])["model_CLIPScore"].mean()
-    stats = per_run.groupby("generation").agg(["mean", "std", "count"])
-    sem = stats["std"] / np.sqrt(stats["count"])
+    stats = candidates.groupby("generation")["model_CLIPScore"].agg(["mean", "std"])
     ax.plot(stats.index, stats["mean"], color=POOLED_COLOR, linewidth=2)
-    ax.fill_between(stats.index, stats["mean"] - sem, stats["mean"] + sem, color=POOLED_COLOR, alpha=0.2, linewidth=0)
+    ax.fill_between(stats.index, stats["mean"] - stats["std"], stats["mean"] + stats["std"], color=POOLED_COLOR,
+                    alpha=0.2, linewidth=0)
 
-    base = baseline.groupby("prompt")["baseline_clip_score"].mean()
-    mean_base, sem_base = base.mean(), base.std() / np.sqrt(len(base))
+    mean_base, std_base = baseline["baseline_clip_score"].mean(), baseline["baseline_clip_score"].std()
     ax.axhline(mean_base, color=POOLED_COLOR, linestyle="--", linewidth=2)
-    ax.fill_between([0, 30], mean_base - sem_base, mean_base + sem_base, color=POOLED_COLOR, alpha=0.15, linewidth=0)
+    ax.fill_between([0, 30], mean_base - std_base, mean_base + std_base, color=POOLED_COLOR, alpha=0.15, linewidth=0)
 
     ax.set_title(f"all prompts (n = {candidates['prompt'].nunique()})", fontsize=TITLE_SIZE, fontweight="bold", pad=10)
     ax.set_ylim(ylims)
@@ -389,7 +385,7 @@ def class_grid(n: int, height: float, constrained: bool = True):
 
 
 def render_trajectories(candidates: pd.DataFrame, baseline: pd.DataFrame, group: str, key: str) -> None:
-    """Supplement: one panel per class, one curve per prompt (mean +- SEM over the seeds).
+    """Supplement: one panel per class, one curve per prompt (mean +- SD over the seeds).
 
     Args:
         candidates: All candidates.
@@ -411,7 +407,7 @@ def render_trajectories(candidates: pd.DataFrame, baseline: pd.DataFrame, group:
         for prompt in prompts:
             t = subset[subset["prompt"] == prompt]
             ax.plot(t["generation"], t["mean"], color=colors[prompt], linewidth=1)
-            ax.fill_between(t["generation"], t["mean"] - t["sem"], t["mean"] + t["sem"], color=colors[prompt],
+            ax.fill_between(t["generation"], t["mean"] - t["std"], t["mean"] + t["std"], color=colors[prompt],
                             alpha=0.12, linewidth=0)
         if key == "fidelity":
             ax.axhline(base.reindex(prompts).mean(), color=POOLED_COLOR, linestyle="--", linewidth=1)

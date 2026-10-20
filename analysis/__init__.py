@@ -22,6 +22,7 @@ One module per experiment (each runnable with ``python -m analysis.<module>``):
     gemma_evolution        human/VLM agreement and Gemma-guided image evolution
 
 ``python -m analysis`` runs all of them. Shared code is in ``common``: paths, style, loading of runs, statistical
-tests and the plot types used by several figures. Error bands are the standard error of the mean over runs,
-except gemma_evolution, which retains the sample standard deviation of its original analysis.
+tests and the plot types used by several figures. Error bands are standard deviations: over all candidates of a
+generation with the runs pooled (PartiPrompts class trajectories: over the run means of the three seeds;
+gemma_evolution: over the seeds).
 """
