@@ -3,7 +3,7 @@
 Output (``plots/long_runs/``):
 
     long_run_metrics               Supplementary Fig. 1D (bottom): fitness, divergence and diversity over 300
-                                   generations, all prompts in one panel (mean +- SD, the three runs pooled)
+                                   generations, all prompts in one panel
     long_run_<metric>              fitness / divergence / diversity / fidelity, one panel per prompt
     long_run_examples_<prompt>     example images of generations 0 / 50 / 100 / 200 / 300 (random candidates of
                                    the generation with a fixed random seed, not a selection)
@@ -79,7 +79,7 @@ def render_metrics(data: pd.DataFrame) -> None:
 
 
 def render_long_run() -> None:
-    """Curves of all metrics over 300 generations, a mean +- SD table and example images."""
+    """Curves of all metrics over 300 generations, their table and example images."""
     data, runs = load_embedding_experiment("long_runs")
     render_metrics(data)
     baseline = long_run_baseline(data, runs)

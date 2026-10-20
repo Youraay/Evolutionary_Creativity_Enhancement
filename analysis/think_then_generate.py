@@ -14,11 +14,10 @@ Metrics:
     fidelity    CLIP score against the original prompt, random baseline as for the long runs
 
 Output in ``plots/think_then_generate/``:
-    t2g_<metric>_g30 / _g100       one panel per prompt, original vs. reasoning, mean +- SD (3 seeds pooled)
+    t2g_<metric>_g30 / _g100       one panel per prompt, original vs. reasoning
     t2g_conditions_g30 / _g100     the four conditions side by side (rows = metrics, columns = prompts)
     t2g_conditions_g*_tests.csv    tests generation 0 vs. 30/100 without and with reasoning (stars)
     t2g_supplement_g30             Supplementary Fig. 10: four conditions and the course over 30 generations
-                                   (mean +- SD over all images of the 3 runs)
     t2g_pairwise_g30 / _g100       pairwise tests of all four conditions (colour = effect size, text = stars);
                                    table in t2g_pairwise_g*.csv
 
@@ -139,7 +138,7 @@ def load(recompute: bool = False, max_gen: int = 100) -> tuple[pd.DataFrame, pd.
 
 
 def render_trajectories(lr: pd.DataFrame, t2g: pd.DataFrame, baseline: pd.DataFrame, max_gen: int) -> None:
-    """One panel per prompt: original prompt vs. reasoning, mean +- SD (seeds pooled), up to ``max_gen``.
+    """One panel per prompt: original prompt vs. reasoning, up to ``max_gen``.
 
     Args:
         lr: Long runs.
@@ -362,7 +361,7 @@ def render_pairwise(lr: pd.DataFrame, t2g: pd.DataFrame, gen: int) -> pd.DataFra
 
 
 def render_conditions(lr: pd.DataFrame, t2g: pd.DataFrame, baseline: pd.DataFrame, gen: int) -> None:
-    """Four conditions per prompt: point = mean, error bar = SD over all candidates (the 3 seeds pooled).
+    """Four conditions per prompt: point = mean with error bar.
 
     Arrows show the seed optimisation from generation 0 to ``gen``; stars give the Holm-adjusted
     Mann-Whitney U tests of :func:`condition_tests`.
@@ -429,10 +428,9 @@ SUPPLEMENT_LABELS = ["original prompt - initial", "original prompt - optimized",
 def render_supplement(lr: pd.DataFrame, t2g: pd.DataFrame, gen: int = 30) -> None:
     """Supplementary Fig. 10: (A) the four conditions, (B) the course over the generations.
 
-    (A) point = mean, error bar = SD over all images of the 3 runs; arrows show the seed optimisation from
-    generation 0 to ``gen``. (B) original prompt (dashed) and reasoning (solid), mean +- SD over all images of a
-    generation (the 3 runs pooled). Rows: divergence (distance to the mean of generation 0 of the original
-    prompt) and diversity within the generation.
+    (A) point = mean with error bar; arrows show the seed optimisation from generation 0 to ``gen``. (B) original
+    prompt (dashed) and reasoning (solid) over the generations. Rows: divergence (distance to the mean of
+    generation 0 of the original prompt) and diversity within the generation.
 
     Args:
         lr: Long runs.

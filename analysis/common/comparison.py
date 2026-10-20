@@ -3,7 +3,7 @@
 For an experiment the output in ``plots/<experiment>/`` is
 
     runs        one row per variant: distance to the mean of generation 0 of every run (violins of generations
-                0/10/20/30) and the diversity within the generation (mean +- SD, runs pooled)
+                0/10/20/30) and the diversity within the generation
     overview    one row per variant: violins of the first run, diversity and CLIP score with the random
                 baseline of "a cat" (only for experiments with CLIP-score tables)
     tests.csv   Mann-Whitney U tests of generation 0 vs. 30 per variant (runs pooled), Holm-corrected

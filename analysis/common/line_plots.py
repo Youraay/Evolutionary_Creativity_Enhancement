@@ -1,4 +1,4 @@
-"""Mean +- SD curves of the experiments with population 100 (Fig. 1E, Fig. 2F)."""
+"""Curves of the experiments with population 100 (Fig. 1E, Fig. 2F)."""
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -8,7 +8,7 @@ import seaborn as sns
 from analysis.common.runs import read_run
 from analysis.common.statistics import generation_test, stars
 from analysis.common.style import (BOTTOM_MARGIN, ERRORBAR, FIXED_COL_WIDTH, LABEL_SIZE, LEFT_MARGIN, MAX_FIG_COLUMNS,
-                                   RIGHT_MARGIN, TICK_SIZE, TITLE_SIZE, TOP_MARGIN, save_figure)
+                                   RIGHT_MARGIN, TICK_SIZE, TITLE_SIZE, TOP_MARGIN, error_band, save_figure)
 from analysis.common.violins import significance_bracket
 
 METRIC_LABELS = {"diversity_score": "diversity within\ngeneration [a.u.]", "clip_score": "CLIP Score"}
@@ -31,8 +31,8 @@ def _collect(configs: list[dict], metric: str) -> pd.DataFrame:
 def render_metric_panels(path: Path, configs: list[dict], names: list[str], colors: list[str], metric: str,
                          ncols: int = 3, nrows: int = 2, yscale=(0.1, 0.3), ylims=(0.1, 0.25),
                          positions=((0, 0), (1, 0), (0, 1), (1, 1), (0, 2), (1, 2)),
-                         test: bool = False) -> pd.DataFrame | None:
-    """One panel per name with mean +- SD over all candidates, the seeds pooled (Fig. 3, supplement).
+                         test: bool = False, error: str = "sd") -> pd.DataFrame | None:
+    """One panel per name with the course over the generations (Fig. 2F, supplement).
 
     Args:
         path: Output path without extension.
@@ -47,6 +47,7 @@ def render_metric_panels(path: Path, configs: list[dict], names: list[str], colo
         positions: Grid position per name; unused positions are removed.
         test: Mark the Mann-Whitney U test of generation 0 vs. the last generation (all candidates of the runs
             pooled) with a bracket and write the results to ``<path>_tests.csv``.
+        error: Error band (see :func:`analysis.common.style.error_band`).
 
     Returns:
         The tests (if ``test``), else ``None``.
@@ -60,8 +61,8 @@ def render_metric_panels(path: Path, configs: list[dict], names: list[str], colo
     x_max = int(data["generation"].max())          # 30 generations -> 0/15/30, long runs -> 0/50/100
     for i, name in enumerate(names):
         ax = axes[positions[i]]
-        sns.lineplot(data=data[data["Type"] == name], x="generation", y=metric, ax=ax,
-                     errorbar=ERRORBAR, color=colors[i], linewidth=2)
+        plot_data, errorbar = error_band(data[data["Type"] == name], metric, error)
+        sns.lineplot(data=plot_data, x="generation", y=metric, ax=ax, errorbar=errorbar, color=colors[i], linewidth=2)
         ax.set_title(name, fontsize=TITLE_SIZE, fontweight="bold", pad=10)
         ax.set_ylim(ylims)
         ax.set_yticks(yscale)
@@ -94,7 +95,7 @@ def render_metric_panels(path: Path, configs: list[dict], names: list[str], colo
 def render_line_plot(path: Path, configs: list[dict], metric: str = "global_score",
                      ylabel: str = "distanceToInitialSeed", target_names: list[str] | None = None,
                      yscale=(0.0, 0.4), ylims=(0.0, 0.4), height_rows: int = 1) -> None:
-    """One curve per name (mean +- SD over all candidates, the seeds pooled) over 30 generations (Fig. 1E).
+    """One curve per name over 30 generations (Fig. 1E).
 
     Args:
         path: Output path without extension.

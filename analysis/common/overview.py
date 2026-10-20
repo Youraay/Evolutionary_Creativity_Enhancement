@@ -58,7 +58,7 @@ def render_comparison_overview(path: Path, configs: list[dict], names: list[str]
                                yscale_viol=(0.0, 0.4), ylims_viol=(0.0, 0.4), yscale_div=(0.1, 0.3),
                                ylims_div=(0.1, 0.25), yscale_clip=(0.2, 0.3), ylims_clip=(0.2, 0.3)) -> None:
     """One row per variant: distance to the initial generation (violins of the first seed), diversity and
-    CLIP score (mean +- SD over all candidates, the seeds pooled, with the random baseline of "a cat").
+    CLIP score (with the random baseline of "a cat").
 
     Args:
         path: Output path without extension.

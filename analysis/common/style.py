@@ -8,6 +8,7 @@ from pathlib import Path
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 import seaborn as sns
 
 from analysis.common.paths import PLOTS_DIR
@@ -54,7 +55,7 @@ ANNOTATE_SIZE = 9
 MAX_Y_TICKS = 5
 
 ERRORBAR = "sd"
-"""Error bands are the standard deviation over all candidates of a generation, the runs pooled."""
+"""``errorbar`` of the seaborn line plots."""
 
 PREVIEW_DIR: Path | None = None
 """If set, :func:`save_figure` also writes a PNG preview into this directory."""
@@ -81,6 +82,35 @@ def reset_style(thin_axes: bool = True) -> None:
     if thin_axes:
         mpl.rcParams["axes.linewidth"] = 0.5
     np.random.seed(0)
+
+
+def seed_means(df: pd.DataFrame, y: str, keys=("generation",), seed_col: str = "Seed") -> pd.DataFrame:
+    """Average all candidates per run (seed) and key, so that runs become the units of the error bands.
+
+    Args:
+        df: One row per candidate.
+        y: Column to average.
+        keys: Grouping columns besides the seed, e.g. the generation.
+        seed_col: Column identifying the run.
+
+    Returns:
+        One row per key and seed with the mean of ``y``.
+    """
+    return df.groupby(list(keys) + [seed_col], as_index=False)[y].mean()
+
+
+def error_band(df: pd.DataFrame, y: str, error: str = "sd") -> tuple[pd.DataFrame, str]:
+    """Data and ``errorbar`` argument of ``sns.lineplot``.
+
+    Args:
+        df: One row per candidate with the column ``Seed``.
+        y: Column to plot.
+        error: ``"sd"`` (all candidates of a generation) or ``"sem"`` (run means).
+
+    Returns:
+        ``(data, errorbar)``.
+    """
+    return (seed_means(df, y), "se") if error == "sem" else (df, ERRORBAR)
 
 
 def save_figure(fig: plt.Figure, path: Path, redraw: bool = False) -> None:

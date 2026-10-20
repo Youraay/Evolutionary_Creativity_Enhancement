@@ -5,7 +5,7 @@ Output (``plots/example_prompts/``):
     distance_to_current_mean_a_cat     Fig. 1E: distance to the mean of the current generation ("a cat")
     distance_to_initial_mean           Fig. 2C: distance to the mean of generation 0, generations 0/10/20/30,
                                        the three runs pooled, bracket = Mann-Whitney U test of generation 0 vs. 30
-    diversity                          Fig. 2F: diversity within the generation, mean +- SD (runs pooled)
+    diversity                          Fig. 2F: diversity within the generation
     clip_scores                        Supplementary Fig. 5A: CLIP score with the random baseline (100 images of
                                        the other prompts)
     images_<prompt>_detail, _final     Supplementary Fig. 1A-C: images of generations 0/15/30 of one run and of
@@ -79,7 +79,7 @@ def render_curves() -> None:
                      yscale=[0.0, 0.1, 0.2], ylims=(0.0, 0.2), height_rows=3)
     render_metric_panels(OUT_DIR / "diversity", configs, MANUSCRIPT_PROMPTS, [COLOR_MAP[p] for p in MANUSCRIPT_PROMPTS],
                          "diversity_score", ncols=3, nrows=1, yscale=[0.1, 0.3], ylims=(0.1, 0.3), positions=ROW,
-                         test=True)
+                         test=True, error="sem")
 
 
 def render_violins() -> None:

@@ -2,7 +2,7 @@
 
 Output in ``plots/model_comparison/``:
 
-    model_comp_<metric>_curves   one panel per model, mean +- SD per prompt (runs pooled)
+    model_comp_<metric>_curves   one panel per model, one curve per prompt
     model_comp_<metric>_violins  one panel per model, violins of generations 0/10/20/30 (prompts pooled)
     model_comp_examples_<prompt> random example images of generations 0 and 30, all models except SDXL
     model_comp_tests.csv         Supplementary Fig. 3A-B: Mann-Whitney U tests of generation 0 vs. 30 per model,

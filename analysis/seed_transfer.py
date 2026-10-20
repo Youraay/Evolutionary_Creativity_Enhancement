@@ -46,7 +46,7 @@ def render() -> None:
         for key, (metric, ylabel, title, limits) in METRICS.items():
             reset_style()
             tests.append(render_transfer_curves(OUT_DIR / f"{_slug(source)}_to_{_slug(target)}_{key}", configs, metric,
-                                                ylabel, title, yticks=limits, ylims=limits))
+                                                ylabel, title, yticks=limits, ylims=limits, error="sem"))
     pd.concat(tests).to_csv(OUT_DIR / "tests.csv", index=False)
     selection = json.loads((DATA_DIR / "figure_images.json").read_text())["seed_transfer"]
     for pair, chosen in selection.items():

@@ -2,7 +2,7 @@
 
 Output (``plots/tournament_size/``):
 
-    tournament_<metric>_curves     one panel per tournament size, mean +- SD per prompt (runs pooled)
+    tournament_<metric>_curves     one panel per tournament size, one curve per prompt
     tournament_<metric>_violins    one panel per tournament size, violins of generations 0/10/20/30
 
 with ``<metric>`` fitness, diversity or divergence (distance to the mean of generation 0), all in BLIP-2 space.

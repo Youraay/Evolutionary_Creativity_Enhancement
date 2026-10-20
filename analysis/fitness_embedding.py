@@ -7,8 +7,6 @@ Output (``plots/fitness_embedding/``):
     embedding_<metric>_curves      course per fitness embedding (BLIP-2 metrics) in one axes;
                                    ``_panels``: one panel per fitness embedding
 
-Curves and bands: mean +- SD over all candidates of the 3 prompts x 3 seeds.
-
     python -m analysis.fitness_embedding
 """
 import argparse
@@ -98,7 +96,7 @@ def render_embedding_heatmap(data: pd.DataFrame) -> None:
 
 
 def render_embedding() -> None:
-    """Heat map and BLIP-2 curves per fitness embedding (mean +- SD over all candidates of 3 prompts x 3 seeds)."""
+    """Heat map and BLIP-2 curves per fitness embedding (3 prompts x 3 seeds)."""
     data, _ = load_embedding_experiment("fitness_embedding")
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     render_embedding_heatmap(data)
@@ -107,9 +105,9 @@ def render_embedding() -> None:
         summary = []
         for embedding, label in EMBEDDINGS.items():
             stats = curve(ax, data[data["variant"] == f"fitness_{embedding}"], key, EMBEDDING_COLORS[embedding],
-                          lw=1.5, label=label)
+                          lw=1.5, label=label, error="sem")
             summary.append(stats.reset_index().assign(fitness_embedding=label))
-        pd.concat(summary).to_csv(OUT_DIR / f"embedding_{key}_curves_sd.csv", index=False)
+        pd.concat(summary).to_csv(OUT_DIR / f"embedding_{key}_curves_sem.csv", index=False)
         set_ticks(ax, [0, 15, 30])
         ax.set_xlabel("Generation", fontsize=LABEL_SIZE)
         ax.set_ylabel(EMBEDDING_YLABELS[key], fontsize=LABEL_SIZE)
@@ -120,7 +118,8 @@ def render_embedding() -> None:
         fig, axes = plt.subplots(1, len(EMBEDDINGS), figsize=(PAGE_WIDTH_IN, FIXED_COL_WIDTH * 0.7 + TOP_MARGIN
                                                                + BOTTOM_MARGIN), sharey=True, layout="constrained")
         for ax, (embedding, label) in zip(axes, EMBEDDINGS.items()):
-            curve(ax, data[data["variant"] == f"fitness_{embedding}"], key, EMBEDDING_COLORS[embedding], lw=1.5)
+            curve(ax, data[data["variant"] == f"fitness_{embedding}"], key, EMBEDDING_COLORS[embedding], lw=1.5,
+                  error="sem")
             set_ticks(ax, [0, 15, 30])
             ax.set_title(f"fitness: {label}", fontsize=TITLE_SIZE, fontweight="bold", pad=10)
             ax.set_xlabel("Generation", fontsize=LABEL_SIZE)

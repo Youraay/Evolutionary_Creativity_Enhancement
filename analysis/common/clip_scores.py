@@ -27,7 +27,7 @@ def extract_generation(image_path: str) -> float:
 def render_clip_scores(path: Path, clip_scores_dir: Path, colors: list[str], names: list[str], ncols: int = 3,
                        nrows: int = 2, yscale=(0.4, 0.5, 0.6, 0.7, 0.8), ylims=(0.4, 0.8),
                        positions=((0, 0), (1, 0), (0, 1), (1, 1), (0, 2), (1, 2))) -> None:
-    """One panel per prompt: CLIP score (mean +- SD over all images of the 3 seeds) and random baseline (mean +- SD).
+    """One panel per prompt: CLIP score over the generations and random baseline.
 
     Reads ``scores_<prompt>_seed_<1-3>.csv`` and ``baseline_scores_<prompt>.csv`` from ``clip_scores_dir``.
 

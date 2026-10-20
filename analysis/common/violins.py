@@ -3,7 +3,7 @@
 ``render_pooled_violins``: one panel per prompt or variant, all runs pooled, with the Mann-Whitney U test of the
 first vs. the last generation as bracket (Fig. 2C, Supplementary Fig. 9B).
 ``render_run_violins``: one row per variant, one panel per run plus the diversity within the generation
-(mean +- SD over all candidates, the runs pooled) (Supplementary Figs. 4, 6, 7).
+(Supplementary Figs. 4, 6, 7).
 """
 from pathlib import Path
 
@@ -107,7 +107,7 @@ def render_pooled_violins(path: Path, panels: list[dict], metric: str = "global_
 
 def render_run_violins(path: Path, rows: list[dict], color: str = "#000000", ylims=(0.0, 0.3), yticks=(0.0, 0.3),
                        diversity_ylims=(0.1, 0.25), diversity_yticks=(0.1, 0.25)) -> None:
-    """One row per variant: violins of every run and the diversity within the generation (mean +- SD).
+    """One row per variant: violins of every run and the diversity within the generation.
 
     Args:
         path: Output path without extension.

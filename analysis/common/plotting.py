@@ -1,4 +1,4 @@
-"""Plot building blocks shared by the analyses: mean +- SD curves, violins and image grids."""
+"""Plot building blocks shared by the analyses: curves, violins and image grids."""
 from pathlib import Path
 
 import matplotlib as mpl
@@ -43,9 +43,25 @@ def generation_stats(df: pd.DataFrame, col: str) -> pd.DataFrame:
     return df.groupby("generation")[col].agg(["mean", "std", "count"])
 
 
+def run_sem(df: pd.DataFrame, col: str) -> pd.DataFrame:
+    """Mean and SEM per generation over runs (every run is first averaged over its candidates).
+
+    Args:
+        df: Candidates with the columns prompt, seed, generation and ``col``.
+        col: Metric.
+
+    Returns:
+        Table indexed by generation with mean, std, count and sem.
+    """
+    per_run = df.groupby(["prompt", "seed", "generation"])[col].mean()
+    stats = per_run.groupby("generation").agg(["mean", "std", "count"])
+    stats["sem"] = stats["std"] / np.sqrt(stats["count"])
+    return stats
+
+
 def curve(ax: plt.Axes, df: pd.DataFrame, col: str, color: str, lw: float = 2, label: str | None = None,
-          band: bool = True, band_alpha: float = BAND_ALPHA) -> pd.DataFrame:
-    """Draw mean +- SD over all candidates of a generation (the runs pooled).
+          band: bool = True, band_alpha: float = BAND_ALPHA, error: str = "sd") -> pd.DataFrame:
+    """Draw the mean per generation with an error band.
 
     Args:
         ax: Target axes.
@@ -54,22 +70,24 @@ def curve(ax: plt.Axes, df: pd.DataFrame, col: str, color: str, lw: float = 2, l
         color: Line and band colour.
         lw: Line width.
         label: Legend label.
-        band: Whether to draw the SD band.
+        band: Whether to draw the error band.
         band_alpha: Opacity of the band.
+        error: ``"sd"`` (:func:`generation_stats`) or ``"sem"`` (:func:`run_sem`).
 
     Returns:
-        The statistics of :func:`generation_stats`.
+        The statistics of :func:`generation_stats` or :func:`run_sem`.
     """
-    stats = generation_stats(df, col)
+    stats = run_sem(df, col) if error == "sem" else generation_stats(df, col)
+    width = stats["sem"] if error == "sem" else stats["std"]
     ax.plot(stats.index, stats["mean"], color=color, linewidth=lw, label=label, zorder=3)
     if band:
-        ax.fill_between(stats.index, stats["mean"] - stats["std"], stats["mean"] + stats["std"], color=color,
-                        alpha=band_alpha, linewidth=0)
+        ax.fill_between(stats.index, stats["mean"] - width, stats["mean"] + width, color=color, alpha=band_alpha,
+                        linewidth=0)
     return stats
 
 
 def prompt_curves(ax: plt.Axes, df: pd.DataFrame, col: str, lw: float = 2) -> None:
-    """Draw one mean +- SD curve per prompt of :data:`PROMPTS` in its paper colour.
+    """Draw one curve per prompt of :data:`PROMPTS` in its paper colour.
 
     Args:
         ax: Target axes.

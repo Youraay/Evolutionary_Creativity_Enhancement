@@ -10,13 +10,11 @@ Output in ``plots/parti_prompts/``:
     *_by_category            the same per PartiPrompts category
     *_split                  variant: generation 0 on the left, generation 30 on the right
     <metric>_trajectories_by_challenge / _by_category
-                             supplement: one panel per class, one curve per prompt (mean +- SD over the
-                             seeds); the legend is a separate figure ``trajectories_by_<group>_legend``
+                             supplement: one panel per class, one curve per prompt; the legend is a
+                             separate figure ``trajectories_by_<group>_legend``
 
-Curves: mean +- SD; pooled fidelity over all candidates, class trajectories over the seeds (every run first
-averaged over its 60 candidates). One point of a box plot
-is one prompt (mean over 3 seeds and all candidates of the generation). Test: Wilcoxon signed-rank,
-generation 0 vs. 30, paired over the prompts of a class.
+One point of a box plot is one prompt (mean over 3 seeds and all candidates of the generation). Test: Wilcoxon
+signed-rank, generation 0 vs. 30, paired over the prompts of a class.
 
 Random baseline: CLIP score of a prompt against 100 random images of the other prompts; the CLIP image
 embeddings are taken from the result archives.
@@ -221,8 +219,6 @@ def render_fidelity_pooled(candidates: pd.DataFrame, baseline: pd.DataFrame,
                            yscale=(0.2, 0.4, 0.6, 0.8, 1.0), ylims=(0.2, 1.0)) -> None:
     """Fidelity of all prompts pooled (as Supp. Fig. 4).
 
-    Data: mean +- SD over all candidates. Baseline: mean +- SD over all random images.
-
     Args:
         candidates: All candidates.
         baseline: Random baseline.
@@ -385,7 +381,7 @@ def class_grid(n: int, height: float, constrained: bool = True):
 
 
 def render_trajectories(candidates: pd.DataFrame, baseline: pd.DataFrame, group: str, key: str) -> None:
-    """Supplement: one panel per class, one curve per prompt (mean +- SD over the seeds).
+    """Supplement: one panel per class, one curve per prompt.
 
     Args:
         candidates: All candidates.
