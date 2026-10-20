@@ -144,15 +144,6 @@ described in [VLM evaluation and rating-guided evolution](docs/gemma.md).
 
 ## Setup
 
-Two Python environments were used on the cluster:
-
-* **Experiments** (GPU jobs): Python 3.13 with torch 2.14 (CUDA 13), diffusers 0.40, transformers 5.16,
-  accelerate 1.14, bitsandbytes 0.50 (only for FLUX.2 [dev]); the venv
-  `/work/dldevel/public/Evolutionary_Diffusion_Enhancement/.venv`.
-* **Analysis** (CPU): Python 3.12 with matplotlib 3.10, seaborn 0.13, pandas 2.2, scipy 1.15,
-  scikit-learn 1.7, pyarrow 20, torch 2.7 (only for reading result archives); the conda environment
-  `genetic`.
-
 ```bash
 pip install -e ".[analysis]"          # or ".[flux2-dev]" for the GPU environment
 cp .env.example .env                  # then adapt paths
