@@ -18,11 +18,11 @@ from analysis.common.gemma import style
 GENERATIONS = (0, 10, 20, 30)
 STEM = "ratings_across_generations"
 EXPECTED_PROMPTS = {
-    "study-suitability": 108,
+    "study-suitability": 114,
     "study-unusualness": 114,
-    "study-boredom": 108,
-    "study-pleasantness": 108,
-    "study-excitement": 108,
+    "study-boredom": 114,
+    "study-pleasantness": 114,
+    "study-excitement": 114,
     "study-creativity": 114,
 }
 EXPECTED_INVALID = {
@@ -153,12 +153,20 @@ def _validated_summaries(
                     f"Question summary mismatch: {question}/{generation}/{name}",
                 )
             _require(
-                np.isclose(saved.mean_of_source_prompt_means, values["mean"].mean(), rtol=0, atol=2e-14),
+                np.isclose(
+                    saved.mean_of_source_prompt_means, values["mean"].mean(), rtol=0, atol=2e-14
+                ),
                 f"Question mean differs from equally weighted prompt means: {question}/{generation}",
             )
+    reference_prompts = set(prompt.loc[prompt.prompt_id.eq("study-creativity"), "prompt_folder"])
+    for question in EXPECTED_PROMPTS:
+        _require(
+            set(prompt.loc[prompt.prompt_id.eq(question), "prompt_folder"]) == reference_prompts,
+            f"Source prompts differ across questions: {question}",
+        )
     _require(
-        int(overall.expected_rating_count.sum()) == 475200
-        and int(overall.valid_rating_count.sum()) == 475150
+        int(overall.expected_rating_count.sum()) == 492480
+        and int(overall.valid_rating_count.sum()) == 492430
         and int(overall.invalid_rating_count.sum()) == 50,
         "Unexpected total rating coverage",
     )
@@ -235,8 +243,8 @@ def render(prompt_summary: pd.DataFrame, question_summary: pd.DataFrame, output:
         0.5,
         0.02,
         "Dots: source-prompt means (3 runs × 60 images expected); lines pair prompts.\n"
-        "Horizontal marks equally weight the prompts in each panel.\n"
-        "Coverage differs by question. Invalid scores are missing; statistical tests are supplied separately.\n"
+        "Horizontal marks equally weight all 114 prompts in each panel.\n"
+        "Invalid scores remain missing; statistical tests are supplied separately.\n"
         "Higher boredom scores mean more boring.",
         ha="center",
         fontsize=8,

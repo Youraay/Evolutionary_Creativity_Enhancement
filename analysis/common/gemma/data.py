@@ -65,7 +65,7 @@ def load_posthoc(root=DATA, deep=False):
     )
     if deep:
         raw = pd.read_csv(source / "ratings.csv.gz", dtype={"content_sha256": str})
-        require(len(raw) == 475200, "Unexpected number of image-question observations")
+        require(len(raw) == 492480, "Unexpected number of image-question observations")
         require(not raw.duplicated(["prompt_id", "image_id"]).any(), "Duplicate rating")
         require(raw.status.isin(["valid", "parse_invalid"]).all(), "Missing/failed inference")
         require(int(raw.status.eq("parse_invalid").sum()) == 50, "Invalid count changed")
@@ -75,6 +75,28 @@ def load_posthoc(root=DATA, deep=False):
         )
         require(raw.loc[raw.status.eq("valid"), "score"].between(1, 5).all(), "Invalid score")
         require(raw.image_id.nunique() == 82080, "Image cohort changed")
+        identity = [
+            "prompt_folder",
+            "experiment_id",
+            "experiment_seed",
+            "generation",
+            "content_sha256",
+        ]
+        reference = (
+            raw.loc[raw.prompt_id.eq("study-creativity"), ["image_id", *identity]]
+            .set_index("image_id")
+            .sort_index()
+        )
+        for question_id in ratings_plot.EXPECTED_PROMPTS:
+            observed = (
+                raw.loc[raw.prompt_id.eq(question_id), ["image_id", *identity]]
+                .set_index("image_id")
+                .sort_index()
+            )
+            require(
+                observed.equals(reference),
+                f"Image identities differ across questions: {question_id}",
+            )
         run, derived_prompt, derived_question = aggregation.summaries(raw)
         reconcile(
             prompt,

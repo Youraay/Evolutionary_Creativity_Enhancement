@@ -1,8 +1,8 @@
 """Gemma ratings of distance-optimised images across generations.
 
 Outputs: plots/gemma_ratings/ratings_across_generations.pdf|svg and paired
-generation-0/30 statistics. Creativity and unusualness cover 114 prompts;
-the other four dimensions cover 108. Dots are source-prompt means.
+generation-0/30 statistics. All six dimensions cover the same 114 prompts.
+Dots are source-prompt means.
 Tests ask whether generation 30 is higher (one-sided Wilcoxon, six-test Holm).
 
     python -m analysis.gemma_ratings --deep --preview previews
@@ -18,7 +18,9 @@ def main():
     before = workflow.check_hashes(args.data, groups)
     prompt, question, tests, paired, sensitivity = data.load_posthoc(args.data, deep=args.deep)
     if args.verify_only:
-        print("[INFO] verified: 475,200 scores; 475,150 valid; six paired tests")
+        expected = int(question.expected_rating_count.sum())
+        valid = int(question.valid_rating_count.sum())
+        print(f"[INFO] verified: {expected:,} scores; {valid:,} valid; six paired tests")
         return
     args.output.mkdir(parents=True, exist_ok=True)
     stem = ratings_plot.render(prompt, question, args.output)
