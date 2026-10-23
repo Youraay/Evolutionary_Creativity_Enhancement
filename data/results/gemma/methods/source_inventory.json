@@ -3,68 +3,79 @@
   "items": [
     {
       "package_file": "posthoc/run_generation_summary.csv",
-      "source_file": "results/gemma-generation-ratings-114-uniform-v1/run_generation_summary.csv",
-      "sha256": "a597b3b0dbc258571138ffa24c8386b7df593b1c1ff7cde53129d1336b73e8e2",
-      "transformation": "byte-preserved copy",
-      "original_package_file": "data/posthoc/run_generation_summary.csv"
+      "source_file": "results/plots.zip",
+      "source_archive_sha256": "6f998d371d511abac20005f0dad0820780e7fc9e84e61bed517c8211baebdbe9",
+      "source_archive_member": "plots/run_generation_summary.csv",
+      "sha256": "7f5056556cbc1dc67520570d553ada42a6f338a8fd8a494490a3aff89ca1514c",
+      "transformation": "byte-preserved archive member"
     },
     {
       "package_file": "posthoc/source_prompt_generation_summary.csv",
-      "source_file": "results/gemma-generation-ratings-114-uniform-v1/source_prompt_generation_summary.csv",
-      "sha256": "b1df655b91361447b9b6fc189fee99a1470a428cdb545bd04167f5041c47896b",
-      "transformation": "byte-preserved copy",
-      "original_package_file": "data/posthoc/source_prompt_generation_summary.csv"
+      "source_file": "results/plots.zip",
+      "source_archive_sha256": "6f998d371d511abac20005f0dad0820780e7fc9e84e61bed517c8211baebdbe9",
+      "source_archive_member": "plots/source_prompt_generation_summary.csv",
+      "sha256": "b4f1b75b484ae9ef22c1200109556a6e43badb72aa278c7a56c59765fa3787f6",
+      "transformation": "byte-preserved archive member"
     },
     {
       "package_file": "posthoc/question_generation_summary.csv",
-      "source_file": "results/gemma-generation-ratings-114-uniform-v1/question_generation_summary.csv",
-      "sha256": "52f964a781387f7916371956784238c2260c5690f126c04b211cbb950f642482",
-      "transformation": "byte-preserved copy",
-      "original_package_file": "data/posthoc/question_generation_summary.csv"
+      "source_file": "results/plots.zip",
+      "source_archive_sha256": "6f998d371d511abac20005f0dad0820780e7fc9e84e61bed517c8211baebdbe9",
+      "source_archive_member": "plots/question_generation_summary.csv",
+      "sha256": "97b2748c2f2cb3ea4c3441b643f57d47e7d4a57940572fe5e3de84a7004b8689",
+      "transformation": "byte-preserved archive member"
     },
     {
       "package_file": "posthoc/ratings.csv.gz",
-      "source_file": "results/gemma-generation-ratings-114-uniform-v1/ratings.csv",
-      "source_sha256": "2c9cb32a0e1c7cf4c1600cb859dd82cbb185c45d28f2343e0fc7e984eb765a59",
-      "sha256": "6a8410de4f852f0952b060fbd4d7027e7106ff3d76976fe2d05c0bce62e74b52",
-      "transformation": "lossless gzip; decompressed bytes verified",
-      "original_package_file": "data/posthoc/ratings.csv.gz"
+      "source_file": "results/plots.zip",
+      "source_archive_sha256": "6f998d371d511abac20005f0dad0820780e7fc9e84e61bed517c8211baebdbe9",
+      "source_archive_member": "plots/ratings.csv.gz",
+      "sha256": "8af05308f4ec3c205f780a8db752417f8c490a999079049d97c3935a44425d0d",
+      "transformation": "byte-preserved archive member"
     },
     {
       "package_file": "statistics/generation_0_vs_30_tests.csv",
-      "source_file": "results/gemma-generation-0-vs-30-significance-v1/generation_0_vs_30_tests.csv",
-      "sha256": "384445da0754234be0e8a1c1a3eceb1e0171f47e0e74782ab4ec105f91ccfb44",
-      "transformation": "byte-preserved copy",
-      "original_package_file": "statistics/generation_0_vs_30_tests.csv"
+      "source_file": "posthoc/source_prompt_generation_summary.csv",
+      "source_sha256": "b4f1b75b484ae9ef22c1200109556a6e43badb72aa278c7a56c59765fa3787f6",
+      "sha256": "ef98c196328f36e93d598a0e629397e86c386269800a3167b321113d2ede46e7",
+      "transformation": "paired prompt-level generation-0/30 analysis; six one-sided Wilcoxon tests with Holm adjustment",
+      "producing_code": "analysis/common/gemma/statistics.py",
+      "producing_code_sha256": "f7c94888d868e2392d77513e9c7f96582bece0a8d44504673596e19493322600"
     },
     {
       "package_file": "statistics/paired_prompt_values.csv",
-      "source_file": "results/gemma-generation-0-vs-30-significance-v1/paired_prompt_values.csv",
-      "sha256": "e51aa3e63a4b196a6a53073d4367fe4959f5d345cbe237e2a1e9080d1b84e9f8",
-      "transformation": "byte-preserved copy",
-      "original_package_file": "statistics/paired_prompt_values.csv"
+      "source_file": "posthoc/source_prompt_generation_summary.csv",
+      "source_sha256": "b4f1b75b484ae9ef22c1200109556a6e43badb72aa278c7a56c59765fa3787f6",
+      "sha256": "43d6cb5a15a1a3468b0533ac244bb5027dbffc6d239db93b3ebc59be7d603105",
+      "transformation": "paired prompt-level generation-0/30 analysis; six one-sided Wilcoxon tests with Holm adjustment",
+      "producing_code": "analysis/common/gemma/statistics.py",
+      "producing_code_sha256": "f7c94888d868e2392d77513e9c7f96582bece0a8d44504673596e19493322600"
     },
     {
       "package_file": "statistics/complete_endpoint_sensitivity.csv",
-      "source_file": "results/gemma-generation-0-vs-30-significance-v1/complete_endpoint_sensitivity.csv",
-      "sha256": "54bda16e8dad8658a1875a216b335f0fc946d0e6871093824f230109473572fd",
-      "transformation": "byte-preserved copy",
-      "original_package_file": "statistics/complete_endpoint_sensitivity.csv"
+      "source_file": "posthoc/source_prompt_generation_summary.csv",
+      "source_sha256": "b4f1b75b484ae9ef22c1200109556a6e43badb72aa278c7a56c59765fa3787f6",
+      "sha256": "0b56f3f9ecaca53078eb62baa10665c849adc876a8a0d82e99643624634c1606",
+      "transformation": "paired prompt-level generation-0/30 analysis; six one-sided Wilcoxon tests with Holm adjustment",
+      "producing_code": "analysis/common/gemma/statistics.py",
+      "producing_code_sha256": "f7c94888d868e2392d77513e9c7f96582bece0a8d44504673596e19493322600"
     },
     {
       "package_file": "statistics/methods_and_results.txt",
-      "source_file": "results/gemma-generation-0-vs-30-significance-v1/methods_and_results.txt",
-      "sha256": "33df0a62cacd492bd8820a49013710dcb016d5cb8702c30edd9b850bcde231ba",
-      "transformation": "byte-preserved copy",
-      "original_package_file": "statistics/methods_and_results.txt"
+      "source_file": "posthoc/source_prompt_generation_summary.csv",
+      "source_sha256": "b4f1b75b484ae9ef22c1200109556a6e43badb72aa278c7a56c59765fa3787f6",
+      "sha256": "ea8badd72aa806c9dae38b2b4b862ff99a329f922df841a9033e072e881b9b06",
+      "transformation": "paired prompt-level generation-0/30 analysis; six one-sided Wilcoxon tests with Holm adjustment",
+      "producing_code": "analysis/common/gemma/statistics.py",
+      "producing_code_sha256": "f7c94888d868e2392d77513e9c7f96582bece0a8d44504673596e19493322600"
     },
     {
       "source_file": "tmp/gemma-additional-figures-code/cluster/compare_gemma_generations.py",
-      "transformation": "Scientific functions retained; unused standalone CLI and plotting paths removed; imports formatted",
+      "transformation": "Scientific test functions retained; cohort sizes are 114 for all six questions; unused standalone CLI and plotting paths removed; imports formatted",
       "original_package_file": "analysis/generation_tests.py",
       "repository_file": "analysis/common/gemma/statistics.py",
       "original_package_sha256": "d5af4adcad3e5fe195a78429a3111a408498bc4aa847087e6e84b204776c2f6e",
-      "sha256": "14ca95cda25ae92788b67643b29c54307170e46a406d5efb4b7ee85d23004f61"
+      "sha256": "f7c94888d868e2392d77513e9c7f96582bece0a8d44504673596e19493322600"
     },
     {
       "source_file": "results/gemma-generation-ratings-114-uniform-v1/source_code/plot_gemma_construct_ratings.py",
@@ -237,6 +248,14 @@
         "source_file_count": 18,
         "source_sha256": "dc2c184e88b3c30b23432b41e2c4911350a22347fefaaff00a72c5ef75e3b921"
       }
+    },
+    {
+      "package_file": "posthoc/source_metadata.json",
+      "source_file": "results/plots.zip",
+      "source_archive_sha256": "6f998d371d511abac20005f0dad0820780e7fc9e84e61bed517c8211baebdbe9",
+      "source_archive_member": "plots/plot_metadata.json",
+      "sha256": "c748f01b7bdf21aaaf1b182540bd7dbc86ec5850417e16bbf04caf26a2896465",
+      "transformation": "byte-preserved archive member; inference and plotting provenance"
     }
   ],
   "datasets_are_distinct": true,

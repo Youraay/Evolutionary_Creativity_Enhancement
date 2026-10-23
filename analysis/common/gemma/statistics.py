@@ -5,11 +5,11 @@ import pandas as pd
 from scipy.stats import binomtest, rankdata, wilcoxon
 
 QUESTIONS = (
-    ("study-suitability", "Suitability", 108),
+    ("study-suitability", "Suitability", 114),
     ("study-unusualness", "Unusualness", 114),
-    ("study-boredom", "Boredom", 108),
-    ("study-pleasantness", "Pleasantness", 108),
-    ("study-excitement", "Excitement", 108),
+    ("study-boredom", "Boredom", 114),
+    ("study-pleasantness", "Pleasantness", 114),
+    ("study-excitement", "Excitement", 114),
     ("study-creativity", "Creativity", 114),
 )
 

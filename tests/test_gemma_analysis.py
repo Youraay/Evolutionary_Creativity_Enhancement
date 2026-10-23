@@ -19,11 +19,18 @@ def test_source_hashes_and_posthoc_values():
     workflow.check_hashes()
     prompt, overall, result, paired, sensitivity = data.load_posthoc(deep=True)
     ratings_plot._validated_summaries(prompt, overall)
-    assert len(prompt) == 2640 and len(overall) == 24 and len(paired) == 660
+    assert len(prompt) == 2736 and len(overall) == 24 and len(paired) == 684
+    assert result.n_pairs.eq(114).all()
     assert result.loc[result.significant_higher_alpha_0_05, "rating"].tolist() == ["Unusualness"]
-    assert sensitivity.loc[sensitivity.rating.eq("Suitability"), "n_pairs"].item() == 107
+    assert sensitivity.loc[sensitivity.rating.eq("Suitability"), "n_pairs"].item() == 113
     with pytest.raises(ValueError):
         ratings_plot._validated_summaries(prompt.iloc[:-1], overall)
+    mismatched = prompt.copy()
+    question = mismatched.prompt_id.eq("study-suitability")
+    folder = mismatched.loc[question, "prompt_folder"].iloc[0]
+    mismatched.loc[question & mismatched.prompt_folder.eq(folder), "prompt_folder"] = "wrong_prompt"
+    with pytest.raises(ValueError, match="Source prompts differ across questions"):
+        ratings_plot._validated_summaries(mismatched, overall)
 
 
 def test_holm_and_direction():
@@ -105,6 +112,9 @@ def test_launcher_outputs_and_original_examples(tmp_path):
         images = list(svg.iter(ns + "image"))
         if module == "gemma_ratings":
             assert not images
+            labels = ["".join(node.itertext()) for node in svg.iter(ns + "text")]
+            assert sum("(114 prompts)" in label for label in labels) == 6
+            assert not any("108 prompts" in label for label in labels)
             continue
         assert len(images) == 9
         examples = pd.read_csv(data.DATA / "evolution/selected_examples.csv")

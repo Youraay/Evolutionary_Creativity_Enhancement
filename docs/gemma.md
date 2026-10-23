@@ -60,9 +60,9 @@ Pearson correlations, bootstrap intervals, prediction errors and valid counts.
 
 ## Ratings across generations
 
-Gemma rates distance-optimised images on the same six dimensions at generations
-0, 10, 20 and 30. Each source prompt has three runs and 60 image observations per
-generation. Repeated elite images remain part of their populations.
+Gemma rates distance-optimised images from the same 114 source prompts on all six
+dimensions at generations 0, 10, 20 and 30. Each source prompt has three runs and
+60 image observations per generation. Repeated elite images remain part of their populations.
 
 `analysis.gemma_ratings` produces `ratings_across_generations.pdf` and `.svg`.
 Each dot is a source-prompt mean over valid image ratings, and lines connect

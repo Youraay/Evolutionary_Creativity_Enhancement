@@ -108,7 +108,7 @@ The VLM analyses use three datasets:
 | Analysis | Models and images | Included data |
 |---|---|---|
 | Agreement with human ratings | Gemma 4 26B-A4B, LLaVA-OneVision 7B and Qwen2.5-VL 7B; 36 study images and six rating dimensions | `data/results/gemma/benchmark/`: 648 original model responses, 644 valid image-level pairs, correlations and response completeness |
-| Ratings across generations | Gemma 4; distance-optimised images from the PartiPrompts selection, generations 0, 10, 20 and 30; three runs and 60 images per generation | `data/results/gemma/posthoc/`: individual scores and run, prompt and dimension summaries; `statistics/`: paired tests |
+| Ratings across generations | Gemma 4; 114 source prompts rated on all six dimensions, generations 0, 10, 20 and 30; three runs and 60 images per generation | `data/results/gemma/posthoc/`: individual scores and run, prompt and dimension summaries; `statistics/`: paired tests |
 | Rating-guided evolution | Seven Gemma fitness targets; cat, chair and boredom; three seeds and population 100 | `data/results/gemma/evolution/`: population metrics and pooled curves; `examples/`: nine selected original images |
 
 The benchmark contains the original model responses and image-level human averages. The generation

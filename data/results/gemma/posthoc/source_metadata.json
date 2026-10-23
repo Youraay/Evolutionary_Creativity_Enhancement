@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "input_sha256": {
+    "/panfs/vdura1/dldevel/public/Evolutionary_Novelty_Enhancement_Results/VLM_stuff/results/distance114-gemma-generation-plots/slurm-1797363/plots/ratings.csv": "2c9cb32a0e1c7cf4c1600cb859dd82cbb185c45d28f2343e0fc7e984eb765a59",
+    "/panfs/vdura1/dldevel/public/Evolutionary_Novelty_Enhancement_Results/VLM_stuff/results/distance114-gemma-generation-plots/slurm-1797363/plots/plot_metadata.json": "27eadb55f08aecae8e22fe154dda2427e873652027e8c8e5ab6855abb3907cab",
+    "/panfs/vdura1/dldevel/public/Evolutionary_Novelty_Enhancement_Results/VLM_stuff/results/distance114-gemma-six-questions-plots/slurm-1799647/remaining-export/ratings.csv": "cc6fd547b6505357c801fd77fcf352c241df2224778face074795bbd7ce3ad0f",
+    "/panfs/vdura1/dldevel/public/Evolutionary_Novelty_Enhancement_Results/VLM_stuff/VLM_gemma_remaining_ratings/configs/distance6_additional_prompts.yaml": "419a1dafb2e52152c4c83d2c8f7bf1821c98fb71cfedd8e2f04bd71c8ad778df"
+  },
+  "observation_count": 492480,
+  "valid_ratings": 492430,
+  "parse_invalid_ratings": 50,
+  "unique_image_observations": 82080,
+  "source_prompt_counts": {
+    "study-boredom": 114,
+    "study-creativity": 114,
+    "study-excitement": 114,
+    "study-pleasantness": 114,
+    "study-suitability": 114,
+    "study-unusualness": 114
+  },
+  "invalid_policy": "Preserve 50 historical parse-invalid scores as missing; new ratings must all be valid",
+  "plot_unit": "source-prompt mean across valid image observations; equal prompt weights",
+  "overview_markers": "identical circles for all 114 prompts",
+  "significance": "Not recalculated; historical 108/114-prompt tests do not describe this complete cohort",
+  "software": {
+    "python": "3.12.14 (main, Sep  2 2026, 15:22:51) [GCC 15.3.0]",
+    "pandas": "2.3.3",
+    "numpy": "2.5.2",
+    "matplotlib": "3.11.1"
+  },
+  "output_sha256": {
+    "gemma_six_constructs_overview.pdf": "015732d892dd7646320cda3d249689d9b9e37482bef27d6c7dedd6fa1addb2ae",
+    "gemma_six_constructs_overview.png": "e226775ab3e07258f58bd9a114a2d6852d20def0e7143d7fc409e007ea7c919d",
+    "gemma_six_constructs_overview.svg": "be0b3be5a5689e14a6b25a95496736a104cbee8d1491d531cd9dc959e67297df",
+    "index.html": "af9584c6475ba7b290e66eeb6a6392b741f210bc018b55913b81ccf9c6beb012",
+    "question_generation_summary.csv": "97b2748c2f2cb3ea4c3441b643f57d47e7d4a57940572fe5e3de84a7004b8689",
+    "ratings.csv.gz": "8af05308f4ec3c205f780a8db752417f8c490a999079049d97c3935a44425d0d",
+    "run_generation_summary.csv": "7f5056556cbc1dc67520570d553ada42a6f338a8fd8a494490a3aff89ca1514c",
+    "source_code/distance6_additional_prompts.yaml": "419a1dafb2e52152c4c83d2c8f7bf1821c98fb71cfedd8e2f04bd71c8ad778df",
+    "source_code/plot_gemma_complete_ratings.py": "2eb8b7c8c2207ebb25fd2718423726ab77dd3c9894643c6d45f288c6dcc51ac7",
+    "source_code/plot_gemma_construct_ratings.py": "3e37f631e144294bb39069ff2f22f22b50c85ec890fe65a9b0dfb34dc925e170",
+    "source_prompt_generation_summary.csv": "b4f1b75b484ae9ef22c1200109556a6e43badb72aa278c7a56c59765fa3787f6"
+  }
+}

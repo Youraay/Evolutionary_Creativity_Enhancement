@@ -12,14 +12,14 @@
     "evolution/prompt_pooled_seed_means.csv": "047b4d0d6769ef52c55fde8f36dc0cf9a4a935e0bcc8f41a8393e7be636e9163",
     "evolution/run_generation_summary.csv": "3514328e8735ea3b5323ce242513954d1902e18518a55d27a3bda0036ae3b91a",
     "evolution/selected_examples.csv": "760590e7fd75f4fa7db82d48350700ad063e264d456029e2396109e6e85f90e2",
-    "posthoc/question_generation_summary.csv": "52f964a781387f7916371956784238c2260c5690f126c04b211cbb950f642482",
-    "posthoc/ratings.csv.gz": "6a8410de4f852f0952b060fbd4d7027e7106ff3d76976fe2d05c0bce62e74b52",
-    "posthoc/run_generation_summary.csv": "a597b3b0dbc258571138ffa24c8386b7df593b1c1ff7cde53129d1336b73e8e2",
-    "posthoc/source_prompt_generation_summary.csv": "b1df655b91361447b9b6fc189fee99a1470a428cdb545bd04167f5041c47896b",
-    "statistics/complete_endpoint_sensitivity.csv": "54bda16e8dad8658a1875a216b335f0fc946d0e6871093824f230109473572fd",
-    "statistics/generation_0_vs_30_tests.csv": "384445da0754234be0e8a1c1a3eceb1e0171f47e0e74782ab4ec105f91ccfb44",
-    "statistics/methods_and_results.txt": "33df0a62cacd492bd8820a49013710dcb016d5cb8702c30edd9b850bcde231ba",
-    "statistics/paired_prompt_values.csv": "e51aa3e63a4b196a6a53073d4367fe4959f5d345cbe237e2a1e9080d1b84e9f8",
+    "posthoc/question_generation_summary.csv": "97b2748c2f2cb3ea4c3441b643f57d47e7d4a57940572fe5e3de84a7004b8689",
+    "posthoc/ratings.csv.gz": "8af05308f4ec3c205f780a8db752417f8c490a999079049d97c3935a44425d0d",
+    "posthoc/run_generation_summary.csv": "7f5056556cbc1dc67520570d553ada42a6f338a8fd8a494490a3aff89ca1514c",
+    "posthoc/source_prompt_generation_summary.csv": "b4f1b75b484ae9ef22c1200109556a6e43badb72aa278c7a56c59765fa3787f6",
+    "statistics/complete_endpoint_sensitivity.csv": "0b56f3f9ecaca53078eb62baa10665c849adc876a8a0d82e99643624634c1606",
+    "statistics/generation_0_vs_30_tests.csv": "ef98c196328f36e93d598a0e629397e86c386269800a3167b321113d2ede46e7",
+    "statistics/methods_and_results.txt": "ea8badd72aa806c9dae38b2b4b862ff99a329f922df841a9033e072e881b9b06",
+    "statistics/paired_prompt_values.csv": "43d6cb5a15a1a3468b0533ac244bb5027dbffc6d239db93b3ebc59be7d603105",
     "examples/creativity/boredom/seed-2025-g29.JPEG": "6687c10d64ffe88aeee73398bd6a0c13845f02aead25dec81122b6d92daddfa2",
     "examples/creativity/boredom/seed-2026-g30.JPEG": "10ea3dff11aa52c57326d55f34b65d8175d84af7840167fd2483e03075b666e7",
     "examples/creativity/boredom/seed-2027-g30.JPEG": "78dbca6f303ed0806bfb116962048dd5ecfde7ac792dfed1a3168b897be8334d",
@@ -31,7 +31,8 @@
     "examples/creativity/chair/seed-2027-g30.JPEG": "156603bbc318e63f8c5814c3b71a3f9f4ccfa84efcb3beace41cb25dc85f6091",
     "methods/fitness_construct_questions.py": "a947700ca429e6e3243dfdc8401eb9bd1e00b0e5564c1f25318f6b0afe1dcf29",
     "methods/metric_definitions.txt": "3c3815e213e1cd29d7f2023806d66ed2df50feeb8b5a0ed830c4e3280f7e1235",
-    "methods/source_inventory.json": "0c08ef3920d8fab1bd67590d5acf2087503f06138daadc14fa2a9d90ecb18b14",
-    "methods/study_question_configuration.yaml": "305251874eb9e7e46bc1353f0965e7375fb5e096e238b05063bb1d0de4d3c8fd"
+    "methods/source_inventory.json": "fbe11baefb46cb29335b4a0e245775163ab1d77fe345fcd96feb02e404ed8686",
+    "methods/study_question_configuration.yaml": "305251874eb9e7e46bc1353f0965e7375fb5e096e238b05063bb1d0de4d3c8fd",
+    "posthoc/source_metadata.json": "c748f01b7bdf21aaaf1b182540bd7dbc86ec5850417e16bbf04caf26a2896465"
   }
 }
